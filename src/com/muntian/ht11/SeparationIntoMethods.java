@@ -9,15 +9,29 @@ import java.util.Scanner;
 public class SeparationIntoMethods {
     public static void main(String[] args) {
         int[] arr = new int[4];
+
         //Selection sort:
+        System.out.println("Selection sort");
+        arrayFilling(arr);
+        System.out.print("Source array: ");
+        displayArray(arr);
         selectSort(arr);
         System.out.println();
 
+
         //Bubble sort:
+        System.out.println("Sort by bubble:");
+        arrayFilling(arr);
+        System.out.print("Source array: ");
+        displayArray(arr);
         bubbleSort(arr);
         System.out.println();
 
         //Insert sort:
+        System.out.println("Insert sort:");
+        arrayFilling(arr);
+        System.out.print("Source array: ");
+        displayArray(arr);
         insertSort(arr);
     }
 
@@ -35,10 +49,6 @@ public class SeparationIntoMethods {
     }
 
     private static void selectSort(int[] arr) {
-        System.out.println("Selection sort");
-        arrayFilling(arr);
-        System.out.print("Source array: ");
-        displayArray(arr);
         int tmp;
         for (int i = 0; i < arr.length; i++) {
             int max = 0;
@@ -66,10 +76,6 @@ public class SeparationIntoMethods {
     }
 
     private static void bubbleSort(int[] arr) {
-        System.out.println("Sort by bubble:");
-        arrayFilling(arr);
-        System.out.print("Source array: ");
-        displayArray(arr);
         for (int i = 0; i < arr.length; i++) {
             //Check to not go to the next iteration:
             if (i == arr.length - 1) {
@@ -89,10 +95,6 @@ public class SeparationIntoMethods {
     }
 
     private static void insertSort(int[] arr) {
-        System.out.println("Insert sort:");
-        arrayFilling(arr);
-        System.out.print("Source array: ");
-        displayArray(arr);
         for (int i = 1; i < arr.length; i++) {
             int j;
             int tmp = arr[i];
