@@ -1,23 +1,24 @@
 package com.muntian.ht14_Exercise_7_47;
 
 public class AverageWeight {
-    private static double criticalWeight = 100;
-    private static double averageWeightOfFatty = 0;
-    private static double averageWeightOfOthers = 0;
-    private static double[] group = {60, 100, 77, 82, 90, 120, 110};
 
     public static void main(String[] args) {
+        double criticalWeight = 100;
+        double[] group = {60, 100, 77, 82, 90, 120, 110};
+        double[] testGroup = {108, 137, 56, 75, 88, 84};
+        double expectedValueForOther = 75.75;
+        double expectedValueForFat = 122.0;
         System.out.println("Average weight of fat people:");
-        System.out.println(getAverageWeightOfFatPeople(group));
+        System.out.println(getAverageWeightOfFatPeople(group, criticalWeight));
         System.out.println();
         System.out.println("Average weight of other people:");
-        System.out.println(getAverageWeightOfOtherPeople(group));
+        System.out.println(getAverageWeightOfOtherPeople(group,criticalWeight));
         System.out.println();
-        testForFatty();
-        testForOthers();
+        testForFatty(testGroup,expectedValueForFat,criticalWeight);
+        testForOthers(testGroup,expectedValueForOther,criticalWeight);
     }
 
-    private static double getAverageWeightOfOtherPeople(double[] group) {
+    private static double getAverageWeightOfOtherPeople(double[] group,double criticalWeight) {
         double totalWeightOfOtherPeople = 0;
         int numberOfOtherPeople = 0;
         for (int i = 0; i < group.length; i++) {
@@ -26,10 +27,10 @@ public class AverageWeight {
                 numberOfOtherPeople++;
             }
         }
-        return averageWeightOfOthers = totalWeightOfOtherPeople / numberOfOtherPeople;
+        return totalWeightOfOtherPeople / numberOfOtherPeople;
     }
 
-    private static double getAverageWeightOfFatPeople(double[] group) {
+    private static double getAverageWeightOfFatPeople(double[] group, double criticalWeight) {
         double totalWeightOfFatPeople = 0;
         double numberOfFatPeople = 0;
         for (int i = 0; i < group.length; i++) {
@@ -38,13 +39,11 @@ public class AverageWeight {
                 numberOfFatPeople++;
             }
         }
-        return averageWeightOfFatty = totalWeightOfFatPeople / numberOfFatPeople;
+        return totalWeightOfFatPeople / numberOfFatPeople;
     }
 
-    private static boolean testForFatty() {
-        double[] testGroup = {108, 137, 56, 75, 88, 84};
-        double expectedValue = 122.5;
-        if (getAverageWeightOfFatPeople(testGroup) == expectedValue) {
+    private static boolean testForFatty(double []testGroup,double expectedValueForFat,double criticalWeight) {
+        if (getAverageWeightOfFatPeople(testGroup, criticalWeight) == expectedValueForFat) {
             System.out.println("The average weight of fat people is calculated correctly");
             return true;
         } else {
@@ -53,10 +52,8 @@ public class AverageWeight {
         }
     }
 
-    private static boolean testForOthers() {
-        double[] testGroup = {108, 137, 56, 75, 88, 84};
-        double expectedValue = 75.75;
-        if (getAverageWeightOfOtherPeople(testGroup) == expectedValue) {
+    private static boolean testForOthers(double []testGroup,double expectedValueForOthers,double criticalWeight) {
+        if (getAverageWeightOfOtherPeople(testGroup,criticalWeight) == expectedValueForOthers) {
             System.out.println("The average weight of other people is calculated correctly");
             return true;
         } else {
