@@ -7,7 +7,7 @@ public class AverageWeight {
         double[] group = {60, 100, 77, 82, 90, 120, 110};
         double[] testGroup = {108, 137, 56, 75, 88, 84};
         double expectedValueForOther = 75.75;
-        double expectedValueForFat = 122.0;
+        double expectedValueForFat = 122.5;
         System.out.println("Average weight of fat people:");
         System.out.println(getAverageWeightOfFatPeople(group, criticalWeight));
         System.out.println();
