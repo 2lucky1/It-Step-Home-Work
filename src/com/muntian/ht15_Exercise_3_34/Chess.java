@@ -25,19 +25,23 @@ public class Chess {
         visualization(coordinates);
         System.out.println();
 
-        //Test
+        //Tests
+        System.out.println("Test with rook, when target is achievable");
         printTest(testWithRookTargetIsAchievable(coordinates));
         visualization(coordinates);
         System.out.println();
 
+        System.out.println("Test with rook, when target is unattainable");
         printTest(testWithRookTargetIsUnattainable(coordinates));
         visualization(coordinates);
         System.out.println();
 
+        System.out.println("Test with horse, when target is achievable");
         printTest(testWithHorseTargetIsAchievable(coordinates));
         visualization(coordinates);
         System.out.println();
 
+        System.out.println("Test with white pawn, when target is achievable");
         printTest(testWithWhitePawnTargetIsAchievable(coordinates));
         visualization(coordinates);
         System.out.println();
