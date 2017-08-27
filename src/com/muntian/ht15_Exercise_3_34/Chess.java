@@ -23,15 +23,29 @@ public class Chess {
 
         //Visualization of chess
         visualization(coordinates);
+        System.out.println();
 
         //Test
-        printTest(test(coordinates));
+        printTest(testWithRookTargetIsAchievable(coordinates));
+        visualization(coordinates);
+        System.out.println();
 
+        printTest(testWithRookTargetIsUnattainable(coordinates));
+        visualization(coordinates);
+        System.out.println();
+
+        printTest(testWithHorseTargetIsAchievable(coordinates));
+        visualization(coordinates);
+        System.out.println();
+
+        printTest(testWithWhitePawnTargetIsAchievable(coordinates));
+        visualization(coordinates);
+        System.out.println();
 
     }
 
     private static void visualization(int[] coordinates) {
-        String[][] chessBoard = new String[10][8];
+        String[][] chessBoard = new String[8][8];
         //Filling of chess board by white and black squares
         for (int i = 0; i < chessBoard.length; i += 2) {
             for (int j = 0; j < chessBoard[i].length; j += 2) {
@@ -48,21 +62,21 @@ public class Chess {
         }
 
         //Horizontal numbering
-        for (int i = chessBoard.length - 1; i < chessBoard.length; i++) {
-            for (int j = 0; j < chessBoard[i].length; j++) {
-                chessBoard[i][j] = valueOf(j + 1);
-                chessBoard[i - 1][j] = "-";
-            }
-        }
+//        for (int i = chessBoard.length - 1; i < chessBoard.length; i++) {
+//            for (int j = 0; j < chessBoard[i].length; j++) {
+//                chessBoard[i][j] = valueOf(j + 1);
+//                chessBoard[i - 1][j] = "-";
+//            }
+//        }
 
         //Specifying the figure and the target on the board
-        chessBoard[coordinates[VERTICAL_OF_FIGURE] - 1][coordinates[HORIZONTAL_OF_FIGURE] - 1] = "f";
-        chessBoard[coordinates[VERTICAL_OF_TARGET] - 1][coordinates[HORIZONTAL_OF_TARGET] - 1] = "t";
+        chessBoard[8 - coordinates[VERTICAL_OF_FIGURE]][coordinates[HORIZONTAL_OF_FIGURE] - 1] = "f";
+        chessBoard[8 - coordinates[VERTICAL_OF_TARGET]][coordinates[HORIZONTAL_OF_TARGET] - 1] = "t";
 
         //Display chess board
         for (int i = 0; i < chessBoard.length; i++) {
             if (i < 8) {
-                System.out.print((chessBoard.length - (i + 2)) + "| ");
+                System.out.print((chessBoard.length - i) + " | ");
             } else {
                 System.out.print("   ");
             }
@@ -70,6 +84,18 @@ public class Chess {
                 System.out.print(chessBoard[i][j] + " ");
             }
             System.out.println();
+        }
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < chessBoard[i].length; j++) {
+                if (j == 0) {
+                    System.out.print("    ");
+                }
+                if (i > 0) {
+                    System.out.print((j + 1) + " ");
+                } else System.out.print("- ");
+            }
+            System.out.println();
+
         }
     }
 
@@ -81,12 +107,54 @@ public class Chess {
         }
     }
 
-    private static boolean test(int[] coordinates) {
+    private static boolean testWithRookTargetIsAchievable(int[] coordinates) {
         coordinates[VERTICAL_OF_FIGURE] = 2;
         coordinates[HORIZONTAL_OF_FIGURE] = 2;
         coordinates[VERTICAL_OF_TARGET] = 4;
         coordinates[HORIZONTAL_OF_TARGET] = 2;
         coordinates[FIGURE_NUMBER] = 1;
+        boolean expectedResult = true;
+        if (expectedResult == targetInTheAreaOfVisibility(coordinates)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static boolean testWithRookTargetIsUnattainable(int[] coordinates) {
+        coordinates[VERTICAL_OF_FIGURE] = 2;
+        coordinates[HORIZONTAL_OF_FIGURE] = 3;
+        coordinates[VERTICAL_OF_TARGET] = 4;
+        coordinates[HORIZONTAL_OF_TARGET] = 2;
+        coordinates[FIGURE_NUMBER] = 1;
+        boolean expectedResult = false;
+        if (expectedResult == targetInTheAreaOfVisibility(coordinates)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static boolean testWithHorseTargetIsAchievable(int[] coordinates) {
+        coordinates[VERTICAL_OF_FIGURE] = 2;
+        coordinates[HORIZONTAL_OF_FIGURE] = 3;
+        coordinates[VERTICAL_OF_TARGET] = 3;
+        coordinates[HORIZONTAL_OF_TARGET] = 1;
+        coordinates[FIGURE_NUMBER] = 7;
+        boolean expectedResult = true;
+        if (expectedResult == targetInTheAreaOfVisibility(coordinates)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static boolean testWithWhitePawnTargetIsAchievable(int[] coordinates) {
+        coordinates[VERTICAL_OF_FIGURE] = 2;
+        coordinates[HORIZONTAL_OF_FIGURE] = 3;
+        coordinates[VERTICAL_OF_TARGET] = 3;
+        coordinates[HORIZONTAL_OF_TARGET] = 4;
+        coordinates[FIGURE_NUMBER] = 5;
         boolean expectedResult = true;
         if (expectedResult == targetInTheAreaOfVisibility(coordinates)) {
             return true;
