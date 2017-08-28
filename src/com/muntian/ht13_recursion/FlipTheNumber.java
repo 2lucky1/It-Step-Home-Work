@@ -5,21 +5,13 @@ import java.util.Scanner;
 public class FlipTheNumber {
 
     public static void main(String[] args) {
-        int index = 0;
         int testNumber = 777888;
-        int testReversedNumber = 888777;
+        int expectedReversedNumber = 888777;
         int userNumber = enterNaturalNumber();
-        System.out.println(getReversedNumber(userNumber, index));
-        test(testNumber, testReversedNumber, index);
-
-    }
-
-    private static int getReversedNumber(int userNumber, int index) {
-        return Integer.parseInt(reverseOfString(userNumber, index));
-    }
-
-    private static String convertNumberToString(int userNumber) {
-        return String.valueOf(userNumber);
+        int lengths = getNumberLengths(userNumber);
+        System.out.println(userNumber + " userNumber; " + lengths + " numberLengths.");
+        System.out.println(getReversedNumber(userNumber, lengths));
+        test(testNumber, expectedReversedNumber);
     }
 
     private static int enterNaturalNumber() {
@@ -31,23 +23,36 @@ public class FlipTheNumber {
                 if (userNumber > 0) {
                     return userNumber;
                 }
-            } else {
-                System.out.println("Input error: Enter a natural integer number");
             }
+            System.out.println("Input error: Enter a natural integer number from 1 to plus infinity");
         }
     }
 
-    private static String reverseOfString(int userNumber, int index) {
-        String enterByUser = convertNumberToString(userNumber);
-        return (index == enterByUser.length()) ? "" : reverseOfString(userNumber, index + 1) + enterByUser.charAt(index);
+    private static int getNumberLengths(int userNumber) {
+        if (userNumber < 10) {
+            return 1;
+        }
+        userNumber = userNumber / 10;
+        return getNumberLengths(userNumber) + 1;
     }
 
-    private static void test(int testNumber, int testReversedNumber, int index) {
-        if (getReversedNumber(testNumber, index) == testReversedNumber) {
+    private static int getReversedNumber(int userNumber, int lengthsOfUserNumber) {
+        int result = 0;
+        if (lengthsOfUserNumber == 1) {
+            return userNumber;
+        }
+        for (int i = lengthsOfUserNumber; i > 0; i--) {
+            result = (int) (result + userNumber % 10 * Math.pow(10, i - 1));
+            userNumber = userNumber / 10;
+        }
+        return result;
+    }
+
+    private static void test(int testNumber, int testReversedNumber) {
+        if (getReversedNumber(testNumber, getNumberLengths(testNumber)) == testReversedNumber) {
             System.out.println("Test passed!");
         } else {
             System.out.println("The test is failed!");
         }
-
     }
 }
