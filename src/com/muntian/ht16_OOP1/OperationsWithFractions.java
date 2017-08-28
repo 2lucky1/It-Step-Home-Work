@@ -24,44 +24,55 @@ public class OperationsWithFractions {
     private static Fractions addition(Fractions firstSummand, Fractions secondSummand) {
         Fractions result = new Fractions();
         result.integerPart = firstSummand.integerPart + secondSummand.integerPart;
-        if ((firstSummand.integerPart >= 0 && secondSummand.integerPart >= 0) ||
-                (firstSummand.integerPart < 0 && secondSummand.integerPart < 0)) {
+        if (firstSummand.integerPart >= 0 && secondSummand.integerPart >= 0) {
             if ((firstSummand.fractionalPart + secondSummand.fractionalPart) < RANK_OF_FRACTION_PART) {
                 result.fractionalPart = (short) (firstSummand.fractionalPart + secondSummand.fractionalPart);
             } else if ((firstSummand.fractionalPart + secondSummand.fractionalPart) > RANK_OF_FRACTION_PART) {
-                result.integerPart++;
                 result.fractionalPart = (short) ((firstSummand.fractionalPart + secondSummand.fractionalPart) % RANK_OF_FRACTION_PART);
+                result.integerPart++;
             }
-        } else if (firstSummand.integerPart >= 0 && secondSummand.integerPart < 0) {
-            if (firstSummand.fractionalPart >= secondSummand.fractionalPart) {
-                result.fractionalPart = (short) (firstSummand.fractionalPart - secondSummand.fractionalPart);
-            } else if (firstSummand.fractionalPart < secondSummand.fractionalPart) {
+        } else if (firstSummand.integerPart < 0 && secondSummand.integerPart < 0) {
+            if ((firstSummand.fractionalPart + secondSummand.fractionalPart) < RANK_OF_FRACTION_PART) {
+                result.fractionalPart = (short) (firstSummand.fractionalPart + secondSummand.fractionalPart);
+            } else if ((firstSummand.fractionalPart + secondSummand.fractionalPart) > RANK_OF_FRACTION_PART) {
+                result.fractionalPart = (short) ((firstSummand.fractionalPart + secondSummand.fractionalPart) % RANK_OF_FRACTION_PART);
                 result.integerPart--;
-                result.fractionalPart = (short) (firstSummand.fractionalPart + RANK_OF_FRACTION_PART - secondSummand.fractionalPart);
             }
         } else if (firstSummand.integerPart < 0 && secondSummand.integerPart >= 0) {
-            if (firstSummand.fractionalPart > secondSummand.fractionalPart) {
-                result.integerPart--;
+            if (secondSummand.fractionalPart > firstSummand.fractionalPart) {
+                result.fractionalPart = (short) (secondSummand.fractionalPart - firstSummand.fractionalPart);
+            } else if (secondSummand.fractionalPart < firstSummand.fractionalPart) {
                 result.fractionalPart = (short) (secondSummand.fractionalPart + RANK_OF_FRACTION_PART - firstSummand.fractionalPart);
-            }else if (firstSummand.fractionalPart<secondSummand.fractionalPart){
-                result.fractionalPart = (short) (secondSummand.fractionalPart-firstSummand.fractionalPart);
+                result.integerPart--;
+            }
+        } else if (firstSummand.integerPart >= 0 && secondSummand.integerPart < 0) {
+            if (firstSummand.fractionalPart > secondSummand.fractionalPart) {
+                result.fractionalPart = (short) (firstSummand.fractionalPart - secondSummand.fractionalPart);
+            } else if (firstSummand.fractionalPart < secondSummand.fractionalPart) {
+                result.fractionalPart = (short) (firstSummand.fractionalPart + RANK_OF_FRACTION_PART - secondSummand.fractionalPart);
+                result.integerPart--;
             }
         }
         return result;
     }
 
+    private static void additionOfFractionParts(Fractions firstSummand, Fractions secondSummand, Fractions result) {
+        if ((firstSummand.fractionalPart + secondSummand.fractionalPart) < RANK_OF_FRACTION_PART) {
+            result.fractionalPart = (short) (firstSummand.fractionalPart + secondSummand.fractionalPart);
+        } else if ((firstSummand.fractionalPart + secondSummand.fractionalPart) > RANK_OF_FRACTION_PART) {
+            result.fractionalPart = (short) ((firstSummand.fractionalPart + secondSummand.fractionalPart) % RANK_OF_FRACTION_PART);
+            result.integerPart++;
+        }
+    }
+
     private static Fractions subtraction(Fractions minuend, Fractions subtracted) {
         Fractions result = new Fractions();
         result.integerPart = minuend.integerPart - subtracted.integerPart;
-        if ((minuend.integerPart >= 0 && subtracted.integerPart >= 0) || (minuend.integerPart < 0 && subtracted.integerPart < 0)) {
-            result.fractionalPart = (short) (minuend.fractionalPart - subtracted.fractionalPart);
+        if ((minuend.integerPart >= 0 && subtracted.integerPart >= 0)) {
+            subtractionOfFractionsParts(minuend, subtracted, result);
+
         } else if (minuend.integerPart >= 0 && subtracted.integerPart < 0) {
-            if ((minuend.fractionalPart + subtracted.fractionalPart) < RANK_OF_FRACTION_PART) {
-                result.fractionalPart = (short) (minuend.fractionalPart + subtracted.fractionalPart);
-            } else if ((minuend.fractionalPart + subtracted.fractionalPart) > RANK_OF_FRACTION_PART) {
-                result.integerPart++;
-                result.fractionalPart = (short) ((minuend.fractionalPart + subtracted.fractionalPart) % RANK_OF_FRACTION_PART);
-            }
+            additionOfFractionParts(minuend, subtracted, result);
         } else if (minuend.integerPart < 0 && subtracted.integerPart >= 0) {
             result.fractionalPart = (short) (subtracted.fractionalPart + minuend.fractionalPart);
         }
@@ -69,6 +80,16 @@ public class OperationsWithFractions {
         return result;
     }
 
+    private static void subtractionOfFractionsParts(Fractions minuend, Fractions subtracted, Fractions result) {
+        if (minuend.fractionalPart > subtracted.fractionalPart) {
+            result.fractionalPart = (short) (minuend.fractionalPart - subtracted.fractionalPart);
+        } else if (minuend.fractionalPart < subtracted.fractionalPart) {
+            result.fractionalPart = (short) (minuend.fractionalPart + RANK_OF_FRACTION_PART - subtracted.fractionalPart);
+            result.integerPart--;
+        }
+    }
+
+    //    || (minuend.integerPart < 0 && subtracted.integerPart < 0))
     private static Fractions multiplication(Fractions firstMultiplier, Fractions secondMultiplier) {
         Fractions result = new Fractions();
         //Multiplication of integer parts
