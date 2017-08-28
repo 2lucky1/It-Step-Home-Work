@@ -8,9 +8,7 @@ public class FlipTheNumber {
         int testNumber = 777888;
         int expectedReversedNumber = 888777;
         int userNumber = enterNaturalNumber();
-        int lengths = getNumberLengths(userNumber);
-        System.out.println(userNumber + " userNumber; " + lengths + " numberLengths.");
-        System.out.println(getReversedNumber(userNumber, lengths));
+        System.out.println(getReversedNumber(userNumber,getNumberLengths(userNumber)));
         test(testNumber, expectedReversedNumber);
     }
 
@@ -36,20 +34,19 @@ public class FlipTheNumber {
         return getNumberLengths(userNumber) + 1;
     }
 
-    private static int getReversedNumber(int userNumber, int lengthsOfUserNumber) {
-        int result = 0;
-        if (lengthsOfUserNumber == 1) {
-            return userNumber;
+    private static int getReversedNumber(int userNumber,int lengthsOfNumber) {
+        int pow = lengthsOfNumber-1;
+        if (pow == 0) {
+            return (int) (userNumber * Math.pow(10, pow));
         }
-        for (int i = lengthsOfUserNumber; i > 0; i--) {
-            result = (int) (result + userNumber % 10 * Math.pow(10, i - 1));
-            userNumber = userNumber / 10;
-        }
-        return result;
+        int reversedNumber = (int) (userNumber % 10 * Math.pow(10, pow));
+        userNumber = userNumber / 10;
+        lengthsOfNumber--;
+        return reversedNumber + getReversedNumber(userNumber,lengthsOfNumber);
     }
 
     private static void test(int testNumber, int testReversedNumber) {
-        if (getReversedNumber(testNumber, getNumberLengths(testNumber)) == testReversedNumber) {
+        if (getReversedNumber(testNumber,getNumberLengths(testNumber)) == testReversedNumber) {
             System.out.println("Test passed!");
         } else {
             System.out.println("The test is failed!");
