@@ -10,10 +10,23 @@ public class OperationsWithFractions {
         fraction1.fractionalPart = 2300;
         fraction2.integerPart = -7L;
         fraction2.fractionalPart = 8700;
-        addition(fraction1, fraction2);
-        subtraction(fraction1, fraction2);
-        multiplication(fraction1, fraction2);
-        printResult(multiplication(fraction1, fraction2));
+
+        System.out.println("Input data:");
+        System.out.print("The first member of operation: ");
+        printFraction(fraction1);
+
+        System.out.print("The second member of operation: ");
+        printFraction(fraction2);
+
+        System.out.println("Result of addition:");
+        printFraction(addition(fraction1, fraction2));
+
+        System.out.println("Result of subtraction:");
+        printFraction(subtraction(fraction1, fraction2));
+
+        System.out.println("Result of multiplication:");
+        printFraction(multiplication(fraction1, fraction2));
+        System.out.println();
 //        less(fraction1, fraction2);
 //        lessOrEqual(fraction1, fraction2);
 //        more(fraction1, fraction2);
@@ -77,45 +90,50 @@ public class OperationsWithFractions {
 
     private static Fractions multiplication(Fractions firstMultiplier, Fractions secondMultiplier) {
         Fractions result = new Fractions();
+        long firstIntPart = firstMultiplier.integerPart;
+        long secondIntPart = secondMultiplier.integerPart;
+        int firstFrcPart = firstMultiplier.fractionalPart;
+        int secondFrcPart = secondMultiplier.fractionalPart;
+
         //Multiplication of integer parts
-        result.integerPart = firstMultiplier.integerPart * secondMultiplier.integerPart;
+        result.integerPart = firstIntPart * secondIntPart;
+
+        //Make operation members positive to be able to multiply correctly
+        firstIntPart = makePositiveNumber(firstIntPart);
+        secondIntPart = makePositiveNumber(secondIntPart);
+
         //Multiplication with fractional parts
-        int tempIntegerPart = (int) ((firstMultiplier.integerPart * secondMultiplier.fractionalPart) / RANK_OF_FRACTION_PART +
-                (secondMultiplier.integerPart * firstMultiplier.fractionalPart) / RANK_OF_FRACTION_PART +
-                (firstMultiplier.fractionalPart * secondMultiplier.fractionalPart) / 1000000);
-        //For convenience, we make tempIntegerPart always positive
-        if (tempIntegerPart < 0) {
-            tempIntegerPart = tempIntegerPart * (-1);
-        }
-        int tempIntegerPart2 = 0;
-        int tempFractionPart = (int) ((secondMultiplier.fractionalPart * firstMultiplier.integerPart) % RANK_OF_FRACTION_PART +
-                (secondMultiplier.integerPart * firstMultiplier.fractionalPart) % RANK_OF_FRACTION_PART +
-                (firstMultiplier.fractionalPart * secondMultiplier.fractionalPart) % 1000000);
-        if (tempFractionPart < 0) {
-            tempFractionPart = tempIntegerPart * (-1);
-        }
-        if (tempFractionPart < RANK_OF_FRACTION_PART) {
-            result.fractionalPart = (short) tempFractionPart;
-        } else if (tempFractionPart > RANK_OF_FRACTION_PART) {
-            tempIntegerPart2 = tempFractionPart / RANK_OF_FRACTION_PART;
-            result.fractionalPart = (short) (tempFractionPart % RANK_OF_FRACTION_PART);
+        long temp = ((firstIntPart * secondFrcPart) + (secondIntPart * firstFrcPart) +
+                (firstFrcPart * secondFrcPart) / RANK_OF_FRACTION_PART);
+
+        //Extraction of integer part
+        if (result.integerPart < 0) {
+            result.integerPart = result.integerPart - temp / RANK_OF_FRACTION_PART;
+        } else {
+            result.integerPart = result.integerPart + temp / RANK_OF_FRACTION_PART;
         }
 
-//        //Extraction of the integer part
-//        int additionalIntegerPart = tempFractionPart / RANK_OF_FRACTION_PART;
-        //Adding the extracted to the main integer part
-        if (result.integerPart >= 0) {
-            result.integerPart = result.integerPart + tempIntegerPart + tempIntegerPart2;
-        } else {
-            result.integerPart = result.integerPart - tempIntegerPart - tempIntegerPart2;
-        }
-//        //Determination of fractional part
-//        result.fractionalPart = (short) (tempFractionPart % RANK_OF_FRACTION_PART);
+        //Extraction of fractional part
+        result.fractionalPart = (short) (temp % RANK_OF_FRACTION_PART);
         return result;
     }
 
-    private static void printResult(Fractions result) {
-        double res = result.integerPart + (result.fractionalPart / RANK_OF_FRACTION_PART);
-        System.out.println(res);
+    private static long makePositiveNumber(long memberOfOperation) {
+        if (memberOfOperation < 0) {
+            return memberOfOperation * (-1);
+        }
+        return memberOfOperation;
+    }
+
+    private static void printFraction(Fractions result) {
+        if (result.fractionalPart >= 1000) {
+            System.out.println(result.integerPart + "." + result.fractionalPart);
+        } else if (result.fractionalPart >= 100) {
+            System.out.println(result.integerPart + ".0" + result.fractionalPart);
+        } else if (result.fractionalPart >= 10) {
+            System.out.println(result.integerPart + ".00" + result.fractionalPart);
+        } else if (result.fractionalPart < 10) {
+            System.out.println(result.integerPart + ".000" + result.fractionalPart);
+        }
     }
 }
