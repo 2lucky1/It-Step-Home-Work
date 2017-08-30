@@ -27,6 +27,25 @@ public class OperationsWithFractions {
         System.out.println("Result of multiplication:");
         printFraction(multiplication(fraction1, fraction2));
         System.out.println();
+
+        System.out.println("Result of operation \"less\"");
+        System.out.println(less(fraction1, fraction2));
+
+        System.out.println("Result of operation \"more\"");
+        System.out.println(more(fraction1, fraction2));
+
+        System.out.println("Result of operation \"equal\"");
+        System.out.println(equal(fraction1, fraction2));
+
+        System.out.println("Result of operation \"less or equal\"");
+        System.out.println(lessOrEqual(fraction1, fraction2));
+
+        System.out.println("Result of operation \"more or equal\"");
+        System.out.println(moreOrEqual(fraction1, fraction2));
+
+        System.out.println("Result of operation \"not equal\"");
+        System.out.println(notEqual(fraction1, fraction2));
+
 //        less(fraction1, fraction2);
 //        lessOrEqual(fraction1, fraction2);
 //        more(fraction1, fraction2);
@@ -116,6 +135,53 @@ public class OperationsWithFractions {
         //Extraction of fractional part
         result.fractionalPart = (short) (temp % RANK_OF_FRACTION_PART);
         return result;
+    }
+
+    private static boolean less(Fractions fraction1, Fractions fraction2) {
+        if (fraction1.integerPart < fraction2.integerPart ||
+                (fraction1.integerPart == fraction2.integerPart && fraction1.fractionalPart < fraction2.fractionalPart)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean more(Fractions fraction1, Fractions fraction2) {
+        if (fraction1.integerPart > fraction2.integerPart ||
+                (fraction1.integerPart == fraction2.integerPart && fraction1.fractionalPart > fraction2.fractionalPart)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean equal(Fractions fraction1, Fractions fraction2) {
+        if (fraction1.integerPart == fraction2.integerPart && fraction1.fractionalPart == fraction2.fractionalPart) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean lessOrEqual(Fractions fraction1, Fractions fraction2) {
+        if (fraction1.integerPart <= fraction2.integerPart ||
+                (fraction1.integerPart == fraction2.integerPart && fraction1.fractionalPart <= fraction2.fractionalPart)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean moreOrEqual(Fractions fraction1, Fractions fraction2) {
+        if (fraction1.integerPart >= fraction2.integerPart ||
+                (fraction1.integerPart == fraction2.integerPart && fraction1.fractionalPart >= fraction2.fractionalPart)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean notEqual(Fractions fraction1, Fractions fraction2) {
+        if (fraction1.integerPart != fraction2.integerPart ||
+                (fraction1.integerPart == fraction2.integerPart && fraction1.fractionalPart != fraction2.fractionalPart)) {
+            return true;
+        }
+        return false;
     }
 
     private static long makePositiveNumber(long memberOfOperation) {
