@@ -5,7 +5,8 @@ public class Student {
     private String name;
     private String patronymic;
     private int numberOfGroup;
-    private int[] marks = new int[5];
+    private int[] marks;
+    private int numberOfMarks;
 
     public Student(String lastName, String name, String patronymic, int numberOfGroup, int[] marks) {
         this.lastName = lastName;
@@ -13,6 +14,7 @@ public class Student {
         this.patronymic = patronymic;
         this.numberOfGroup = numberOfGroup;
         this.marks = marks.clone();
+        this.numberOfMarks = marks.length;
     }
 
     public Student() {
@@ -59,13 +61,21 @@ public class Student {
         this.marks = marks;
     }
 
-    public int getNumberOfTests(int[]marks){
-        int numberOfTests = 0;
-        for (int i = 0; i<marks.length;i++){
-            if (marks[i]!=0){
-                numberOfTests++;
-            }
-        }
-        return numberOfTests;
+//    public int getNumberOfTests(int[]marks){
+//        int numberOfTests = 0;
+//        for (int i = 0; i<marks.length;i++){
+//            if (marks[i]!=0){
+//                numberOfTests++;
+//            }
+//        }
+//        return numberOfTests;
+//    }
+
+    public int getNumberOfMarks() {
+        return numberOfMarks;
+    }
+
+    public void setNumberOfMarks(int numberOfMarks) {
+        this.numberOfMarks = numberOfMarks;
     }
 }
