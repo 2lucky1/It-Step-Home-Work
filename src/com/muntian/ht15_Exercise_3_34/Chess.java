@@ -10,6 +10,7 @@ public class Chess {
     private static final int VERTICAL_OF_TARGET = 2;
     private static final int HORIZONTAL_OF_TARGET = 3;
     private static final int FIGURE_NUMBER = 4;
+    private static final String YOU_HAVE_CHOSEN = "You have chosen";
 
     public static void main(String[] args) {
         //Create the input data array
@@ -85,9 +86,8 @@ public class Chess {
                 coordinates[HORIZONTAL_OF_FIGURE] == coordinates[HORIZONTAL_OF_TARGET]) {
             System.out.println("Input error: Identical figure and target coordinates! Try again");
             return false;
-        } else {
+        } 
             return true;
-        }
     }
 
     private static void selectChessFigure(int[] coordinates) {
@@ -107,25 +107,25 @@ public class Chess {
                 if (coordinates[FIGURE_NUMBER] > 0 && coordinates[FIGURE_NUMBER] < 8) {
                     switch (coordinates[FIGURE_NUMBER]) {
                         case 1:
-                            System.out.println("You have chosen a rook");
+                            System.out.println(YOU_HAVE_CHOSEN + " a rook");
                             return;
                         case 2:
-                            System.out.println("You have chosen an elephant");
+                            System.out.println(YOU_HAVE_CHOSEN + " an elephant");
                             return;
                         case 3:
-                            System.out.println("You have chosen a king");
+                            System.out.println(YOU_HAVE_CHOSEN + " a king");
                             return;
                         case 4:
-                            System.out.println("You have chosen a queen");
+                            System.out.println(YOU_HAVE_CHOSEN + " a queen");
                             return;
                         case 5:
-                            System.out.println("You have chosen a white paw");
+                            System.out.println(YOU_HAVE_CHOSEN + " a white paw");
                             return;
                         case 6:
-                            System.out.println("You have chosen a black paw");
+                            System.out.println(YOU_HAVE_CHOSEN + " a black paw");
                             return;
                         case 7:
-                            System.out.println("You have chosen a black paw");
+                            System.out.println(YOU_HAVE_CHOSEN + " a black paw");
                             return;
                         default:
                             System.out.println("Input error: Enter integer number from 1 to 8");
