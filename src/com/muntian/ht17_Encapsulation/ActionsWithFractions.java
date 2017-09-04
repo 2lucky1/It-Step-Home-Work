@@ -7,33 +7,11 @@ public class ActionsWithFractions {
 
     public static void main(String[] args) {
         Fractions fraction1 = new Fractions(10L, (short) 4000);
-        Fractions fraction2 = new Fractions( 21L, (short) 8567);
-
-//        Fractions fraction1 = new Fractions(-10L, (short) 4000);
-//        Fractions fraction2 = new Fractions(21L, (short) 8567);
-//
-//        Fractions fraction1 = new Fractions(10L, (short) 4000);
-//        Fractions fraction2 = new Fractions( -21L, (short) 8567);
-//
-//        Fractions fraction1 = new Fractions(-10L, (short) 4000);
-//        Fractions fraction2 = new Fractions(-21L, (short) 8567);
-////
-//        Fractions fraction1 = new Fractions(  21L, (short) 8567);
-//        Fractions fraction2 = new Fractions( 10L, (short) 4000);
-//9
-//        Fractions fraction1 = new Fractions(-21L, (short) 8567);
-//        Fractions fraction2 = new Fractions(10L, (short) 4000);
-//
-//        Fractions fraction1 = new Fractions(  21L, (short) 8567);
-//        Fractions fraction2 = new Fractions( -10L, (short) 4000);
-//
-//        Fractions fraction1 = new Fractions(  -21L, (short) 8567);
-//        Fractions fraction2 = new Fractions( -10L, (short) 4000);
+        Fractions fraction2 = new Fractions(21L, (short) 8567);
 
         printInputData(fraction1, fraction2);
 
         printResult(fraction1, fraction2);
-
     }
 
     private static void printInputData(Fractions fraction1, Fractions fraction2) {
@@ -57,58 +35,54 @@ public class ActionsWithFractions {
         printFraction(multiplication(fraction1, fraction2));
         System.out.println();
 
-//        System.out.println("Result of operation \"less\"");
-//        System.out.println(less(fraction1, fraction2));
-//
-//        System.out.println("Result of operation \"more\"");
-//        System.out.println(more(fraction1, fraction2));
-//
-//        System.out.println("Result of operation \"equal\"");
-//        System.out.println(equal(fraction1, fraction2));
-//
-//        System.out.println("Result of operation \"less or equal\"");
-//        System.out.println(lessOrEqual(fraction1, fraction2));
-//
-//        System.out.println("Result of operation \"more or equal\"");
-//        System.out.println(moreOrEqual(fraction1, fraction2));
-//
-//        System.out.println("Result of operation \"not equal\"");
-//        System.out.println(notEqual(fraction1, fraction2));
+        System.out.println("Result of operation \"less\"");
+        System.out.println(less(fraction1, fraction2));
+
+        System.out.println("Result of operation \"more\"");
+        System.out.println(more(fraction1, fraction2));
+
+        System.out.println("Result of operation \"equal\"");
+        System.out.println(equal(fraction1, fraction2));
+
+        System.out.println("Result of operation \"less or equal\"");
+        System.out.println(lessOrEqual(fraction1, fraction2));
+
+        System.out.println("Result of operation \"more or equal\"");
+        System.out.println(moreOrEqual(fraction1, fraction2));
+
+        System.out.println("Result of operation \"not equal\"");
+        System.out.println(notEqual(fraction1, fraction2));
     }
 
     private static Fractions addition(Fractions firstMember, Fractions secondMember) {
         Fractions result = new Fractions();
+        //Create local members of operation to save input data from changes
         Fractions firstSummand = new Fractions();
         Fractions secondSummand = new Fractions();
         firstSummand.setIntegerPart(firstMember.getIntegerPart());
         firstSummand.setFractionalPart(firstMember.getFractionalPart());
         secondSummand.setIntegerPart(secondMember.getIntegerPart());
         secondSummand.setFractionalPart(secondMember.getFractionalPart());
-        if (firstSummand.getIntegerPart() < 0 && secondSummand.getIntegerPart() >= 0) {
-            result.setIntegerPart(firstSummand.getIntegerPart() + secondSummand.getIntegerPart());
+
+        //Preliminary calculation of the integer part
+        result.setIntegerPart(firstSummand.getIntegerPart() + secondSummand.getIntegerPart());
+
+        //Calculation of the fractional part and correction of integer part (if it necessary)
+        if (firstSummand.getIntegerPart() >= 0 && secondSummand.getIntegerPart() >= 0) {
+            additionOfFractionalParts(firstSummand, secondSummand, result);
+        } else if ((firstSummand.getIntegerPart() < 0 && secondSummand.getIntegerPart() < 0) ||
+                (firstSummand.getIntegerPart() >= 0 && secondSummand.getIntegerPart() < 0)) {
+            secondSummand.setIntegerPart(makePositiveNumber(secondSummand.getIntegerPart()));
+            return subtraction(firstSummand, secondSummand);
+        }else if (firstSummand.getIntegerPart() < 0 && secondSummand.getIntegerPart() >= 0) {
             firstSummand.setIntegerPart(makePositiveNumber(firstSummand.getIntegerPart()));
-            result = subtraction(secondSummand,firstSummand);
-            return result;
-        } else {
-            result.setIntegerPart(firstSummand.getIntegerPart() + secondSummand.getIntegerPart());
-            if (firstSummand.getIntegerPart() >= 0 && secondSummand.getIntegerPart() >= 0) {
-                additionOfFractionalParts(firstSummand, secondSummand, result);
-            } else if (firstSummand.getIntegerPart() < 0 && secondSummand.getIntegerPart() < 0) {
-                subtractionOfFractionalPartsOfNegativeFractions(firstSummand, secondSummand, result);
-            } else if (firstSummand.getIntegerPart() < 0 && secondSummand.getIntegerPart() >= 0) {
-                subtractionOfFractionalParts(secondSummand, firstSummand, result);
-            } else if (firstSummand.getIntegerPart() >= 0 && secondSummand.getIntegerPart() < 0) {
-                secondSummand.setIntegerPart(makePositiveNumber(secondSummand.getIntegerPart()));
-                correctSubtraction(secondSummand, firstSummand, result);
-            }
+            return subtraction(secondSummand, firstSummand);
         }
         return result;
     }
 
     private static void additionOfFractionalParts(Fractions firstSummand, Fractions secondSummand, Fractions result) {
-        if (firstSummand.getIntegerPart() < 0 && secondSummand.getIntegerPart() < 0) {
-            subtractionOfFractionalPartsOfNegativeFractions(firstSummand, secondSummand, result);
-        } else if ((firstSummand.getFractionalPart() + secondSummand.getFractionalPart()) < RANK_OF_FRACTION_PART) {
+        if ((firstSummand.getFractionalPart() + secondSummand.getFractionalPart()) < RANK_OF_FRACTION_PART) {
             result.setFractionalPart((short) (firstSummand.getFractionalPart() + secondSummand.getFractionalPart()));
         } else if ((firstSummand.getFractionalPart() + secondSummand.getFractionalPart()) > RANK_OF_FRACTION_PART) {
             result.setFractionalPart((short) ((firstSummand.getFractionalPart() + secondSummand.getFractionalPart()) %
@@ -119,11 +93,19 @@ public class ActionsWithFractions {
 
     private static Fractions subtraction(Fractions minuend, Fractions subtracted) {
         Fractions result = new Fractions();
+
+        //Preliminary calculation of the integer part
         result.setIntegerPart(minuend.getIntegerPart() - subtracted.getIntegerPart());
-        if ((minuend.getIntegerPart() >= 0 && subtracted.getIntegerPart() >= 0)) {
-            subtractionOfFractionalParts(minuend, subtracted, result);
-        } else if ((minuend.getIntegerPart() < 0 && subtracted.getIntegerPart() < 0)) {
-            subtractionOfFractionalParts(minuend, subtracted, result);
+
+        //Calculation of the fractional part and correction of integer part (if it necessary)
+        if ((minuend.getIntegerPart() >= 0 && subtracted.getIntegerPart() >= 0) ||
+                (minuend.getIntegerPart() < 0 && subtracted.getIntegerPart() < 0)) {
+            if (minuend.getFractionalPart() == subtracted.getFractionalPart()) {
+                System.out.println(INCORRECT_INPUT_DATA);
+                return result;
+            } else {
+                subtractionOfFractionalParts(minuend, subtracted, result);
+            }
         } else if (minuend.getIntegerPart() >= 0 && subtracted.getIntegerPart() < 0) {
             additionOfFractionalParts(minuend, subtracted, result);
         } else if (minuend.getIntegerPart() < 0 && subtracted.getIntegerPart() >= 0) {
@@ -137,10 +119,9 @@ public class ActionsWithFractions {
             if (minuend.getIntegerPart() == subtracted.getIntegerPart()) {
                 System.out.println(INCORRECT_INPUT_DATA);
             } else {
-                correctSubtraction(minuend, subtracted, result);
+                correctSubtractionOfFractionalParts(minuend, subtracted, result);
             }
         } else if (minuend.getIntegerPart() < 0 && subtracted.getIntegerPart() < 0) {
-
             if (minuend.getIntegerPart() == subtracted.getIntegerPart()) {
                 if (minuend.getFractionalPart() > subtracted.getFractionalPart()) {
                     System.out.println(INCORRECT_INPUT_DATA);
@@ -178,7 +159,7 @@ public class ActionsWithFractions {
         }
     }
 
-    private static void correctSubtraction(Fractions minuend, Fractions subtracted, Fractions result) {
+    private static void correctSubtractionOfFractionalParts(Fractions minuend, Fractions subtracted, Fractions result) {
         if (minuend.getIntegerPart() > subtracted.getIntegerPart()) {
             if (minuend.getFractionalPart() < subtracted.getFractionalPart()) {
                 result.setFractionalPart((short) (minuend.getFractionalPart() + RANK_OF_FRACTION_PART - subtracted.getFractionalPart()));
@@ -196,32 +177,9 @@ public class ActionsWithFractions {
         }
     }
 
-
-//    else if(minuend.getFractionalPart()>subtracted.getFractionalPart())
-//
-//    {
-//        result.setFractionalPart((short) (minuend.getFractionalPart() - subtracted.getFractionalPart()));
-//    } else if(minuend.getFractionalPart() <subtracted.
-//
-//    getFractionalPart() &&minuend.getIntegerPart()>subtracted.getIntegerPart())
-//
-//    {
-//        result.setFractionalPart((short) (minuend.getFractionalPart() + RANK_OF_FRACTION_PART - subtracted.getFractionalPart()));
-//        result.setIntegerPart(result.getIntegerPart() - 1);
-//    } else if(minuend.getFractionalPart() <subtracted.
-//
-//    getFractionalPart() &&minuend.getIntegerPart() <subtracted.
-//
-//    getIntegerPart())
-//
-//    {
-//        result.setFractionalPart((short) (subtracted.getFractionalPart() - minuend.getFractionalPart()));
-//    }
-//
-//}
-
     private static Fractions multiplication(Fractions firstMultiplier, Fractions secondMultiplier) {
         Fractions result = new Fractions();
+        //Create local members of operation to save input data from changes
         long firstIntPart = firstMultiplier.getIntegerPart();
         long secondIntPart = secondMultiplier.getIntegerPart();
         int firstFrcPart = firstMultiplier.getFractionalPart();
