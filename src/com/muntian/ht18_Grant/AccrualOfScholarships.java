@@ -52,7 +52,7 @@ public class AccrualOfScholarships {
         return listOfFellows;
     }
 
-    public static void determineOfAcademicPerformance(Student student) {
+    private static void determineOfAcademicPerformance(Student student) {
         int countOf3 = 0;
         int numberOfMarks = student.getMarks().length;
         int sumOfMarks = 0;
