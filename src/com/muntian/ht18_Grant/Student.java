@@ -1,12 +1,14 @@
 package com.muntian.ht18_Grant;
 
 public class Student {
+
     private String lastName;
     private String name;
     private String patronymic;
     private int numberOfGroup;
     private int[] marks;
-    private int numberOfMarks;
+    private int academicPerformance = 0;
+    private double averageMark;
 
     public Student(String lastName, String name, String patronymic, int numberOfGroup, int[] marks) {
         this.lastName = lastName;
@@ -14,7 +16,7 @@ public class Student {
         this.patronymic = patronymic;
         this.numberOfGroup = numberOfGroup;
         this.marks = marks.clone();
-        this.numberOfMarks = marks.length;
+        averageMark = determineAverageMark();
     }
 
     public Student() {
@@ -58,7 +60,7 @@ public class Student {
     }
 
     public void setMarks(int[] marks) {
-        this.marks = marks;
+        this.marks = marks.clone();
     }
 
 //    public int getNumberOfTests(int[]marks){
@@ -71,11 +73,24 @@ public class Student {
 //        return numberOfTests;
 //    }
 
-    public int getNumberOfMarks() {
-        return numberOfMarks;
+    public int getAcademicPerformance() {
+        return academicPerformance;
     }
 
-    public void setNumberOfMarks(int numberOfMarks) {
-        this.numberOfMarks = numberOfMarks;
+    public void setAcademicPerformance(int academicPerformance) {
+        this.academicPerformance = academicPerformance;
+    }
+
+    public double getAverageMark() {
+
+        return averageMark;
+    }
+
+    private double determineAverageMark() {
+        int sumOfMarks = 0;
+        for (int i = 0; i < marks.length; i++) {
+            sumOfMarks = sumOfMarks + marks[i];
+        }
+        return sumOfMarks / marks.length;
     }
 }
