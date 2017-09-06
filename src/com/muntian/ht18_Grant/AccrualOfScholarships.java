@@ -33,8 +33,8 @@ public class AccrualOfScholarships {
         }
         Student[] listOfFellows = new Student[countOfFellows];
 
+        int j = 0;
         for (int i = 0; i < listOfStudents.length; i++) {
-            int j = 0;
             switch (listOfStudents[i].getAcademicPerformance()) {
                 case GOOD:
                     listOfFellows[j] = listOfStudents[i];
@@ -73,19 +73,19 @@ public class AccrualOfScholarships {
             student.setAcademicPerformance(EXCELLENT);
         } else if (student.getAverageMark() < 5 && countOf3 == 0) {
             student.setAcademicPerformance(GOOD_EXCELLENT);
-        } else if (student.getAverageMark() == 4 && countOf3 == 0) {
+        } else if (student.getAverageMark() == 4) {
             student.setAcademicPerformance(GOOD);
         }
     }
 
     private static Student[] sortByLastName(Student[] listOfFellows) {
         Student[] sortList = listOfFellows.clone();
-        for (int i = 0; i < listOfFellows.length; i++) {
-            for (int j = 1; j < (listOfFellows.length - i); j++) {
-                if (compareStudentsByLastName(listOfFellows[j - 1], listOfFellows[j])) {
-                    Student temp = listOfFellows[j - 1];
-                    listOfFellows[j - 1] = listOfFellows[j];
-                    listOfFellows[j] = temp;
+        for (int i = 0; i < sortList.length; i++) {
+            for (int j = 1; j < (sortList.length - i); j++) {
+                if (compareStudentsByLastName(sortList[j - 1], sortList[j])) {
+                    Student temp = sortList[j - 1];
+                    sortList[j - 1] = sortList[j];
+                    sortList[j] = temp;
                 }
             }
         }
@@ -98,31 +98,33 @@ public class AccrualOfScholarships {
 
     private static void printStudents(Student[] listOfStudents) {
         System.out.println("Last name\t\t\tFirst name\t\tAn increase to a scholarship");
-        System.out.println("---------------------------");
+        System.out.println("-----------------------------------------------------------------");
         for (int i = 0; i < listOfStudents.length; ++i) {
             switch (listOfStudents[i].getAcademicPerformance()) {
                 case 5:
-                    System.out.printf("%s\t\t%s\t\t%d%n",
+                    System.out.printf("%s\t\t\t\t\t\t%s\t\t\t%s%n",
                             listOfStudents[i].getLastName(),
                             listOfStudents[i].getName(),
                             "100%");
                     break;
                 case 4:
-                    System.out.printf("%s\t\t%s\t\t%d%n",
+                    System.out.printf("%s\t\t\t\t\t\t%s\t\t\t%s%n",
                             listOfStudents[i].getLastName(),
                             listOfStudents[i].getName(),
                             "50%");
                     break;
                 case 3:
-                    System.out.printf("%s\t\t%s\t\t%d%n",
+                    System.out.printf("%s\t\t\t\t\t\t%s\t\t\t%s%n",
                             listOfStudents[i].getLastName(),
                             listOfStudents[i].getName(),
                             "25%");
+                    break;
                 case 2:
-                    System.out.printf("%s\t\t%s\t\t%d%n",
+                    System.out.printf("%s\t\t\t\t\t\t%s\t\t\t%s%n",
                             listOfStudents[i].getLastName(),
                             listOfStudents[i].getName(),
                             "0%");
+                    break;
             }
         }
     }
