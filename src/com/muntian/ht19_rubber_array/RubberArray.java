@@ -5,8 +5,10 @@ import java.util.Arrays;
 public class RubberArray {
     private static final int START_LENGTH = 10;
     private static final int COEFFICIENT_OF_ARRAY_LENGTH_VARIATION = 2;
+    private static final int COEFFICIENT_OF_REDUCTION_OF_ARRAY_LENGTH = 4;
+    public static final String ERROR_OF_INDEX_ENTER_ENTER_THE_NUMBER_FROM_0_TO = "Error of index enter. Enter the number from 0 to ";
     private int size;
-    private int[] rubArray = {};
+    private int[] rubArray;
 
     public RubberArray() {
         this.size = 0;
@@ -27,9 +29,9 @@ public class RubberArray {
 
     public int getValueByIndex(int index) {
         if (index >= 0 && index < size) {
-            return this.rubArray.clone()[index];
+            return this.rubArray[index];
         }
-        System.out.println("Error of index enter. Enter the number from 0 to " + (size - 1));
+        System.err.println(ERROR_OF_INDEX_ENTER_ENTER_THE_NUMBER_FROM_0_TO + (size - 1));
         return -1;
     }
 
@@ -38,7 +40,7 @@ public class RubberArray {
             rubArray[index] = newValue;
             return;
         }
-        System.out.println("Error of index enter. Enter the number from 0 to " + (size - 1));
+        System.err.println(ERROR_OF_INDEX_ENTER_ENTER_THE_NUMBER_FROM_0_TO + (size - 1));
     }
 
     public void removeByIndex(int index) {
@@ -47,12 +49,12 @@ public class RubberArray {
                 rubArray[index] = rubArray[i + 1];
             }
             size--;
-            if (rubArray.length / size == 4) {
+            if (rubArray.length / size >= COEFFICIENT_OF_REDUCTION_OF_ARRAY_LENGTH) {
                 decreaseOfRubArray();
             }
             return;
         }
-        System.out.println("Error of index enter. Enter the number from 0 to " + (size - 1));
+        System.err.println(ERROR_OF_INDEX_ENTER_ENTER_THE_NUMBER_FROM_0_TO + (size - 1));
 
     }
 
