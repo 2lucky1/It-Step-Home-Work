@@ -6,10 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
         RubberArray rubberArray = new RubberArray();
-        RubberArray rubberArray1 = new RubberArray();
-        addItemsToRubberArray(rubberArray1,25);
-
-        System.out.println(rubberArray1.getSize());
 
         System.out.println("Filling of rubber array by start numbers:");
         addItemsToRubberArray(rubberArray, QUANTITY_OF_START_NUMBERS);
