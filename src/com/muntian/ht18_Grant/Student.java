@@ -2,11 +2,11 @@ package com.muntian.ht18_Grant;
 
 public class Student {
 
-    public static final int MARK_1 = 1;
-    public static final int MARK_2 = 2;
-    public static final int MARK_3 = 3;
-    public static final int MARK_4 = 4;
-    public static final int MARK_5 = 5;
+    private static final int MARK_1 = 1;
+    private static final int MARK_2 = 2;
+    private static final int MARK_3 = 3;
+    private static final int MARK_4 = 4;
+    private static final int MARK_5 = 5;
 
     private String lastName;
     private String name;

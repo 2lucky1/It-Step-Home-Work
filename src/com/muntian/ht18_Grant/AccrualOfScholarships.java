@@ -1,7 +1,7 @@
 package com.muntian.ht18_Grant;
 
 public class AccrualOfScholarships {
-    public static final int BAD = 1;
+    private static final int BAD = 1;
     private static final int NORMAL = 2;
     private static final int GOOD = 3;
     private static final int GOOD_EXCELLENT = 4;
