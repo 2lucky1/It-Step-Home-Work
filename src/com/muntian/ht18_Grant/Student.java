@@ -2,12 +2,17 @@ package com.muntian.ht18_Grant;
 
 public class Student {
 
+    public static final int MARK_1 = 1;
+    public static final int MARK_2 = 2;
+    public static final int MARK_3 = 3;
+    public static final int MARK_4 = 4;
+    public static final int MARK_5 = 5;
+
     private String lastName;
     private String name;
     private String patronymic;
     private int numberOfGroup;
     private int[] marks;
-    private int academicPerformance = 0;
     private double averageMark;
 
     public Student(String lastName, String name, String patronymic, int numberOfGroup, int[] marks) {
@@ -63,22 +68,38 @@ public class Student {
         this.marks = marks.clone();
     }
 
-//    public int getNumberOfTests(int[]marks){
-//        int numberOfTests = 0;
-//        for (int i = 0; i<marks.length;i++){
-//            if (marks[i]!=0){
-//                numberOfTests++;
-//            }
-//        }
-//        return numberOfTests;
-//    }
-
     public int getAcademicPerformance() {
-        return academicPerformance;
-    }
-
-    public void setAcademicPerformance(int academicPerformance) {
-        this.academicPerformance = academicPerformance;
+        int countOf3 = 0;
+        int countOf4 = 0;
+        int countOf5 = 0;
+        int numberOfMarks = this.getMarks().length;
+        for (int i = 0; i < numberOfMarks; i++) {
+            switch (this.getMarks()[i]) {
+                case MARK_1:
+                case MARK_2:
+                    return 1;
+                case MARK_3:
+                    countOf3++;
+                    break;
+                case MARK_4:
+                    countOf4++;
+                    break;
+                case MARK_5:
+                    countOf5++;
+            }
+        }
+        if (countOf5>0&&countOf3==0&&countOf4==0){
+            return 5;
+        }else if (countOf5>0&&countOf4>0&&countOf3==0){
+            return 4;
+        }else if(countOf4>0&&countOf5==0&&countOf3==0){
+            return 3;
+        }else if (countOf3<=countOf5){
+            return 2;
+        }else if (countOf3>2){
+            return 1;
+        }
+        return -1;
     }
 
     public double getAverageMark() {
