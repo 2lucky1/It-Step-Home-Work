@@ -3,7 +3,12 @@ package com.muntian.ht20_Passport;
 public class ForeignPassport extends Passport {
     private String passportSeries;
     private int passportNumber;
-    private Visa visa;
+    private Visa [] visa;
+
+    public ForeignPassport(String passportSeries, int passportNumber, String lastName, String name, String patronymic, int dayOfBirth, int monthOfBirth, int yearOfBirth, String residency, Visa[] visa) {
+        super(passportSeries, passportNumber, lastName, name, patronymic, dayOfBirth, monthOfBirth, yearOfBirth, residency);
+        this.visa = visa;
+    }
 
     @Override
     public String getPassportSeries() {

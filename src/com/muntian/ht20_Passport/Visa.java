@@ -1,11 +1,13 @@
 package com.muntian.ht20_Passport;
 
 public class Visa {
+    private String country;
     private String typeOfVisa;
-    private int dateOfOpening;
-    private int dateOfClosure;
+    private String dateOfOpening;
+    private String dateOfClosure;
 
-    public Visa(String typeOfVisa, int dateOfOpening, int dateOfClosure) {
+    public Visa(String country, String typeOfVisa, String dateOfOpening, String dateOfClosure) {
+        this.country = country;
         this.typeOfVisa = typeOfVisa;
         this.dateOfOpening = dateOfOpening;
         this.dateOfClosure = dateOfClosure;
@@ -23,19 +25,27 @@ public class Visa {
         this.typeOfVisa = typeOfVisa;
     }
 
-    public int getDateOfOpening() {
+    public String getDateOfOpening() {
         return dateOfOpening;
     }
 
-    public void setDateOfOpening(int dateOfOpening) {
+    public void setDateOfOpening(String dateOfOpening) {
         this.dateOfOpening = dateOfOpening;
     }
 
-    public int getDateOfClosure() {
+    public String getDateOfClosure() {
         return dateOfClosure;
     }
 
-    public void setDateOfClosure(int dateOfClosure) {
+    public void setDateOfClosure(String dateOfClosure) {
         this.dateOfClosure = dateOfClosure;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
