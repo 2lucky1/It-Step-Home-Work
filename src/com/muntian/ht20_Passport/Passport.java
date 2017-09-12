@@ -6,20 +6,17 @@ public class Passport {
     private String lastName;
     private String name;
     private String patronymic;
-    private int dayOfBirth;
-    private int monthOfBirth;
-    private int yearOfBirth;
+    private String dateOfBirth;
     private String residency;
 
-    public Passport(String passportSeries, int passportNumber, String lastName, String name, String patronymic, int dayOfBirth, int monthOfBirth, int yearOfBirth, String residency) {
+    public Passport(String passportSeries, int passportNumber, String lastName, String name, String patronymic,
+                    String dateOfBirth, String residency) {
         this.passportSeries = passportSeries;
         this.passportNumber = passportNumber;
         this.lastName = lastName;
         this.name = name;
         this.patronymic = patronymic;
-        this.dayOfBirth = dayOfBirth;
-        this.monthOfBirth = monthOfBirth;
-        this.yearOfBirth = yearOfBirth;
+        this.dateOfBirth = dateOfBirth;
         this.residency = residency;
     }
 
@@ -67,28 +64,12 @@ public class Passport {
         this.patronymic = patronymic;
     }
 
-    public int getDayOfBirth() {
-        return dayOfBirth;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDayOfBirth(int dayOfBirth) {
-        this.dayOfBirth = dayOfBirth;
-    }
-
-    public int getMonthOfBirth() {
-        return monthOfBirth;
-    }
-
-    public void setMonthOfBirth(int monthOfBirth) {
-        this.monthOfBirth = monthOfBirth;
-    }
-
-    public int getYearOfBirth() {
-        return yearOfBirth;
-    }
-
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getResidency() {
@@ -99,5 +80,21 @@ public class Passport {
         this.residency = residency;
     }
 
+    public void printPassport(){
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Passport{" +
+                "passportSeries='" + this.passportSeries + '\'' +
+                ", passportNumber=" + this.passportNumber +
+                ", lastName='" + this.lastName + '\'' +
+                ", name='" + this.name + '\'' +
+                ", patronymic='" + this.patronymic + '\'' +
+                ", dateOfBirth='" + this.dateOfBirth + '\'' +
+                ", residency='" + this.residency + '\'' +
+                '}';
+    }
 }
 

@@ -1,40 +1,36 @@
 package com.muntian.ht20_Passport;
 
 public class ForeignPassport extends Passport {
-    private String passportSeries;
-    private int passportNumber;
-    private Visa [] visa;
+    private int count = 0;
+    private Visa[] listOfVisas = new Visa[count];
 
-    public ForeignPassport(String passportSeries, int passportNumber, String lastName, String name, String patronymic, int dayOfBirth, int monthOfBirth, int yearOfBirth, String residency, Visa[] visa) {
-        super(passportSeries, passportNumber, lastName, name, patronymic, dayOfBirth, monthOfBirth, yearOfBirth, residency);
-        this.visa = visa;
+    public ForeignPassport(String passportSeries, int passportNumber, String lastName, String name, String patronymic,
+                           String dateOfBirth, String residency) {
+        super(passportSeries, passportNumber, lastName, name, patronymic, dateOfBirth, residency);
+    }
+
+    public Visa[] getListOfVisas() {
+        return listOfVisas.clone();
+    }
+
+    public void addVisa(String country, String typeOfVisa, String dateOfOpening, String dateOfClosure) {
+        Visa[] temp = listOfVisas.clone();
+        listOfVisas = new Visa[count + 1];
+        for (int i = 0; i < temp.length; i++) {
+            listOfVisas[i] = temp[i];
+        }
+        Visa visa = new Visa(country, typeOfVisa, dateOfOpening, dateOfClosure);
+        this.listOfVisas[count++] = visa;
     }
 
     @Override
-    public String getPassportSeries() {
-        return passportSeries;
-    }
-
-    @Override
-    public void setPassportSeries(String passportSeries) {
-        this.passportSeries = passportSeries;
-    }
-
-    @Override
-    public int getPassportNumber() {
-        return passportNumber;
-    }
-
-    @Override
-    public void setPassportNumber(int passportNumber) {
-        this.passportNumber = passportNumber;
-    }
-
-    public Visa getVisa() {
-        return visa;
-    }
-
-    public void setVisa(Visa visa) {
-        this.visa = visa;
+    public void printPassport() {
+        super.printPassport();
+        if (count > 0) {
+            System.out.println("Visas information:");
+            for (int i = 0; i < this.getListOfVisas().length; i++) {
+                System.out.println(this.getListOfVisas()[i]);
+            }
+        }
     }
 }
