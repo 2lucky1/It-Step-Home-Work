@@ -7,7 +7,9 @@ public class Main {
                 "Семен","Семенович","22.11.1978","Українець");
 
         //Print ukrainian passport
+        System.out.println("Ukrainian passport:");
         passportOfUkrainian.printPassport();
+        System.out.println();
 
         //Create foreign passport
         ForeignPassport semenGorbunkov = new ForeignPassport("AV",850790,
@@ -19,6 +21,7 @@ public class Main {
         semenGorbunkov.addVisa("Grate Britain","Work","21.07.2017","21.07.2018");
 
         //Print foreign passport
+        System.out.println("Foreign passport:");
         semenGorbunkov.printPassport();
     }
 }
