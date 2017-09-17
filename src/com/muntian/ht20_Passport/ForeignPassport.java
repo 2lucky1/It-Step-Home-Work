@@ -1,6 +1,7 @@
 package com.muntian.ht20_Passport;
 
 public class ForeignPassport extends Passport {
+    public static final int INCREASING_NUMBER_OF_VISAS_ARRAY = 10;
     private int count = 0;
     private Visa[] listOfVisas = new Visa[count];
 
@@ -15,7 +16,9 @@ public class ForeignPassport extends Passport {
 
     public void addVisa(String country, String typeOfVisa, String dateOfOpening, String dateOfClosure) {
         Visa[] temp = listOfVisas.clone();
-        listOfVisas = new Visa[count + 1];
+        if(listOfVisas.length==count){
+            listOfVisas = new Visa[listOfVisas.length + INCREASING_NUMBER_OF_VISAS_ARRAY];
+        }
         for (int i = 0; i < temp.length; i++) {
             listOfVisas[i] = temp[i];
         }
@@ -28,7 +31,7 @@ public class ForeignPassport extends Passport {
         super.printPassport();
         if (count > 0) {
             System.out.println("Visas information:");
-            for (int i = 0; i < this.getListOfVisas().length; i++) {
+            for (int i = 0; i < count; i++) {
                 System.out.println(this.getListOfVisas()[i]);
             }
         }
