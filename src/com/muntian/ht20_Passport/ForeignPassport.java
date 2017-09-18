@@ -16,7 +16,7 @@ public class ForeignPassport extends Passport {
 
     public void addVisa(String country, String typeOfVisa, String dateOfOpening, String dateOfClosure) {
         Visa[] temp = listOfVisas.clone();
-        if(listOfVisas.length==count){
+        if(listOfVisas.length>=count){
             listOfVisas = new Visa[listOfVisas.length + INCREASING_NUMBER_OF_VISAS_ARRAY];
         }
         for (int i = 0; i < temp.length; i++) {
