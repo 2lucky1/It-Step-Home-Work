@@ -1,4 +1,4 @@
-package com.muntian.ht22_WorkersSort;
+package com.muntian.ht23_WorkersSort;
 
 public class Main {
 
@@ -27,7 +27,7 @@ public class Main {
         System.out.println();
 
         System.out.println("The last three workers ID from the sorted list of workers:");
-        printLastNindexFromList(NUMBER_OF_ID, workers);
+        printLastNiDfromList(NUMBER_OF_ID, workers);
 
     }
 
@@ -70,8 +70,8 @@ public class Main {
         }
     }
 
-    private static void printLastNindexFromList(int numberOfIndex, Worker[] workers) {
-        for (int i = (workers.length - numberOfIndex); i < workers.length; i++) {
+    private static void printLastNiDfromList(int numberOfId, Worker[] workers) {
+        for (int i = (workers.length - numberOfId); i < workers.length; i++) {
             System.out.println(workers[i].getiD());
         }
     }
