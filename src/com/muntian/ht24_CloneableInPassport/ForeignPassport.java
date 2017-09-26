@@ -41,7 +41,10 @@ public class ForeignPassport extends Passport implements Cloneable {
     @Override
     public ForeignPassport clone() throws CloneNotSupportedException {
         ForeignPassport clone = (ForeignPassport) super.clone();
-        clone.listOfVisas = this.getListOfVisas();
+        clone.listOfVisas = new Visa[this.listOfVisas.length];
+        for (int i = 0; i < count; i++){
+            clone.listOfVisas[i] = this.listOfVisas[i].clone();
+        }
         return clone;
     }
 }
