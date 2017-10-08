@@ -1,19 +1,27 @@
 package com.muntian.ht26_LinkedList;
 
+import com.muntian.ht26_LinkedList.Exceptions.EmptyListException;
+import com.muntian.ht26_LinkedList.Exceptions.IndexOutOfBoundsOfListException;
+
 public class ListMain {
 
+    private static final String DONE_TEST = "Done test";
+    private static final String SOURCE_LIST = "Source list:";
+    private static final String CHANGED_LIST = "Changed list:";
+    private static final String SIZE = "Size:";
+
     public static void main(String[] args) {
-//        testAddToTail();
-//        testAddIncorrectIndex();
-//        testAddIndexBounds();
-//        testAddInside();
-//        testAddToHead();
-//        testGetContent();
-//        testReplace();
-//        testDeleteFromHead();
-//        testDeleteFromTail();
-//        testDeleteFromInside();
-//        testGetSize();
+        testAddToTail();
+        testAddIncorrectIndex();
+        testAddIndexBounds();
+        testAddInside();
+        testAddToHead();
+        testGetContent();
+        testReplace();
+        testDeleteFromHead();
+        testDeleteFromTail();
+        testDeleteFromInside();
+        testGetSize();
     }
 
     private static void testGetSize() {
@@ -25,14 +33,16 @@ public class ListMain {
         myLinkedList.addToTail(5);
         myLinkedList.addToTail(6);
         myLinkedList.addToTail(7);
-        System.out.println("Source list:");
-        System.out.println(myLinkedList);
-        System.out.println("Size: " + myLinkedList.size());
-        myLinkedList.deleteFromTail();
-        System.out.println("Changed list:");
-        System.out.println(myLinkedList);
-        System.out.println("Size: " + myLinkedList.size());
-        System.out.println("Done testGetSize");
+        System.out.println(SOURCE_LIST + "\n" + myLinkedList);
+        System.out.println(SIZE + " " + myLinkedList.size());
+        try {
+            myLinkedList.deleteFromTail();
+        } catch (EmptyListException e) {
+            e.printStackTrace();
+        }
+        System.out.println(CHANGED_LIST + "\n" + myLinkedList);
+        System.out.println(SIZE + " " + myLinkedList.size());
+        System.out.println(DONE_TEST + "GetSize");
     }
 
     private static void testDeleteFromInside() {
@@ -44,12 +54,14 @@ public class ListMain {
         myLinkedList.addToTail(5);
         myLinkedList.addToTail(6);
         myLinkedList.addToTail(7);
-        System.out.println("Source list:");
-        System.out.println(myLinkedList);
-        myLinkedList.delete(10);
-        System.out.println("Changed list:");
-        System.out.println(myLinkedList);
-        System.out.println("Done testDeleteFromInside");
+        System.out.println(SOURCE_LIST + "\n" + myLinkedList);
+        try {
+            myLinkedList.delete(10);
+        } catch (IndexOutOfBoundsOfListException | EmptyListException e) {
+            e.printStackTrace();
+        }
+        System.out.println(CHANGED_LIST + "\n" + myLinkedList);
+        System.out.println(DONE_TEST + "DeleteFromInside");
     }
 
     private static void testDeleteFromTail() {
@@ -61,12 +73,14 @@ public class ListMain {
         myLinkedList.addToTail(5);
         myLinkedList.addToTail(6);
         myLinkedList.addToTail(7);
-        System.out.println("Source list:");
-        System.out.println(myLinkedList);
-        myLinkedList.deleteFromTail();
-        System.out.println("Changed list:");
-        System.out.println(myLinkedList);
-        System.out.println("Done testDeleteFromTail");
+        System.out.println(SOURCE_LIST + "\n" + myLinkedList);
+        try {
+            myLinkedList.deleteFromTail();
+        } catch (EmptyListException e) {
+            e.printStackTrace();
+        }
+        System.out.println(CHANGED_LIST + "\n" + myLinkedList);
+        System.out.println(DONE_TEST + "DeleteFromTail");
     }
 
     private static void testDeleteFromHead() {
@@ -78,12 +92,14 @@ public class ListMain {
         myLinkedList.addToTail(5);
         myLinkedList.addToTail(6);
         myLinkedList.addToTail(7);
-        System.out.println("Source list:");
-        System.out.println(myLinkedList);
-        myLinkedList.deleteFromHead();
-        System.out.println("Changed list:");
-        System.out.println(myLinkedList);
-        System.out.println("Done testDeleteFromHead");
+        System.out.println(SOURCE_LIST + "\n" + myLinkedList);
+        try {
+            myLinkedList.deleteFromHead();
+        } catch (EmptyListException e) {
+            e.printStackTrace();
+        }
+        System.out.println(CHANGED_LIST + "\n" + myLinkedList);
+        System.out.println(DONE_TEST + "DeleteFromHead");
     }
 
     private static void testReplace() {
@@ -95,12 +111,14 @@ public class ListMain {
         myLinkedList.addToTail(5);
         myLinkedList.addToTail(6);
         myLinkedList.addToTail(7);
-        System.out.println("Source list:");
-        System.out.println(myLinkedList);
-        myLinkedList.replace(20, 3);
-        System.out.println("Changed list:");
-        System.out.println(myLinkedList);
-        System.out.println("Done testReplace");
+        System.out.println(SOURCE_LIST + "\n" + myLinkedList);
+        try {
+            myLinkedList.replace(20, 3);
+        } catch (IndexOutOfBoundsOfListException e) {
+            e.printStackTrace();
+        }
+        System.out.println(CHANGED_LIST + "\n" + myLinkedList);
+        System.out.println(DONE_TEST + "Replace");
     }
 
     private static void testGetContent() {
@@ -112,10 +130,15 @@ public class ListMain {
         myLinkedList.addToTail(5);
         myLinkedList.addToTail(6);
         myLinkedList.addToTail(7);
-        System.out.println(myLinkedList.get(5));
-        System.out.println("Done testGetContent");
+        System.out.println(SOURCE_LIST + "\n" + myLinkedList);
+        try {
+            System.out.println(myLinkedList.getContent(5));
+        } catch (IndexOutOfBoundsOfListException | EmptyListException e) {
+            e.printStackTrace();
+        }
+        System.out.println(DONE_TEST + "GetContent");
     }
-    
+
     private static void testAddToHead() {
         MyLinkedList myLinkedList = new MyLinkedList();
         myLinkedList.addToHead(1);
@@ -123,12 +146,11 @@ public class ListMain {
         myLinkedList.addToHead(3);
         myLinkedList.addToHead(4);
         System.out.println(myLinkedList);
-        System.out.println("Done testAddToHead");
+        System.out.println(DONE_TEST + "AddToHead");
     }
 
     private static void testAddInside() {
         MyLinkedList myLinkedList = new MyLinkedList();
-        System.out.println(myLinkedList);
         myLinkedList.addToTail(1);
         myLinkedList.addToTail(2);
         myLinkedList.addToTail(3);
@@ -136,10 +158,15 @@ public class ListMain {
         myLinkedList.addToTail(5);
         myLinkedList.addToTail(6);
         myLinkedList.addToTail(7);
-        myLinkedList.add(10, 1);
-        myLinkedList.add(20, 6);
-        System.out.println(myLinkedList);
-        System.out.println("Done testAddInside");
+        System.out.println(SOURCE_LIST + "\n" + myLinkedList);
+        try {
+            myLinkedList.add(10, 2);
+            myLinkedList.add(20, 6);
+        } catch (IndexOutOfBoundsOfListException e) {
+            e.printStackTrace();
+        }
+        System.out.println(CHANGED_LIST + "\n" + myLinkedList);
+        System.out.println(DONE_TEST + "AddInside");
     }
 
     /**
@@ -147,16 +174,24 @@ public class ListMain {
      */
     private static void testAddIndexBounds() {
         MyLinkedList myLinkedList = new MyLinkedList();
-        myLinkedList.add(0, 0);
-        myLinkedList.add(2, 1);
-        System.out.println("Done testAddIndexBounds");
+        try {
+            myLinkedList.add(0, 0);
+            myLinkedList.add(2, 1);
+        } catch (IndexOutOfBoundsOfListException e) {
+            e.printStackTrace();
+        }
+        System.out.println(DONE_TEST + "AddIndexBounds");
     }
 
     private static void testAddIncorrectIndex() {
         MyLinkedList myLinkedList = new MyLinkedList();
-        myLinkedList.add(0, -1);
-        myLinkedList.add(0, 1);
-        System.out.println("Done testAddIncorrectIndex");
+        try {
+            myLinkedList.add(0, -1);
+            myLinkedList.add(0, 1);
+        } catch (IndexOutOfBoundsOfListException e) {
+            e.printStackTrace();
+        }
+        System.out.println(DONE_TEST + "AddIncorrectIndex");
     }
 
     private static void testAddToTail() {
@@ -166,7 +201,7 @@ public class ListMain {
         myLinkedList.addToTail(3);
         myLinkedList.addToTail(4);
         System.out.println(myLinkedList);
-        System.out.println("Done testAddToTail");
+        System.out.println(DONE_TEST + "AddToTail");
     }
 }
 

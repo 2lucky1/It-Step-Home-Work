@@ -1,5 +1,8 @@
 package com.muntian.ht26_LinkedList;
 
+import com.muntian.ht26_LinkedList.Exceptions.EmptyListException;
+import com.muntian.ht26_LinkedList.Exceptions.IndexOutOfBoundsOfListException;
+
 /**
  * Linked list
  */
@@ -21,7 +24,7 @@ public class MyLinkedList {
      */
     public void addToTail(int data) {
         Element newElement = new Element(data);
-        if (_size == 0) {
+        if (emptyListCheck()) {
             addToEmptyList(newElement);
         } else {
             _tail.next = newElement;
@@ -39,13 +42,16 @@ public class MyLinkedList {
         _size++;
     }
 
-    public void add(int data, long index) {
+    private boolean checkOfIndexBelongsToListBoundaries(long index) {
+        return (index < 0 || index > _size);
+    }
+
+    public void add(int data, long index) throws IndexOutOfBoundsOfListException {
         Element newElement = new Element(data);
-        if (index < 0 || index > _size) {
-            System.err.println("Out of the list boards");
-            return;
+        if (checkOfIndexBelongsToListBoundaries(index)) {
+            throw new IndexOutOfBoundsOfListException(index);
         }
-        if (_size == 0) {
+        if (emptyListCheck()) {
             addToEmptyList(newElement);
             return;
         }
@@ -67,9 +73,10 @@ public class MyLinkedList {
         _size++;
     }
 
+
     public void addToHead(int data) {
         Element newElement = new Element(data);
-        if (_size == 0) {
+        if (emptyListCheck()) {
             addToEmptyList(newElement);
         } else {
             _head.prev = newElement;
@@ -79,39 +86,47 @@ public class MyLinkedList {
         }
     }
 
-    public int get(long index) {
-        if (_size == 0) {
-            System.err.println("List is empty");
-            return -1;
+    public int getContent(long index) throws IndexOutOfBoundsOfListException, EmptyListException {
+        if (checkOfIndexBelongsToListBoundaries(index)) {
+            throw new IndexOutOfBoundsOfListException(index);
+        }
+        if (emptyListCheck()) {
+            throw new EmptyListException();
         }
         return getElement(index).content;
     }
 
-    public void replace(int newData, long index) {
+    public void replace(int newData, long index) throws IndexOutOfBoundsOfListException {
+        if (checkOfIndexBelongsToListBoundaries(index)) {
+            throw new IndexOutOfBoundsOfListException(index);
+        }
         getElement(index).content = newData;
     }
 
-    public void deleteFromHead() {
-        if (_size == 0) {
-            System.err.println("List is empty");
+    public void deleteFromHead() throws EmptyListException{
+        if (emptyListCheck()) {
+            throw new EmptyListException();
         } else {
-             _head = getElement(1);
+            _head = getElement(1);
             _size--;
         }
     }
 
-    public void deleteFromTail() {
-        if (_size == 0) {
-            System.err.println("List is empty");
+    public void deleteFromTail() throws EmptyListException {
+        if (emptyListCheck()) {
+            throw new EmptyListException();
         } else {
-            _tail = getElement(size()-2);
+            _tail = getElement(size() - 2);
             _size--;
         }
     }
 
-    public void delete(long index) {
-        if (_size == 0) {
-            System.err.println("List is empty");
+    public void delete(long index) throws IndexOutOfBoundsOfListException, EmptyListException {
+        if (checkOfIndexBelongsToListBoundaries(index)) {
+            throw new IndexOutOfBoundsOfListException(index);
+        }
+        if (emptyListCheck()) {
+            throw new EmptyListException();
         } else if (index == 0) {
             deleteFromHead();
             return;
@@ -126,7 +141,10 @@ public class MyLinkedList {
         prevElement.next = nextElement;
         nextElement.prev = prevElement;
         _size--;
+    }
 
+    private boolean emptyListCheck() {
+        return _size == 0;
     }
 
     public long size() {
@@ -166,7 +184,6 @@ public class MyLinkedList {
         Element(int content) {
             this.content = content;
         }
-
     }
 
     @Override
