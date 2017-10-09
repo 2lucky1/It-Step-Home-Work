@@ -1,12 +1,11 @@
 package com.muntian.ht26_LinkedList;
 
-import com.muntian.ht26_LinkedList.Exceptions.EmptyListException;
-import com.muntian.ht26_LinkedList.Exceptions.IndexOutOfBoundsOfListException;
-
 /**
  * Linked list
  */
 public class MyLinkedList {
+    private static final String THERE_ARE_NO_ONE_ITEM_IN_THIS_LIST = "There are no one item in this list";
+    private static final String OUT_OF_THE_LIST_BOARDS = "Out of the list boards";
     private Element _head;
     private Element _tail;
     private long _size;
@@ -46,10 +45,11 @@ public class MyLinkedList {
         return (index < 0 || index > _size);
     }
 
-    public void add(int data, long index) throws IndexOutOfBoundsOfListException {
+    public void add(int data, long index) {
         Element newElement = new Element(data);
         if (checkOfIndexBelongsToListBoundaries(index)) {
-            throw new IndexOutOfBoundsOfListException(index);
+            System.err.println(OUT_OF_THE_LIST_BOARDS);
+            return;
         }
         if (emptyListCheck()) {
             addToEmptyList(newElement);
@@ -73,7 +73,6 @@ public class MyLinkedList {
         _size++;
     }
 
-
     public void addToHead(int data) {
         Element newElement = new Element(data);
         if (emptyListCheck()) {
@@ -86,48 +85,56 @@ public class MyLinkedList {
         }
     }
 
-    public int getContent(long index) throws IndexOutOfBoundsOfListException, EmptyListException {
+    public int getContent(long index) {
         if (checkOfIndexBelongsToListBoundaries(index)) {
-            throw new IndexOutOfBoundsOfListException(index);
+            System.err.println(OUT_OF_THE_LIST_BOARDS);
+            return -1;
         }
         if (emptyListCheck()) {
-            throw new EmptyListException();
+            System.err.println(THERE_ARE_NO_ONE_ITEM_IN_THIS_LIST);
+            return -1;
         }
         return getElement(index).content;
     }
 
-    public void replace(int newData, long index) throws IndexOutOfBoundsOfListException {
+    public void replace(int newData, long index) {
         if (checkOfIndexBelongsToListBoundaries(index)) {
-            throw new IndexOutOfBoundsOfListException(index);
+            System.err.println(OUT_OF_THE_LIST_BOARDS);
+            return;
         }
         getElement(index).content = newData;
     }
 
-    public void deleteFromHead() throws EmptyListException{
+    public void deleteFromHead() {
         if (emptyListCheck()) {
-            throw new EmptyListException();
-        } else {
-            _head = getElement(1);
-            _size--;
+            System.err.println(THERE_ARE_NO_ONE_ITEM_IN_THIS_LIST);
+            return;
         }
+
+        _head = getElement(1);
+        _size--;
     }
 
-    public void deleteFromTail() throws EmptyListException {
+    public void deleteFromTail() {
         if (emptyListCheck()) {
-            throw new EmptyListException();
-        } else {
-            _tail = getElement(size() - 2);
-            _size--;
+            System.err.println(THERE_ARE_NO_ONE_ITEM_IN_THIS_LIST);
+            return;
         }
+
+        _tail = getElement(size() - 2);
+        _size--;
     }
 
-    public void delete(long index) throws IndexOutOfBoundsOfListException, EmptyListException {
+    public void delete(long index) {
         if (checkOfIndexBelongsToListBoundaries(index)) {
-            throw new IndexOutOfBoundsOfListException(index);
+            System.err.println(OUT_OF_THE_LIST_BOARDS);
+            return;
         }
         if (emptyListCheck()) {
-            throw new EmptyListException();
-        } else if (index == 0) {
+            System.err.println(THERE_ARE_NO_ONE_ITEM_IN_THIS_LIST);
+            return;
+        }
+        if (index == 0) {
             deleteFromHead();
             return;
         }
@@ -184,6 +191,7 @@ public class MyLinkedList {
         Element(int content) {
             this.content = content;
         }
+
     }
 
     @Override
