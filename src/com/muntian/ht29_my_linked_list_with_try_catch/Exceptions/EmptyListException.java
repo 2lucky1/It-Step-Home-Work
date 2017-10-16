@@ -1,9 +1,8 @@
 package com.muntian.ht29_my_linked_list_with_try_catch.Exceptions;
 
-public class EmptyListException extends Exception {
+public class EmptyListException extends RuntimeException {
 
-    @Override
-    public String toString() {
-        return "EmptyListException! There are no items in the list";
+    public EmptyListException(){
+        System.err.println("EmptyListException! There are no items in the list");
     }
 }

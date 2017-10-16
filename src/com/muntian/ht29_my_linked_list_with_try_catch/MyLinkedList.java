@@ -7,6 +7,7 @@ import com.muntian.ht29_my_linked_list_with_try_catch.Exceptions.IndexOutOfBound
  * Linked list
  */
 public class MyLinkedList {
+    private static final int FIRST_INDEX = 0;
     private Element _head;
     private Element _tail;
     private long _size;
@@ -49,7 +50,7 @@ public class MyLinkedList {
     public void add(int data, long index) throws IndexOutOfBoundsOfListException {
         Element newElement = new Element(data);
         if (checkOfIndexBelongsToListBoundaries(index)) {
-            throw new IndexOutOfBoundsOfListException(index);
+            throw new IndexOutOfBoundsOfListException(index, FIRST_INDEX, size());
         }
         if (emptyListCheck()) {
             addToEmptyList(newElement);
@@ -88,7 +89,7 @@ public class MyLinkedList {
 
     public int getContent(long index) throws IndexOutOfBoundsOfListException, EmptyListException {
         if (checkOfIndexBelongsToListBoundaries(index)) {
-            throw new IndexOutOfBoundsOfListException(index);
+            throw new IndexOutOfBoundsOfListException(index, FIRST_INDEX, size());
         }
         if (emptyListCheck()) {
             throw new EmptyListException();
@@ -98,12 +99,12 @@ public class MyLinkedList {
 
     public void replace(int newData, long index) throws IndexOutOfBoundsOfListException {
         if (checkOfIndexBelongsToListBoundaries(index)) {
-            throw new IndexOutOfBoundsOfListException(index);
+            throw new IndexOutOfBoundsOfListException(index, FIRST_INDEX, size());
         }
         getElement(index).content = newData;
     }
 
-    public void deleteFromHead() throws EmptyListException{
+    public void deleteFromHead() throws EmptyListException {
         if (emptyListCheck()) {
             throw new EmptyListException();
         } else {
@@ -123,7 +124,7 @@ public class MyLinkedList {
 
     public void delete(long index) throws IndexOutOfBoundsOfListException, EmptyListException {
         if (checkOfIndexBelongsToListBoundaries(index)) {
-            throw new IndexOutOfBoundsOfListException(index);
+            throw new IndexOutOfBoundsOfListException(index, FIRST_INDEX, size());
         }
         if (emptyListCheck()) {
             throw new EmptyListException();
