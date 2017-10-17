@@ -12,29 +12,21 @@ public class MyLinkedList {
     private Element _tail;
     private long _size;
 
+    /**
+     * Creates a list with default values of its fields
+     */
     public MyLinkedList() {
         _head = null;
         _tail = null;
         _size = 0;
     }
 
-    /**
-     * Adds data to the end of the list
-     *
-     * @param data value for adding
-     */
-    public void addToTail(int data) {
-        Element newElement = new Element(data);
-        if (emptyListCheck()) {
-            addToEmptyList(newElement);
-        } else {
-            _tail.next = newElement;
-            newElement.prev = _tail;
-            _tail = newElement;
-            _size++;
-        }
-    }
 
+    /**
+     * Adds new element to empty list
+     *
+     * @param newElement the new element to add
+     */
     private void addToEmptyList(Element newElement) {
         newElement.next = null;
         newElement.prev = null;
@@ -43,10 +35,23 @@ public class MyLinkedList {
         _size++;
     }
 
+    /**
+     * Checks belongs of the entered index to the range of indexes of the list
+     *
+     * @param index the entered index
+     * @return true if the index is outside the bounds of the list
+     */
     private boolean checkOfIndexBelongsToListBoundaries(long index) {
         return (index < 0 || index > _size);
     }
 
+    /**
+     * Adds new element to the list by index
+     *
+     * @param data  the value of the new element
+     * @param index the index by which the new element will be inserted
+     * @throws IndexOutOfBoundsOfListException
+     */
     public void add(int data, long index) throws IndexOutOfBoundsOfListException {
         Element newElement = new Element(data);
         if (checkOfIndexBelongsToListBoundaries(index)) {
@@ -74,7 +79,11 @@ public class MyLinkedList {
         _size++;
     }
 
-
+    /**
+     * Adds data to the begin of the list
+     *
+     * @param data the value for adding
+     */
     public void addToHead(int data) {
         Element newElement = new Element(data);
         if (emptyListCheck()) {
@@ -87,6 +96,31 @@ public class MyLinkedList {
         }
     }
 
+    /**
+     * Adds data to the end of the list
+     *
+     * @param data the value for adding
+     */
+    public void addToTail(int data) {
+        Element newElement = new Element(data);
+        if (emptyListCheck()) {
+            addToEmptyList(newElement);
+        } else {
+            _tail.next = newElement;
+            newElement.prev = _tail;
+            _tail = newElement;
+            _size++;
+        }
+    }
+
+    /**
+     * Allows to get the content of the element by index
+     *
+     * @param index the index of the element, whose content we need to obtain
+     * @return integer value of content of the element
+     * @throws IndexOutOfBoundsOfListException
+     * @throws EmptyListException
+     */
     public int getContent(long index) throws IndexOutOfBoundsOfListException, EmptyListException {
         if (checkOfIndexBelongsToListBoundaries(index)) {
             throw new IndexOutOfBoundsOfListException(index, FIRST_INDEX, size());
@@ -97,6 +131,13 @@ public class MyLinkedList {
         return getElement(index).content;
     }
 
+    /**
+     * Replaced content of the element by needed value
+     *
+     * @param newData - new value of the content
+     * @param index   - the index of the element over which replacement operation will be performed
+     * @throws IndexOutOfBoundsOfListException
+     */
     public void replace(int newData, long index) throws IndexOutOfBoundsOfListException {
         if (checkOfIndexBelongsToListBoundaries(index)) {
             throw new IndexOutOfBoundsOfListException(index, FIRST_INDEX, size());
@@ -104,6 +145,11 @@ public class MyLinkedList {
         getElement(index).content = newData;
     }
 
+    /**
+     * Delete data from the head of the list
+     *
+     * @throws EmptyListException
+     */
     public void deleteFromHead() throws EmptyListException {
         if (emptyListCheck()) {
             throw new EmptyListException();
@@ -113,6 +159,11 @@ public class MyLinkedList {
         }
     }
 
+    /**
+     * Delete data from the tail of the list
+     *
+     * @throws EmptyListException
+     */
     public void deleteFromTail() throws EmptyListException {
         if (emptyListCheck()) {
             throw new EmptyListException();
@@ -122,6 +173,13 @@ public class MyLinkedList {
         }
     }
 
+    /**
+     * Delete data from the list by index
+     *
+     * @param index index of the element to be deleted
+     * @throws IndexOutOfBoundsOfListException
+     * @throws EmptyListException
+     */
     public void delete(long index) throws IndexOutOfBoundsOfListException, EmptyListException {
         if (checkOfIndexBelongsToListBoundaries(index)) {
             throw new IndexOutOfBoundsOfListException(index, FIRST_INDEX, size());
@@ -144,14 +202,31 @@ public class MyLinkedList {
         _size--;
     }
 
+    /**
+     * Checks if the list is empty
+     *
+     * @return true if the list is empty
+     */
     private boolean emptyListCheck() {
         return _size == 0;
     }
 
+    /**
+     * Allows to get size of the list
+     *
+     * @return value of the size of the list
+     */
     public long size() {
         return _size;
     }
 
+    /**
+     * Allows to get the element from the list, using search from
+     * the "head" or from the "tail" depend on value of the index.
+     *
+     * @param index the index of the element
+     * @return element
+     */
     private Element getElement(long index) {
         long middle = _size / 2;
         if (index <= middle) {
@@ -177,6 +252,9 @@ public class MyLinkedList {
         return result;
     }
 
+    /**
+     * Describes element of the list
+     */
     private static class Element {
         Element prev;
         int content;
