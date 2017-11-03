@@ -1,5 +1,7 @@
 package com.muntian.ht18_Grant;
 
+import java.util.Arrays;
+
 public class Student {
 
     private static final int MARK_1 = 1;
@@ -113,5 +115,13 @@ public class Student {
             sumOfMarks = sumOfMarks + marks[i];
         }
         return sumOfMarks / marks.length;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name: " + this.getName() +
+                ", last name: " + this.getLastName() +
+                ", marks: " + Arrays.toString(this.getMarks()) + '}';
     }
 }

@@ -1,5 +1,11 @@
 package com.muntian.ht18_Grant;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.Integer.parseInt;
+
 public class AccrualOfScholarships {
     private static final int BAD = 1;
     private static final int NORMAL = 2;
@@ -9,18 +15,23 @@ public class AccrualOfScholarships {
 
     public static void main(String[] args) {
         Student nick = new Student("Muntian", "Nikolai", "Nikolayevich", 212, new int[]{5, 5, 4, 4});
-        Student denis = new Student("Shatsky", "Denis", "Ihorevich", 211, new int[]{4, 4, 4, 4});
-        Student vladislav = new Student("Komarevsky", "Vladislav", "Alexandrovich", 212, new int[]{4, 4, 3, 3});
-        Student alexandr = new Student("Caran", "Alexandr", "Petrovich", 212, new int[]{4, 3, 3, 3});
-        Student vadim = new Student("Kienko", "Vadim", "Sergeyevich", 211, new int[]{5, 3, 4});
-        Student anna = new Student("Kaglyal", "Anna", "Vladimirovna", 211, new int[]{5, 5, 4, 3, 3});
-        Student ecaterina = new Student("Chis", "Cate", "Anatolievna", 211, new int[]{5, 5, 5, 5});
-        Student maxim = new Student("Nikitenko", "Maxim", "Sergeevich", 212, new int[]{1, 1, 1, 1});
-
-        Student[] listOfStudents = new Student[]{nick, denis, vladislav, alexandr, vadim, anna, ecaterina, maxim};
-
-        printStudents(sortByLastName(formationOfListOfFellows(listOfStudents)));
-
+//        Student denis = new Student("Shatsky", "Denis", "Ihorevich", 211, new int[]{4, 4, 4, 4});
+//        Student vladislav = new Student("Komarevsky", "Vladislav", "Alexandrovich", 212, new int[]{4, 4, 3, 3});
+//        Student alexandr = new Student("Caran", "Alexandr", "Petrovich", 212, new int[]{4, 3, 3, 3});
+//        Student vadim = new Student("Kienko", "Vadim", "Sergeyevich", 211, new int[]{5, 3, 4});
+//        Student anna = new Student("Kaglyal", "Anna", "Vladimirovna", 211, new int[]{5, 5, 4, 3, 3});
+//        Student ecaterina = new Student("Chis", "Cate", "Anatolievna", 211, new int[]{5, 5, 5, 5});
+//        Student maxim = new Student("Nikitenko", "Maxim", "Sergeevich", 212, new int[]{1, 1, 1, 1});
+//
+//        Student[] listOfStudents = new Student[]{nick, denis, vladislav, alexandr, vadim, anna, ecaterina, maxim};
+//
+//        printStudents(sortByLastName(formationOfListOfFellows(listOfStudents)));
+        System.out.println(nick);
+        System.out.println("Write a student to the file");
+        writeStudentToFile(nick);
+        System.out.println();
+        System.out.println("Read a student from the file");
+        System.out.println(readStudentFromFile(nick.getName() + ".txt"));
     }
 
     private static Student[] formationOfListOfFellows(Student[] listOfStudents) {
@@ -103,5 +114,65 @@ public class AccrualOfScholarships {
             }
         }
     }
+
+    /**
+     *
+     * @param student
+     *        Object of the class Student which we need to write into the file
+     * @throws IOException
+     */
+    public static void writeStudentToFile(Student student) {
+        try (Writer writer = new FileWriter(student.getName() + ".txt")) {
+            writer.write(student.getName() + System.lineSeparator());
+            writer.write(student.getLastName() + System.lineSeparator());
+            for (int i = 0; i < student.getMarks().length; i++) {
+                writer.write(student.getMarks()[i] + System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param   fileName
+     *          Name of the file where the information of the student is placed
+     *
+     * @return  Object of the class {@code Student} which is assembled from the file
+     *
+     * @throws IOException
+     *
+     * @throws FileNotFoundException
+     *         If the specified file dose not exist
+     */
+    public static Student readStudentFromFile(String fileName) {
+        Student student = new Student();
+        try (Reader reader = new FileReader(fileName)) {
+
+            BufferedReader bufferedReader = new BufferedReader(reader);
+
+            String line;
+            List<String> lines = new ArrayList<>();
+            //Write each line from the file to array list
+            while ((line = bufferedReader.readLine()) != null) {
+                lines.add(line);
+            }
+            //Assembling of a student field by field
+            student.setName(lines.get(0));
+            student.setLastName(lines.get(1));
+            //Create an array of marks and set it to student
+            int[] marks = new int[lines.size() - 2];
+            for (int i = 0; i < marks.length; i++) {
+                marks[i] = parseInt(lines.get(2 + i));
+            }
+            student.setMarks(marks);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return student;
+    }
+
 }
 
