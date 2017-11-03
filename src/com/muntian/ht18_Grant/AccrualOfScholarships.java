@@ -12,9 +12,9 @@ public class AccrualOfScholarships {
     private static final int GOOD = 3;
     private static final int GOOD_EXCELLENT = 4;
     private static final int EXCELLENT = 5;
-    public static final int NAME_OF_THE_STUDENT = 0;
-    public static final int LAST_NAME_OF_THE_STUDENT = 1;
-    public static final int QUANTITY_OF_FILDS_BEFORE_MARKS = 2;
+    private static final int NAME_OF_THE_STUDENT = 0;
+    private static final int LAST_NAME_OF_THE_STUDENT = 1;
+    private static final int QUANTITY_OF_FIELDS_BEFORE_MARKS = 2;
 
     public static void main(String[] args) {
         Student nick = new Student("Muntian", "Nikolai", "Nikolayevich", 212, new int[]{5, 5, 4, 4});
@@ -164,9 +164,9 @@ public class AccrualOfScholarships {
             student.setName(lines.get(NAME_OF_THE_STUDENT));
             student.setLastName(lines.get(LAST_NAME_OF_THE_STUDENT));
             //Create an array of marks and set it to student
-            int[] marks = new int[lines.size() - QUANTITY_OF_FILDS_BEFORE_MARKS];
+            int[] marks = new int[lines.size() - QUANTITY_OF_FIELDS_BEFORE_MARKS];
             for (int i = 0; i < marks.length; i++) {
-                marks[i] = parseInt(lines.get(QUANTITY_OF_FILDS_BEFORE_MARKS + i));
+                marks[i] = parseInt(lines.get(QUANTITY_OF_FIELDS_BEFORE_MARKS + i));
             }
             student.setMarks(marks);
         } catch (FileNotFoundException e) {
