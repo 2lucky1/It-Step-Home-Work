@@ -24,8 +24,8 @@ public class MainThreads {
         System.out.println(Thread.activeCount());
         Scanner input = new Scanner(System.in);
 
-        while (thread1.isAlive() || thread2.isAlive() || thread3.isAlive() ||
-                thread4.isAlive() || thread5.isAlive()) {
+        //Implementation of choosing of a thread to stop it
+        while (MyRunnable.getThreadNumber()>0) {
             switch (input.nextLine()) {
                 case "T1":
                     stopThread(thread1);
@@ -49,21 +49,36 @@ public class MainThreads {
         System.out.println("All threads are stopped");
     }
 
+    /**
+     *
+     * @param thread the thread which must be stopped
+     */
     private static void stopThread(Thread thread) {
         if (!thread.isAlive()) {
             System.out.println("This thread was not started or has been already interrupted");
         } else {
             thread.interrupt();
+            MyRunnable.setThreadNumber(MyRunnable.getThreadNumber()-1);
         }
     }
 }
 
 class MyRunnable implements Runnable {
-
     private static final int SLEEP_TIME = 1000000;
+    //Creating of a live thread counter
+    private static int threadNumber = 0;
+
+    public static int getThreadNumber() {
+        return threadNumber;
+    }
+
+    public static void setThreadNumber(int threadNumber) {
+        MyRunnable.threadNumber = threadNumber;
+    }
 
     @Override
     public void run() {
+        threadNumber++;
         System.out.println(Thread.currentThread().getName() + " started");
         try {
             while (!Thread.currentThread().isInterrupted()) {
