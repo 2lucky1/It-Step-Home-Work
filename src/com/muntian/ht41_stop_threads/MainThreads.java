@@ -25,7 +25,7 @@ public class MainThreads {
         Scanner input = new Scanner(System.in);
 
         while (thread1.isAlive() || thread2.isAlive() || thread3.isAlive() ||
-                 thread4.isAlive() || thread5.isAlive()) {
+                thread4.isAlive() || thread5.isAlive()) {
             switch (input.nextLine()) {
                 case "T1":
                     stopThread(thread1);
@@ -42,8 +42,8 @@ public class MainThreads {
                 case "T5":
                     stopThread(thread5);
                     break;
-                default:
-                    System.out.println("Incorrect input of thread name");
+//                default:
+//                    System.out.println("Incorrect input of thread name");
             }
         }
         System.out.println("All threads are stopped");
@@ -60,12 +60,18 @@ public class MainThreads {
 
 class MyRunnable implements Runnable {
 
+    private static final int SLEEP_TIME = 1000000;
+
     @Override
     public void run() {
-        int count = 0;
-        while (!Thread.currentThread().isInterrupted()) {
-            count++;
+        System.out.println(Thread.currentThread().getName() + " started");
+        try {
+            while (!Thread.currentThread().isInterrupted()) {
+                Thread.sleep(SLEEP_TIME);
+            }
+        } catch (InterruptedException ignore) {
+
         }
-        System.out.println("Thread " + Thread.currentThread().getName() + " stopped" + " count = " + count);
+        System.out.println("Thread " + Thread.currentThread().getName() + " stopped");
     }
 }
