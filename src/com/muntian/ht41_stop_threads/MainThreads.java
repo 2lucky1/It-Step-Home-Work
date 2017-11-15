@@ -24,8 +24,8 @@ public class MainThreads {
         System.out.println(Thread.activeCount());
         Scanner input = new Scanner(System.in);
 
-        while (!(thread1.isInterrupted() && thread2.isInterrupted() && thread3.isInterrupted() &&
-                 thread4.isInterrupted() && thread5.isInterrupted())) {
+        while (thread1.isAlive() || thread2.isAlive() || thread3.isAlive() ||
+                 thread4.isAlive() || thread5.isAlive()) {
             switch (input.nextLine()) {
                 case "T1":
                     stopThread(thread1);
@@ -50,7 +50,7 @@ public class MainThreads {
     }
 
     private static void stopThread(Thread thread) {
-        if (thread.isInterrupted()) {
+        if (!thread.isAlive()) {
             System.out.println("This thread was not started or has been already interrupted");
         } else {
             thread.interrupt();
@@ -66,6 +66,6 @@ class MyRunnable implements Runnable {
         while (!Thread.currentThread().isInterrupted()) {
             count++;
         }
-        System.out.println("Thread " + Thread.currentThread().getName() + " stopped" + "count = " + count);
+        System.out.println("Thread " + Thread.currentThread().getName() + " stopped" + " count = " + count);
     }
 }
