@@ -42,8 +42,8 @@ public class MainThreads {
                 case "T5":
                     stopThread(thread5);
                     break;
-//                default:
-//                    System.out.println("Incorrect input of thread name");
+                default:
+                    System.out.println("Incorrect input of thread name");
             }
         }
         System.out.println("All threads are stopped");
