@@ -112,15 +112,15 @@ public class ProgressMain {
         barPanel.add(jProgressBar5);
 
         JButton button1 = new JButton("First Bar");
-        button1.addActionListener(e -> doTheJob(thread1, jProgressBar1));
+        button1.addActionListener(e -> doTheJob(thread1));
         JButton button2 = new JButton("Second Bar");
-        button2.addActionListener(e -> doTheJob(thread2, jProgressBar2));
+        button2.addActionListener(e -> doTheJob(thread2));
         JButton button3 = new JButton("Third Bar");
-        button3.addActionListener(e -> doTheJob(thread3, jProgressBar3));
+        button3.addActionListener(e -> doTheJob(thread3));
         JButton button4 = new JButton("Fourth Bar");
-        button4.addActionListener(e -> doTheJob(thread4, jProgressBar4));
+        button4.addActionListener(e -> doTheJob(thread4));
         JButton button5 = new JButton("Fifth Bar");
-        button5.addActionListener(e -> doTheJob(thread5, jProgressBar5));
+        button5.addActionListener(e -> doTheJob(thread5));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(button1);
@@ -139,7 +139,7 @@ public class ProgressMain {
         SwingUtilities.invokeLater(ProgressMain::new);
     }
 
-    private void doTheJob(Thread thread, JProgressBar jProgressBar) {
+    private void doTheJob(Thread thread) {
         if (thread.isAlive()) {
             thread.interrupt();
         } else {
