@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ProgressMain {
-
     private static final int DELTA = 1;
     private JProgressBar jProgressBar1;
     private JProgressBar jProgressBar2;
@@ -12,99 +11,21 @@ public class ProgressMain {
     private JProgressBar jProgressBar4;
     private JProgressBar jProgressBar5;
 
-    public Thread thread1 = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            while (true) {
-                int currentPosition = jProgressBar1.getValue();
-                if (currentPosition >= jProgressBar1.getMaximum()) {
-                    currentPosition = 0;
-                }
-                jProgressBar1.setValue(currentPosition + DELTA);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
-        }
-    });
-    private Thread thread2 = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            while (true) {
-                int currentPosition = jProgressBar2.getValue();
-                if (currentPosition >= jProgressBar2.getMaximum()) {
-                    currentPosition = 0;
-                }
-                jProgressBar2.setValue(currentPosition + DELTA);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
-        }
-    });
-    private Thread thread3 = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            while (true) {
-                int currentPosition = jProgressBar3.getValue();
-                if (currentPosition >= jProgressBar3.getMaximum()) {
-                    currentPosition = 0;
-                }
-                jProgressBar3.setValue(currentPosition + DELTA);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
-        }
-    });
-    private Thread thread4 = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            while (true) {
-                int currentPosition = jProgressBar4.getValue();
-                if (currentPosition >= jProgressBar4.getMaximum()) {
-                    currentPosition = 0;
-                }
-                jProgressBar4.setValue(currentPosition + DELTA);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
-        }
-    });
-    private Thread thread5 = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            while (true) {
-                int currentPosition = jProgressBar5.getValue();
-                if (currentPosition >= jProgressBar5.getMaximum()) {
-                    currentPosition = 0;
-                }
-                jProgressBar5.setValue(currentPosition + DELTA);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
-        }
-    });
+    private Thread thread1 = new Thread();
+    private Thread thread2 = new Thread();
+    private Thread thread3 = new Thread();
+    private Thread thread4 = new Thread();
+    private Thread thread5 = new Thread();
 
     public ProgressMain() {
+        //Creating of window
         JFrame jFrame = new JFrame("5 progress bars");
         jFrame.setSize(500, 250);
         jFrame.setLocationRelativeTo(null);
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFrame.setVisible(true);
 
+        //Initializing of progress bars
         jProgressBar1 = new JProgressBar();
         jProgressBar1.setForeground(Color.RED);
         jProgressBar2 = new JProgressBar();
@@ -116,6 +37,7 @@ public class ProgressMain {
         jProgressBar5 = new JProgressBar();
         jProgressBar5.setForeground(Color.BLUE);
 
+        //Creating panel for bars
         JPanel barPanel = new JPanel();
         barPanel.setLayout(new BoxLayout(barPanel, BoxLayout.Y_AXIS));
         barPanel.add(jProgressBar1);
@@ -125,16 +47,15 @@ public class ProgressMain {
         barPanel.add(jProgressBar5);
 
         JButton button1 = new JButton("First Bar");
-        button1.addActionListener(e -> doTheJob(jProgressBar1));
+        button1.addActionListener(e -> doTheJob(thread1, jProgressBar1));
         JButton button2 = new JButton("Second Bar");
-        button2.addActionListener(e -> doTheJob(jProgressBar2));
+        button2.addActionListener(e -> doTheJob(thread2, jProgressBar2));
         JButton button3 = new JButton("Third Bar");
-        button3.addActionListener(e -> doTheJob(jProgressBar3));
+        button3.addActionListener(e -> doTheJob(thread3, jProgressBar3));
         JButton button4 = new JButton("Fourth Bar");
-        button4.addActionListener(e -> doTheJob(jProgressBar4));
+        button4.addActionListener(e -> doTheJob(thread4, jProgressBar4));
         JButton button5 = new JButton("Fifth Bar");
-        button5.addActionListener(e -> doTheJob(jProgressBar5));
-
+        button5.addActionListener(e -> doTheJob(thread5, jProgressBar5));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(button1);
@@ -153,11 +74,11 @@ public class ProgressMain {
         SwingUtilities.invokeLater(ProgressMain::new);
     }
 
-    private void doTheJob(JProgressBar jProgressBar) {
-        if (Thread.currentThread().isAlive()) {
-            Thread.currentThread().interrupt();
+    private void doTheJob(Thread thread, JProgressBar jProgressBar) {
+        if (thread.isAlive()) {
+            thread.interrupt();
         } else {
-            Thread thread = new Thread(() -> {
+            thread = new Thread(() -> {
                 while (true) {
                     int currentPosition = jProgressBar.getValue();
                     if (currentPosition >= jProgressBar.getMaximum()) {
@@ -176,3 +97,41 @@ public class ProgressMain {
     }
 }
 
+class MyRunnable implements Runnable {
+    private int count;
+    private static final int DELTA = 1;
+    private JProgressBar jProgressBar;
+
+
+    public MyRunnable(JProgressBar jProgressBar) {
+        this.count = 0;
+        this.jProgressBar = jProgressBar;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    @Override
+    public void run() {
+        while (!Thread.currentThread().isInterrupted()) {
+            int currentPosition = jProgressBar.getValue();
+            if (currentPosition >= jProgressBar.getMaximum()) {
+                currentPosition = 0;
+            }
+            jProgressBar.setValue(currentPosition + DELTA);
+        }
+    }
+}
+
+class MyThread extends Thread {
+    private int count;
+
+    public MyThread() {
+        this.count = 0;
+    }
+}
