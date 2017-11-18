@@ -11,12 +11,6 @@ public class ProgressMain {
     private JProgressBar jProgressBar4;
     private JProgressBar jProgressBar5;
 
-    private Thread thread1 = new Thread();
-    private Thread thread2 = new Thread();
-    private Thread thread3 = new Thread();
-    private Thread thread4 = new Thread();
-    private Thread thread5 = new Thread();
-
     public ProgressMain() {
         //Creating of window
         JFrame jFrame = new JFrame("5 progress bars");
@@ -36,6 +30,77 @@ public class ProgressMain {
         jProgressBar4.setForeground(Color.GREEN);
         jProgressBar5 = new JProgressBar();
         jProgressBar5.setForeground(Color.BLUE);
+
+        Thread thread1 = new Thread(() -> {
+            while (true) {
+                int currentPosition = jProgressBar1.getValue();
+                if (currentPosition >= jProgressBar1.getMaximum()) {
+                    currentPosition = 0;
+                }
+                jProgressBar1.setValue(currentPosition + DELTA);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ignored) {
+                    break;
+                }
+            }
+        });
+        Thread thread2 = new Thread(() -> {
+            while (true) {
+                int currentPosition = jProgressBar2.getValue();
+                if (currentPosition >= jProgressBar2.getMaximum()) {
+                    currentPosition = 0;
+                }
+                jProgressBar2.setValue(currentPosition + DELTA);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ignored) {
+                    break;
+                }
+            }
+        });
+        Thread thread3 = new Thread(() -> {
+            while (true) {
+                int currentPosition = jProgressBar3.getValue();
+                if (currentPosition >= jProgressBar3.getMaximum()) {
+                    currentPosition = 0;
+                }
+                jProgressBar3.setValue(currentPosition + DELTA);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ignored) {
+                    break;
+                }
+            }
+        });
+        Thread thread4 = new Thread(() -> {
+            while (true) {
+                int currentPosition = jProgressBar4.getValue();
+                if (currentPosition >= jProgressBar4.getMaximum()) {
+                    currentPosition = 0;
+                }
+                jProgressBar4.setValue(currentPosition + DELTA);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ignored) {
+                    break;
+                }
+            }
+        });
+        Thread thread5 = new Thread(() -> {
+            while (true) {
+                int currentPosition = jProgressBar5.getValue();
+                if (currentPosition >= jProgressBar5.getMaximum()) {
+                    currentPosition = 0;
+                }
+                jProgressBar5.setValue(currentPosition + DELTA);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ignored) {
+                    break;
+                }
+            }
+        });
 
         //Creating panel for bars
         JPanel barPanel = new JPanel();
@@ -78,20 +143,6 @@ public class ProgressMain {
         if (thread.isAlive()) {
             thread.interrupt();
         } else {
-            thread = new Thread(() -> {
-                while (true) {
-                    int currentPosition = jProgressBar.getValue();
-                    if (currentPosition >= jProgressBar.getMaximum()) {
-                        currentPosition = 0;
-                    }
-                    jProgressBar.setValue(currentPosition + DELTA);
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException ignored) {
-                        break;
-                    }
-                }
-            });
             thread.start();
         }
     }
