@@ -1,0 +1,1 @@
+mysql -uroot -p1234 < Cars_db.sql

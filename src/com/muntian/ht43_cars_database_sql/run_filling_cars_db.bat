@@ -1,0 +1,1 @@
+mysql -uroot -p1234 < Filling_cars_db.sql
