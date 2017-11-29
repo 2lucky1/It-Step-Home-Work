@@ -1,44 +1,48 @@
 package com.muntian.ht46_post;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Post {
-    private static int _parcelsLimit;
-    private static int _parcelsNumber;
-    private static int _receivedParcelsNumber;
-    private static int _sentParcelsNumber;
+    private int _parcelsLimit;
+    private int _parcelsNumber;
+    private int _receivedParcelsNumber;
+    private int _sentParcelsNumber;
+    private List  = new LinkedList;
 
     public Post(int parcelsLimit) {
         _parcelsLimit = parcelsLimit;
     }
 
-    public static int get_parcelsLimit() {
+    public int get_parcelsLimit() {
         return _parcelsLimit;
     }
 
-    public static void set_parcelsLimit(int parcelsLimit) {
+    public void set_parcelsLimit(int parcelsLimit) {
         _parcelsLimit = parcelsLimit;
     }
 
-    public static int get_parcelsNumber() {
+    public int get_parcelsNumber() {
         return _parcelsNumber;
     }
 
-    public static void set_parcelsNumber(int parcelsNumber) {
+    public void set_parcelsNumber(int parcelsNumber) {
         _parcelsNumber = parcelsNumber;
     }
 
-    public static int get_receivedParcelsNumber() {
+    public int get_receivedParcelsNumber() {
         return _receivedParcelsNumber;
     }
 
-    public static void set_receivedParcelsNumber(int receivedParcelsNumber) {
+    public void set_receivedParcelsNumber(int receivedParcelsNumber) {
         _receivedParcelsNumber = receivedParcelsNumber;
     }
 
-    public static int get_sentParcelsNumber() {
+    public int get_sentParcelsNumber() {
         return _sentParcelsNumber;
     }
 
-    public static void set_sentParcelsNumber(int sentParcelsNumber) {
+    public void set_sentParcelsNumber(int sentParcelsNumber) {
         _sentParcelsNumber = sentParcelsNumber;
     }
 }
