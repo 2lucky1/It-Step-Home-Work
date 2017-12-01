@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class ProgressMain {
     private static final int DELTA = 1;
+    public static final int WIDTH_OF_WINDOW = 500;
+    public static final int HEIGHT_OF_WINDOW = 250;
     private JProgressBar jProgressBar1;
     private JProgressBar jProgressBar2;
     private JProgressBar jProgressBar3;
@@ -18,18 +20,15 @@ public class ProgressMain {
     private Thread thread4 = new Thread();
     private Thread thread5 = new Thread();
 
-    public Thread getThread1() {
-        return thread1;
-    }
 
-    public void setThread1(Thread thread1) {
-        this.thread1 = thread1;
+    public static void setThread(Thread thread, Thread newThread) {
+        thread = newThread;
     }
 
     private ProgressMain() {
         //Creating of window
         JFrame jFrame = new JFrame("5 progress bars");
-        jFrame.setSize(500, 250);
+        jFrame.setSize(WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW);
         jFrame.setLocationRelativeTo(null);
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFrame.setVisible(true);
@@ -56,7 +55,7 @@ public class ProgressMain {
         barPanel.add(jProgressBar5);
 
         JButton button1 = new JButton("First Bar");
-        button1.addActionListener(e -> doTheJob1());
+        button1.addActionListener(e -> doTheJob(thread1, jProgressBar1));
         JButton button2 = new JButton("Second Bar");
         button2.addActionListener(e -> doTheJob2());
         JButton button3 = new JButton("Third Bar");
@@ -82,25 +81,32 @@ public class ProgressMain {
         SwingUtilities.invokeLater(ProgressMain::new);
     }
 
-    private void doTheJob1() {
-        if (thread1.isAlive()) {
-            thread1.interrupt();
+//    private void doTheJob(int numberOfThread) {
+//        doTheJobUniversal();
+//    }
+
+    private void doTheJob(Thread thread, JProgressBar jProgressBar) {
+        if (thread.isAlive()) {
+            thread.interrupt();
         } else {
-            thread1 = new Thread(() -> {
-                while (true) {
-                    int currentPosition = jProgressBar1.getValue();
-                    if (currentPosition >= jProgressBar1.getMaximum()) {
-                        currentPosition = 0;
-                    }
-                    jProgressBar1.setValue(currentPosition + DELTA);
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException ignored) {
-                        break;
-                    }
-                }
-            });
-            thread1.start();
+            thread = new Thread(() -> changingOfProgressBar(jProgressBar));
+            thread.start();
+        }
+        System.out.println(thread);
+    }
+
+    private void changingOfProgressBar(JProgressBar jProgressBar) {
+        while (true) {
+            int currentPosition = jProgressBar.getValue();
+            if (currentPosition >= jProgressBar.getMaximum()) {
+                currentPosition = 0;
+            }
+            jProgressBar.setValue(currentPosition + DELTA);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ignored) {
+                break;
+            }
         }
     }
 
@@ -109,18 +115,7 @@ public class ProgressMain {
             thread2.interrupt();
         } else {
             thread2 = new Thread(() -> {
-                while (true) {
-                    int currentPosition = jProgressBar2.getValue();
-                    if (currentPosition >= jProgressBar2.getMaximum()) {
-                        currentPosition = 0;
-                    }
-                    jProgressBar2.setValue(currentPosition + DELTA);
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException ignored) {
-                        break;
-                    }
-                }
+                changingOfProgressBar(jProgressBar2);
             });
             thread2.start();
         }
@@ -133,18 +128,7 @@ public class ProgressMain {
             thread3.interrupt();
         } else {
             thread3 = new Thread(() -> {
-                while (true) {
-                    int currentPosition = jProgressBar3.getValue();
-                    if (currentPosition >= jProgressBar3.getMaximum()) {
-                        currentPosition = 0;
-                    }
-                    jProgressBar3.setValue(currentPosition + DELTA);
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException ignored) {
-                        break;
-                    }
-                }
+                changingOfProgressBar(jProgressBar3);
             });
             thread3.start();
         }
@@ -155,18 +139,7 @@ public class ProgressMain {
             thread4.interrupt();
         } else {
             thread4 = new Thread(() -> {
-                while (true) {
-                    int currentPosition = jProgressBar4.getValue();
-                    if (currentPosition >= jProgressBar4.getMaximum()) {
-                        currentPosition = 0;
-                    }
-                    jProgressBar4.setValue(currentPosition + DELTA);
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException ignored) {
-                        break;
-                    }
-                }
+                changingOfProgressBar(jProgressBar4);
             });
             thread4.start();
         }
@@ -177,18 +150,7 @@ public class ProgressMain {
             thread5.interrupt();
         } else {
             thread5 = new Thread(() -> {
-                while (true) {
-                    int currentPosition = jProgressBar5.getValue();
-                    if (currentPosition >= jProgressBar5.getMaximum()) {
-                        currentPosition = 0;
-                    }
-                    jProgressBar5.setValue(currentPosition + DELTA);
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException ignored) {
-                        break;
-                    }
-                }
+                changingOfProgressBar(jProgressBar5);
             });
             thread5.start();
         }
