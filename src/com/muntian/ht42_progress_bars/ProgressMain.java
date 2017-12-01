@@ -5,14 +5,15 @@ import java.awt.*;
 
 public class ProgressMain {
     private static final int DELTA = 1;
-    public static final int WIDTH_OF_WINDOW = 500;
-    public static final int HEIGHT_OF_WINDOW = 250;
+    private static final int WIDTH_OF_WINDOW = 500;
+    private static final int HEIGHT_OF_WINDOW = 250;
+    private static final int SLEEP_TIME_OF_PROGRESS_BAR = 100;
+
     private JProgressBar jProgressBar1;
     private JProgressBar jProgressBar2;
     private JProgressBar jProgressBar3;
     private JProgressBar jProgressBar4;
     private JProgressBar jProgressBar5;
-
 
     private Thread thread1 = new Thread();
     private Thread thread2 = new Thread();
@@ -20,13 +21,8 @@ public class ProgressMain {
     private Thread thread4 = new Thread();
     private Thread thread5 = new Thread();
 
-
-    public static void setThread(Thread thread, Thread newThread) {
-        thread = newThread;
-    }
-
     private ProgressMain() {
-        //Creating of window
+        //Creating of UI window
         JFrame jFrame = new JFrame("5 progress bars");
         jFrame.setSize(WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW);
         jFrame.setLocationRelativeTo(null);
@@ -54,17 +50,19 @@ public class ProgressMain {
         barPanel.add(jProgressBar4);
         barPanel.add(jProgressBar5);
 
+        //Creating of buttons to start/stop bars
         JButton button1 = new JButton("First Bar");
-        button1.addActionListener(e -> doTheJob(thread1, jProgressBar1));
+        button1.addActionListener(e -> thread1 = doTheJob(thread1, jProgressBar1));
         JButton button2 = new JButton("Second Bar");
-        button2.addActionListener(e -> doTheJob2());
+        button2.addActionListener(e -> thread2 = doTheJob(thread2, jProgressBar2));
         JButton button3 = new JButton("Third Bar");
-        button3.addActionListener(e -> doTheJob3());
+        button3.addActionListener(e -> thread3 = doTheJob(thread3, jProgressBar3));
         JButton button4 = new JButton("Fourth Bar");
-        button4.addActionListener(e -> doTheJob4());
+        button4.addActionListener(e -> thread4 = doTheJob(thread4, jProgressBar4));
         JButton button5 = new JButton("Fifth Bar");
-        button5.addActionListener(e -> doTheJob5());
+        button5.addActionListener(e -> thread5 = doTheJob(thread5, jProgressBar5));
 
+        //Add buttons to the panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(button1);
         buttonPanel.add(button2);
@@ -72,87 +70,47 @@ public class ProgressMain {
         buttonPanel.add(button4);
         buttonPanel.add(button5);
 
+        //Add panels of bars and buttons to the UI window
         jFrame.add(barPanel, BorderLayout.CENTER);
         jFrame.add(buttonPanel, BorderLayout.SOUTH);
-
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ProgressMain::new);
     }
 
-//    private void doTheJob(int numberOfThread) {
-//        doTheJobUniversal();
-//    }
-
-    private void doTheJob(Thread thread, JProgressBar jProgressBar) {
+    /**
+     * Runs the progress bar if it is off, and stops progress bar if it is on.
+     * Each time progress bar starts in new thread. That`s why in this case method
+     * returns new thread. This make be able to reassign this new thread to thread
+     * which passed in parameters. It was implemented to make method reusable.
+     *
+     * @param thread in this parameter is passed thread which works with progress bar
+     * @param jProgressBar progress bar from appropriate thread which is passed into parameters
+     * @return  thread which was passed in parameters if thread is alive or new thread
+     * if thread in parameters is not alive
+     */
+    private Thread doTheJob(Thread thread, JProgressBar jProgressBar) {
         if (thread.isAlive()) {
             thread.interrupt();
         } else {
-            thread = new Thread(() -> changingOfProgressBar(jProgressBar));
+            thread = new Thread(() -> {
+                while (true) {
+                    int currentPosition = jProgressBar.getValue();
+                    if (currentPosition >= jProgressBar.getMaximum()) {
+                        currentPosition = 0;
+                    }
+                    jProgressBar.setValue(currentPosition + DELTA);
+                    try {
+                        Thread.sleep(SLEEP_TIME_OF_PROGRESS_BAR);
+                    } catch (InterruptedException ignored) {
+                        break;
+                    }
+                }
+            });
             thread.start();
+            return thread;
         }
-        System.out.println(thread);
-    }
-
-    private void changingOfProgressBar(JProgressBar jProgressBar) {
-        while (true) {
-            int currentPosition = jProgressBar.getValue();
-            if (currentPosition >= jProgressBar.getMaximum()) {
-                currentPosition = 0;
-            }
-            jProgressBar.setValue(currentPosition + DELTA);
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ignored) {
-                break;
-            }
-        }
-    }
-
-    private void doTheJob2() {
-        if (thread2.isAlive()) {
-            thread2.interrupt();
-        } else {
-            thread2 = new Thread(() -> {
-                changingOfProgressBar(jProgressBar2);
-            });
-            thread2.start();
-        }
-
-
-    }
-
-    private void doTheJob3() {
-        if (thread3.isAlive()) {
-            thread3.interrupt();
-        } else {
-            thread3 = new Thread(() -> {
-                changingOfProgressBar(jProgressBar3);
-            });
-            thread3.start();
-        }
-    }
-
-    private void doTheJob4() {
-        if (thread4.isAlive()) {
-            thread4.interrupt();
-        } else {
-            thread4 = new Thread(() -> {
-                changingOfProgressBar(jProgressBar4);
-            });
-            thread4.start();
-        }
-    }
-
-    private void doTheJob5() {
-        if (thread5.isAlive()) {
-            thread5.interrupt();
-        } else {
-            thread5 = new Thread(() -> {
-                changingOfProgressBar(jProgressBar5);
-            });
-            thread5.start();
-        }
+        return thread;
     }
 }
