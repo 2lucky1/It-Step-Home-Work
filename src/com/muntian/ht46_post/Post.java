@@ -8,7 +8,7 @@ public class Post {
     private int _parcelsNumber;
     private int _receivedParcelsNumber;
     private int _sentParcelsNumber;
-    private List  = new LinkedList;
+    private List <Parcel> parcels  = new LinkedList<>();
 
     public Post(int parcelsLimit) {
         _parcelsLimit = parcelsLimit;

@@ -11,8 +11,8 @@ public class Postman implements Runnable {
         return _postmanCarrying;
     }
 
-    public void set_postmanCarrying(int _postmanCarrying) {
-        this._postmanCarrying = _postmanCarrying;
+    public void set_postmanCarrying(int postmanCarrying) {
+        _postmanCarrying = postmanCarrying;
     }
 
     @Override
