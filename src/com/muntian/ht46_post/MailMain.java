@@ -8,7 +8,9 @@ public class MailMain {
     private static final int POSTMAN_CARRYING = 2;
     private static final int NUMBER_OF_SENDERS = 10;
     private static final int PARCELS_LIMIT = 20;
-    public static final int MAIN_SLEEP_TIME = 60000;
+    private static final int MAIN_SLEEP_TIME = 60000;
+
+    private Monitor monitor = new Monitor();
 
     public static void main(String[] args) {
 
