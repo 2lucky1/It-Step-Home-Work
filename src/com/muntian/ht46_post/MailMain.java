@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MailMain {
+    private static final String ANSI_CYAN = "\u001B[36m";
+    private static final String ANSI_PURPLE = "\u001B[35m";
+
     private static final int NUMBER_OF_POSTMEN = 3;
     private static final int POSTMAN_CARRYING = 2;
     private static final int NUMBER_OF_SENDERS = 10;
     private static final int PARCELS_LIMIT = 20;
-    private static final int MAIN_SLEEP_TIME = 60000;
-
-    private Monitor monitor = new Monitor();
+    private static final int MAIN_SLEEP_TIME = 30000;
 
     public static void main(String[] args) {
 
@@ -21,11 +22,11 @@ public class MailMain {
         List<Thread> sendersThreads = new ArrayList<>();
 
         for (int i = 0; i < NUMBER_OF_SENDERS; i++) {
-            senders.add(new Sender());
+            senders.add(new Sender(post));
         }
 
         for (int i = 0; i < NUMBER_OF_POSTMEN; i++) {
-            postmen.add(new Postman(POSTMAN_CARRYING));
+            postmen.add(new Postman(post, POSTMAN_CARRYING));
         }
 
         for (Sender sender : senders) {
@@ -50,7 +51,22 @@ public class MailMain {
             e.printStackTrace();
         }
 
-        System.out.println("Result");
-    }
+        for (Thread thread : sendersThreads) {
+            thread.interrupt();
+        }
 
+        for (Thread thread : postmenThreads) {
+            thread.interrupt();
+        }
+
+//        try {
+//            Thread.currentThread().sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println(ANSI_CYAN + "--------------------------------");
+        System.out.println(ANSI_PURPLE + "Number of accepted parcels " + post.get_acceptedParcelsNumber());
+        System.out.println("Number of sent parcels " + post.get_sentParcelsNumber());
+        System.out.println("Balance at the post office " + post.get_parcelsNumber());
+    }
 }
