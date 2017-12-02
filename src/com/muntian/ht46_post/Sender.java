@@ -2,9 +2,7 @@ package com.muntian.ht46_post;
 
 public class Sender implements Runnable {
 
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-
+    private static final String ANSI_BLUE = "\u001B[34m";
 
     private static final int MIN_SLEEP_TIME = 5000;
     private static final int MAX_SLEEP_TIME = 25000;

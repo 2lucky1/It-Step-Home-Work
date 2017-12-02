@@ -1,14 +1,10 @@
 package com.muntian.ht46_post;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Post {
     private int _parcelsLimit;
     private int _parcelsNumber;
     private int _acceptedParcelsNumber;
     private int _sentParcelsNumber;
-    private List<Parcel> parcels = new LinkedList<>();
 
     public Post(int parcelsLimit) {
         _parcelsLimit = parcelsLimit;
