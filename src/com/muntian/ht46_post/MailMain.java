@@ -54,7 +54,7 @@ public class MailMain {
     //Make Main sleeping to avoid of its premature termination
     private static void sleepMain() {
         try {
-            Thread.currentThread().sleep(MAIN_SLEEP_TIME);
+            Thread.sleep(MAIN_SLEEP_TIME);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
