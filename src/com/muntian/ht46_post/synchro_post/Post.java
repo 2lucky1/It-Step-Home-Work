@@ -1,4 +1,4 @@
-package com.muntian.ht46_post;
+package com.muntian.ht46_post.synchro_post;
 
 public class Post {
     private int _parcelsLimit;

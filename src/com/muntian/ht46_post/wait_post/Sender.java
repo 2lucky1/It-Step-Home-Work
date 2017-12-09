@@ -1,4 +1,4 @@
-package com.muntian.ht46_post;
+package com.muntian.ht46_post.wait_post;
 
 public class Sender implements Runnable {
 
