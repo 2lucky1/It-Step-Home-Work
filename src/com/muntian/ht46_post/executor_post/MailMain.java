@@ -36,9 +36,9 @@ public class MailMain {
      */
     private static void printResults() {
         System.out.println(ANSI_CYAN + "--------------------------------");
-        System.out.println(ANSI_PURPLE + "Number of accepted parcels " + _post.get_acceptedParcelsNumber());
-        System.out.println("Number of sent parcels " + _post.get_sentParcelsNumber());
-        System.out.println("Balance at the _post office " + _post.get_parcelsNumber());
+        System.out.println(ANSI_PURPLE + "Number of accepted parcels " + _post.getAcceptedParcelsNumber());
+        System.out.println("Number of sent parcels " + _post.getSentParcelsNumber());
+        System.out.println("Balance at the _post office " + _post.getParcelsNumber());
     }
 
     //Make Main sleeping to avoid of its premature termination

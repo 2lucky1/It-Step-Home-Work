@@ -11,35 +11,35 @@ public class Post {
         _parcelsLimit = parcelsLimit;
     }
 
-    public int get_parcelsLimit() {
+    public int getParcelsLimit() {
         return _parcelsLimit;
     }
 
-    public void set_parcelsLimit(int parcelsLimit) {
+    public void setParcelsLimit(int parcelsLimit) {
         _parcelsLimit = parcelsLimit;
     }
 
-    public int get_parcelsNumber() {
+    public int getParcelsNumber() {
         return _parcelsNumber;
     }
 
-    public void set_parcelsNumber(int parcelsNumber) {
+    public void setParcelsNumber(int parcelsNumber) {
         _parcelsNumber = parcelsNumber;
     }
 
-    public int get_acceptedParcelsNumber() {
+    public int getAcceptedParcelsNumber() {
         return _acceptedParcelsNumber;
     }
 
-    public void set_acceptedParcelsNumber(int receivedParcelsNumber) {
+    public void setAcceptedParcelsNumber(int receivedParcelsNumber) {
         _acceptedParcelsNumber = receivedParcelsNumber;
     }
 
-    public int get_sentParcelsNumber() {
+    public int getSentParcelsNumber() {
         return _sentParcelsNumber;
     }
 
-    public void set_sentParcelsNumber(int sentParcelsNumber) {
+    public void setSentParcelsNumber(int sentParcelsNumber) {
         _sentParcelsNumber = sentParcelsNumber;
     }
 
@@ -52,8 +52,8 @@ public class Post {
                     e.printStackTrace();
                 }
             }
-            set_parcelsNumber(_parcelsNumber + numberOfParcels);
-            set_acceptedParcelsNumber(_acceptedParcelsNumber + numberOfParcels);
+            setParcelsNumber(_parcelsNumber + numberOfParcels);
+            setAcceptedParcelsNumber(_acceptedParcelsNumber + numberOfParcels);
             _mutex.notifyAll();
         }
     }
@@ -68,8 +68,8 @@ public class Post {
                 }
             }
 
-            set_parcelsNumber(_parcelsNumber - numberOfParcels);
-            set_sentParcelsNumber(_sentParcelsNumber + numberOfParcels);
+            setParcelsNumber(_parcelsNumber - numberOfParcels);
+            setSentParcelsNumber(_sentParcelsNumber + numberOfParcels);
             _mutex.notifyAll();
         }
     }

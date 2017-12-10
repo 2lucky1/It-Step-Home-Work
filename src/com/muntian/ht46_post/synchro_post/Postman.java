@@ -10,29 +10,29 @@ public class Postman implements Runnable {
 
     private static int _postmenNumber = 0;
     private int _postmanSerialNumber;
-    private int _postmanCarrying = 4;
+    private int _postmanCarrying = 1;
     private Post _post;
 
 
     public Postman(Post post, int postmanCarrying) {
         _post = post;
         _postmanCarrying = postmanCarrying;
-        set_postmenNumber(get_postmenNumber() + 1);
-        _postmanSerialNumber = get_postmenNumber();
+        setPostmenNumber(getPostmenNumber() + 1);
+        _postmanSerialNumber = getPostmenNumber();
     }
 
     @Override
     public void run() {
         while (true) {
-            if (_post.get_parcelsNumber() > 0) {
-                if (_post.get_parcelsNumber() > get_postmanCarrying()) {
+            if (_post.getParcelsNumber() > 0) {
+                if (_post.getParcelsNumber() >= getPostmanCarrying()) {
                     System.out.println(ANSI_YELLOW + "Postman " + this + " have taken " +
-                            get_postmanCarrying() + " parcels");
-                    _post.giveParcel(get_postmanCarrying());
+                            getPostmanCarrying() + " parcels");
+                    _post.giveParcel(getPostmanCarrying());
                 } else {
                     System.out.println(ANSI_YELLOW + "Postman " + this + " have taken " +
-                            _post.get_parcelsNumber() + " parcels");
-                    _post.giveParcel(_post.get_parcelsNumber());
+                            _post.getParcelsNumber() + " parcels");
+                    _post.giveParcel(_post.getParcelsNumber());
                 }
                 try {
                     Thread.sleep(randomSleepTime());
@@ -42,7 +42,7 @@ public class Postman implements Runnable {
             } else {
                 try {
                     Thread.sleep(WAITING_TIME);
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
                     //ignore
                 }
             }
@@ -53,28 +53,28 @@ public class Postman implements Runnable {
         return MIN_SLEEP_TIME + (long) (Math.random() * MAX_SLEEP_TIME);
     }
 
-    public int get_postmanCarrying() {
+    public int getPostmanCarrying() {
         return _postmanCarrying;
     }
 
-    public void set_postmanCarrying(int postmanCarrying) {
+    public void setPostmanCarrying(int postmanCarrying) {
         _postmanCarrying = postmanCarrying;
     }
 
-    public static int get_postmenNumber() {
+    public static int getPostmenNumber() {
         return _postmenNumber;
     }
 
-    private static void set_postmenNumber(int postmenNumber) {
+    private static void setPostmenNumber(int postmenNumber) {
         _postmenNumber = postmenNumber;
     }
 
-    public int get_postmanSerialNumber() {
+    public int getPostmanSerialNumber() {
         return _postmanSerialNumber;
     }
 
     @Override
     public String toString() {
-        return "" + get_postmanSerialNumber();
+        return "" + getPostmanSerialNumber();
     }
 }

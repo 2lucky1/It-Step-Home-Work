@@ -15,16 +15,16 @@ public class Sender implements Runnable {
 
     public Sender(Post post) {
         _post = post;
-        set_sendersNumber(get_sendersNumber() + 1);
-        set_senderSerialNumber(get_sendersNumber());
+        setSendersNumber(getSendersNumber() + 1);
+        setSenderSerialNumber(getSendersNumber());
     }
 
     @Override
     public void run() {
         while (true) {
-            if (_post.get_parcelsNumber() < _post.get_parcelsLimit()) {
+            if (_post.getParcelsNumber() < _post.getParcelsLimit()) {
                 _post.acceptParcel(getParcelsNumberInOneTime());
-                set_numberOfSentParcels(get_numberOfSentParcels() + 1);
+                setNumberOfSentParcels(getNumberOfSentParcels() + 1);
                 System.out.println(ANSI_BLUE + "Sender " + this + " have brought a parcel");
                 try {
                     Thread.sleep(randomSleepTime());
@@ -34,7 +34,7 @@ public class Sender implements Runnable {
             } else {
                 try {
                     Thread.sleep(MIN_SLEEP_TIME);
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
                     //ignore
                 }
             }
@@ -53,32 +53,32 @@ public class Sender implements Runnable {
         _parcelsNumberInOneTime = parcelsNumberInOneTime;
     }
 
-    public int get_numberOfSentParcels() {
+    public int getNumberOfSentParcels() {
         return _numberOfSentParcels;
     }
 
-    private void set_numberOfSentParcels(int _numberOfSentParcels) {
-        this._numberOfSentParcels = _numberOfSentParcels;
+    private void setNumberOfSentParcels(int numberOfSentParcels) {
+        _numberOfSentParcels = numberOfSentParcels;
     }
 
-    public static int get_sendersNumber() {
+    public static int getSendersNumber() {
         return _sendersNumber;
     }
 
-    public static void set_sendersNumber(int _sendersNumber) {
-        Sender._sendersNumber = _sendersNumber;
+    public static void setSendersNumber(int sendersNumber) {
+        _sendersNumber = sendersNumber;
     }
 
-    public int get_senderSerialNumber() {
+    public int getSenderSerialNumber() {
         return _senderSerialNumber;
     }
 
-    private void set_senderSerialNumber(int senderSerialNumber) {
+    private void setSenderSerialNumber(int senderSerialNumber) {
         _senderSerialNumber = senderSerialNumber;
     }
 
     @Override
     public String toString() {
-        return "" + get_senderSerialNumber();
+        return "" + getSenderSerialNumber();
     }
 }

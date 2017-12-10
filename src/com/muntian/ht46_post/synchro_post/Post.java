@@ -10,45 +10,45 @@ public class Post {
         _parcelsLimit = parcelsLimit;
     }
 
-    public int get_parcelsLimit() {
+    public int getParcelsLimit() {
         return _parcelsLimit;
     }
 
-    public void set_parcelsLimit(int parcelsLimit) {
+    public void setParcelsLimit(int parcelsLimit) {
         _parcelsLimit = parcelsLimit;
     }
 
-    public int get_parcelsNumber() {
+    public int getParcelsNumber() {
         return _parcelsNumber;
     }
 
-    public void set_parcelsNumber(int parcelsNumber) {
+    public void setParcelsNumber(int parcelsNumber) {
         _parcelsNumber = parcelsNumber;
     }
 
-    public int get_acceptedParcelsNumber() {
+    public int getAcceptedParcelsNumber() {
         return _acceptedParcelsNumber;
     }
 
-    public void set_acceptedParcelsNumber(int receivedParcelsNumber) {
+    public void setAcceptedParcelsNumber(int receivedParcelsNumber) {
         _acceptedParcelsNumber = receivedParcelsNumber;
     }
 
-    public int get_sentParcelsNumber() {
+    public int getSentParcelsNumber() {
         return _sentParcelsNumber;
     }
 
-    public void set_sentParcelsNumber(int sentParcelsNumber) {
+    public void setSentParcelsNumber(int sentParcelsNumber) {
         _sentParcelsNumber = sentParcelsNumber;
     }
 
     public synchronized void acceptParcel(int numberOfParcels) {
-        set_parcelsNumber(this.get_parcelsNumber() + numberOfParcels);
-        set_acceptedParcelsNumber(get_acceptedParcelsNumber() + numberOfParcels);
+        setParcelsNumber(getParcelsNumber() + numberOfParcels);
+        setAcceptedParcelsNumber(getAcceptedParcelsNumber() + numberOfParcels);
     }
 
     public synchronized void giveParcel(int numberOfParcels) {
-        set_parcelsNumber(get_parcelsNumber() - numberOfParcels);
-        set_sentParcelsNumber(get_sentParcelsNumber() + numberOfParcels);
+        setParcelsNumber(getParcelsNumber() - numberOfParcels);
+        setSentParcelsNumber(getSentParcelsNumber() + numberOfParcels);
     }
 }
