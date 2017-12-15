@@ -28,8 +28,12 @@ ON marks.id_group = groups.id
 WHERE groups.name = '212';
 
 -- A form of education with highest number of students
-SELECT name FROM forms
-INNER JOIN groups
-ON forms.id = groups.id
-INNER JOIN student_group
-ON 
+SELECT forms.name
+FROM forms
+JOIN groups
+ON groups.id_form = forms.id
+JOIN student_group
+ON student_group.id_group= groups.id
+GROUP BY forms.name
+ORDER BY count(*) DESC
+LIMIT 1
