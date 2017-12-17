@@ -41,7 +41,7 @@ ON groups.id_form = forms.id
 WHERE forms.name = 'Distance';
 
 -- List of students which have marks below 60 points
-SELECT passports.first_name, passports.last_name, passports.id FROM passports
+SELECT DISTINCT passports.first_name, passports.last_name, passports.id FROM passports
 INNER JOIN students
 ON passports.id = students.id_passport
 INNER JOIN marks
