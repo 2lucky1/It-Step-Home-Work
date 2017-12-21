@@ -5,38 +5,57 @@
     <title>Key words</title>
     <style>
         h1{
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
-        ol[type="I"]{
-        padding: 10px;
 
+        ol{
+        list-style-type: upper-roman;
+        padding: 10px;
+        margin: 0px 0px 0px 30px;
         }
-        ul[type="disc"]
+
+        ul{
+            list-style-type: disc;
+        }
+
+        .BigLetter{
+            font-weight: bold;
+        }
+
+        .KeyWord{
+            font-weight: normal;
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .KeyWord:hover{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <h1>Ключевые слова</h1>
 <ol>
-    <li> A
+    <li> <span class="BigLetter">A</span>
         <ul>
-            <li class="KeyWord">abstract</li>
+            <li><span class="KeyWord">abstract</span></li>
         </ul>
     </li>
-    <li> B
+    <li><span class="BigLetter">B</span>
         <ul>
-            <li class="KeyWord">boolean</li>
-            <li class="KeyWord">break</li>
-            <li class="KeyWord">byte</li>
+            <li><span class="KeyWord">boolean</span></li>
+            <li><span class="KeyWord">break</span></li>
+            <li><span class="KeyWord">byte</span></li>
         </ul>
     </li>
-    <li> C
+    <li><span class="BigLetter">C</span>
         <ul>
-            <li class="KeyWord">case</li>
-            <li class="KeyWord">catch</li>
-            <li class="KeyWord">char</li>
-            <li class="KeyWord">class</li>
-            <li class="KeyWord">const</li>
-            <li class="KeyWord">continue</li>
+            <li><span class="KeyWord">case</span></li>
+            <li><span class="KeyWord">catch</span></li>
+            <li><span class="KeyWord">char</span></li>
+            <li><span class="KeyWord">class</span></li>
+            <li><span class="KeyWord">const</span></li>
+            <li><span class="KeyWord">continue</span></li>
         </ul>
     </li>
 </ol>
