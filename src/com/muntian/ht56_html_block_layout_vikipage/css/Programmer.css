@@ -1,0 +1,29 @@
+.container{
+    width: 960px;
+    margin: 0 auto;
+}
+
+.header{
+    height: 80px;
+    width: inherit;
+    border: 1px solid black;
+    background-color: #f6f6f6 ;
+}
+
+.personal{
+margin-top: -10px;
+    text-align: right;
+}
+
+.personal>ul>li{
+    display: inline;
+    margin-right: 7px;
+}
+
+#userpage{
+    color: #687886;
+}
+
+#userpage>img{
+    margin-right: 3px;
+}
