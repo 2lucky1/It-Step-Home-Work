@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess a number</title>
+</head>
+<body>
+<script>
+    'use strict'; // this statement turns on strict mode
+    var a = Math.floor(Math.random() * 100 + 1);
+    var countOfAttempt = 0;
+    while (true) {
+        countOfAttempt++;
+        var b = prompt("Guess a number from 1 to 100. Enter a number");
+        if (b == a) {
+            alert("You winn! This number is " + a + " Count of attempts = " + countOfAttempt);
+            break;
+        } else {
+            if (b < a) {
+                alert("Wrong! The number conceived is bigger. Try once more");
+            } else {
+                alert("Wrong! The number conceived is less. Try once more");
+            }
+        }
+    }
+</script>
+</body>
+</html>
