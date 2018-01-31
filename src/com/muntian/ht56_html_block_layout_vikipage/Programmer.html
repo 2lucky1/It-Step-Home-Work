@@ -7,17 +7,18 @@
 </head>
 <body>
 <div class="container">
+
     <div class = "header">
-        <div class="personal">
+        <div class="header_personal">
             <ul>
-                <li id = "userpage"><img src="img/user_login.jpg">Вы не представились системе</li>
-                <li id = "talk">
+                <li id = "user_page"><img src="img/user_login.jpg">Вы не представились системе</li>
+                <li id = "talk" class="link">
                     <a href="ReferencePage.html">Обсуждение</a>
                 </li>
-                <li id = "contribs">
+                <li id = "contribution">
                     <a href="ReferencePage.html">Вклад</a>
                 </li>
-                <li id = "createaccount">
+                <li id = "create_account">
                     <a href="ReferencePage.html">Создать учётную запись</a>
                 </li>
                 <li id = "login">
@@ -25,17 +26,42 @@
                 </li>
             </ul>
         </div>
-        <div class="left-navigation">
-
+        <div class="header_nav_menu">
+            <div class="header_left_menu inline_block">
+                <ul>
+                    <li class="current_tab"><a href="ReferencePage.html">Статья</a></li>
+                    <li><a href="ReferencePage.html">Обсуждение</a></li>
+                </ul>
+            </div>
+            <div class="header_right_menu inline_block">
+                <ul>
+                    <li class="current_tab"><a href="ReferencePage.html">Читать</a></li>
+                    <li><a href="ReferencePage.html">Править</a></li>
+                    <li><a href="ReferencePage.html">Править код</a></li>
+                    <li><a href="ReferencePage.html">История</a></li>
+                    <li id="search_li">
+                        <form class="search">
+                            <input type="search" placeholder="Искать в Википедии" class="input">
+                            <input type="submit" class="submit" name="" value="">
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class = "navigation panel">
+
+    <div class = "navigation_panel">
+        <div id = "main_logo">
+            <img src="img/wikilogo.jpg">
+        </div>
 
     </div>
-    <div class = "content">
 
+    <div class = "content">
+        Content
     </div>
     <div class = "footer">
+        Footer
 
     </div>
 </div>
