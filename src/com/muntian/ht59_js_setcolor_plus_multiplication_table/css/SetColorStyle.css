@@ -1,0 +1,11 @@
+.red_box {
+    background-color: red;
+    width: inherit;
+    height: 200px;
+}
+
+.black_box {
+    background-color: black;
+    width: inherit;
+    height: 200px;
+}
