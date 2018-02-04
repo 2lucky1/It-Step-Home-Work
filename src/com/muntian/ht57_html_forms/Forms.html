@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+</head>
+<body>
+<div class="container">
+    <h1>Форма заявки на работу в зоопарк</h1>
+    <p id="appeal">Пожалуйста, заполните форму. Обязательные поля помечены звездочкой</p>
+    <form id="contacts_info">
+        <fieldset>
+            <legend>Контактная информация</legend>
+            <table>
+                <tr>
+                    <td>
+                        Имя<span class="red_star">*</span>
+                    </td>
+
+                    <td>
+                        <input class="text_input" type="text" name="name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Телефон
+                    </td>
+                    <td>
+                        <input class="text_input" type="text" name="phone_number">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email<span class="red_star">*</span>
+                    </td>
+                    <td>
+                        <input class="text_input" type="text" name="email">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <form id="personal_info">
+        <fieldset>
+            <legend>Персональная информация</legend>
+            <table>
+                <tr>
+                    <td>
+                        Возраст<span class="red_star">*</span>
+                    </td>
+
+                    <td>
+                        <input class="text_input" type="text" name="age">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Пол
+                    </td>
+                    <td>
+                        <input class="text_input" type="text" name="gender">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Перечислите личные качества
+                    </td>
+                    <td>
+                        <input class="text_input" type="text" name="personal_skills">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <form id="choose_animal">
+        <fieldset>
+            <legend>Выберите ваших любимых животных</legend>
+            <table>
+                <tr>
+                    <td>
+                        <label><input class="animals" type="checkbox" name="zebra">Зебра</label>
+                    </td>
+                    <td>
+                        <label><input class="animals" type="checkbox" name="cat">Кошка</label>
+                    </td>
+                    <td>
+                        <label><input class="animals" type="checkbox" name="anaconda">Анаконда</label>
+                    </td>
+                    <td>
+                        <label><input class="animals" type="checkbox" name="human">Человек</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><input class="animals" type="checkbox" name="elephant">Слон</label>
+                    </td>
+                    <td>
+                        <label><input class="animals" type="checkbox" name="antelope">Антилопа</label>
+                    </td>
+                    <td>
+                        <label><input class="animals" type="checkbox" name="dove">Голубь</label>
+                    </td>
+                    <td>
+                        <label><input class="animals" type="checkbox" name="crab">Краб</label>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <form id="send_button">
+        <input type="submit" value="Отправить информацию">
+    </form>
+</div>
+</body>
+</html>
