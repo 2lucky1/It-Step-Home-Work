@@ -7,36 +7,38 @@
 </head>
 <body>
 <div class="container">
-    <script>
-        "use strict";
-        while (true) {
-            var str = prompt("Enter your");
-            if (str.length == 0) {
-                alert("You didn't enter anything! Try again");
-            } else {
-                break;
-            }
-        }
-        document.write("<div class='box'>");
-        document.write("<h1>Your text:</h1>");
-        document.write("<pre class='result'>" + str + "</pre>");
+    <div class='box'>
+        <script>
+            "use strict";
 
-        function ucFirst(input) {
-            var result = input[0].toUpperCase();
-            for (let i = 1; i < input.length; i++) {
-                if (input[i - 1] == " ") {
-                    result += input[i].toUpperCase();
-                }else {
-                    result += input[i];
+            //Input checking
+            while (true) {
+                var str = prompt("Enter your");
+                if (str.length == 0) {
+                    alert("You didn't enter anything! Try again");
+                } else {
+                    break;
                 }
             }
-            return result;
-        }
+            document.write("<h1>Your text:</h1>");
+            document.write("<pre class='result'>" + str + "</pre>");
 
-        document.write("<h1>Changed text:</h1>");
-        document.write("<pre class='result'>" + ucFirst(str) + "</pre>");
-        document.write("</div>");
-    </script>
+            function ucFirst(input) {
+                var result = input[0].toUpperCase();
+                for (let i = 1; i < input.length; i++) {
+                    if (input[i - 1] == " ") {
+                        result += input[i].toUpperCase();
+                    } else {
+                        result += input[i];
+                    }
+                }
+                return result;
+            }
+
+            document.write("<h1>Changed text:</h1>");
+            document.write("<pre class='result'>" + ucFirst(str) + "</pre>");
+        </script>
+    </div>
 </div>
 </body>
 </html>

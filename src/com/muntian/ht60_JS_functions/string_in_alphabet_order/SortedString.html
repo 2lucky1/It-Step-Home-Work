@@ -6,6 +6,47 @@
     <link rel="stylesheet" href="../css/task_solution.css">
 </head>
 <body>
+<div class="container">
+    <div class="box">
+        <script>
+            "use strict";
 
+            //Input checking
+            while (true) {
+                var input = prompt("Enter a text to sort it's character in alphabet order");
+                if (input.length == 0) {
+                    alert("You didn't enter anything! Try again");
+                } else {
+                    break;
+                }
+            }
+            document.write("<h1>Source text:</h1>");
+            document.write("<p class='result'>" + input + "</p>");
+
+            //Main function
+            function getAlphabetOrder(str) {
+                //Convert string to array
+                var sortedLetters = [];
+                for (let i = 0; i < str.length; i++) {
+                    sortedLetters[i] = str.charAt(i);
+                }
+                //Sort array of character
+                for (let i = sortedLetters.length - 1; i > 0; i--) {
+                    for (let j = 0; j < i; j++) {
+                        if (sortedLetters[j] > sortedLetters[j + 1]) {
+                            let t = sortedLetters[j];
+                            sortedLetters[j] = sortedLetters[j + 1];
+                            sortedLetters[j + 1] = t;
+                        }
+                    }
+                }
+                return sortedLetters.join("");
+            }
+
+            document.write("<h1>Answer:</h1>");
+            document.write("<p class='result'>" + getAlphabetOrder(input) + "</p>");
+        </script>
+    </div>
+</div>
 </body>
 </html>

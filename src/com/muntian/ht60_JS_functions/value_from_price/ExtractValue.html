@@ -6,6 +6,34 @@
     <link rel="stylesheet" href="../css/task_solution.css">
 </head>
 <body>
+<div class="container">
+    <div class="box">
+        <script>
+            "use strict";
 
+            //Input checking
+            while (true) {
+                var input = prompt("Enter a price with a sign of currency at the beginning");
+                if (input.length == 0) {
+                    alert("You didn't enter anything! Try again");
+                } else if (!isNaN(+(input[0])) || isNaN(+(input.slice(1, input.length)))) {
+                    alert("Incorrect input! Enter a price according to rules.")
+                } else {
+                    break;
+                }
+            }
+            document.write("<h1>Source text:</h1>");
+            document.write("<p class='result'>" + input + "</p>");
+
+            //Main function
+            function extractCurrencyValue(str) {
+                return parseFloat(str.slice(1, str.length));
+            }
+
+            document.write("<h1>Answer:</h1>");
+            document.write("<p class='result'>" + extractCurrencyValue(input) + "</p>");
+        </script>
+    </div>
+</div>
 </body>
 </html>
