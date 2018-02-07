@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Capita letter</title>
+    <title>Capital letter</title>
     <link rel="stylesheet" href="../css/task_solution.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
         }
         document.write("<div class='box'>");
         document.write("<h1>Your text:</h1>");
-        document.write("<p class='result'>" + str + "</p>");
+        document.write("<pre class='result'>" + str + "</pre>");
 
         function ucFirst(input) {
             var result = input[0].toUpperCase();
@@ -34,7 +34,7 @@
         }
 
         document.write("<h1>Changed text:</h1>");
-        document.write("<p class='result'>" + ucFirst(str) + "</p>");
+        document.write("<pre class='result'>" + ucFirst(str) + "</pre>");
         document.write("</div>");
     </script>
 </div>

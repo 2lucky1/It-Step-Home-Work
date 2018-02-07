@@ -20,7 +20,7 @@
         }
 
         document.write("<h1>Your text:</h1>");
-        document.write("<p class='result'>" + input + "</p>");
+        document.write("<pre class='result'>" + input + "</pre>");
 
         function isPalindrome(str) {
             for (let i = 0; i < str.length; i++) {
@@ -34,9 +34,9 @@
         document.write("<h1>Answer:</h1>");
 
         if (isPalindrome(input)){
-            document.write("<p class='result'>Congrats! It is a palindrome!</p>");
+            document.write("<pre class='result'>Congrats! It is a palindrome!</pre>");
         }else {
-            document.write("<p class='result'>Your text isn't a palindrome</p>");
+            document.write("<pre class='result'>Your text isn't a palindrome</pre>");
         }
 
     </script>

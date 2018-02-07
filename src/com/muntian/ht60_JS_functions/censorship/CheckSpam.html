@@ -6,6 +6,51 @@
     <link rel="stylesheet" href="../css/task_solution.css">
 </head>
 <body>
+<div class="container">
+    <script>
+        "use strict";
 
+        while (true) {
+            var input = prompt("This app find such words: xxx, viagra. Regardless of register!");
+            if (input.length == 0) {
+                alert("You didn't enter anything! Try again");
+            } else {
+                break;
+            }
+        }
+        document.write("<div class='box'>");
+        document.write("<h1>Source text:</h1>");
+        document.write("<p class='result'>" + input + "</p>");
+
+//        Array with filter words
+        var censorship = [
+          "viagra",
+          "xxx"
+        ];
+
+        function checkSpam(str) {
+            var temp = str.toLowerCase();
+            document.write("<p class='result'>" + temp + "</p>");
+
+            for(let i = 0; i < censorship.length; i++){
+                if(temp.indexOf(censorship[i]) >= 0){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        document.write("<h1>Answer:</h1>");
+
+        if(checkSpam(input)){
+            document.write("<p class='result'>Your text is forbidden and can't be displayed!</p>");
+        }else {
+            document.write("<p class='result'>Your text is legal:</p>");
+            document.write("<p class='result'>" + input + "</p>");
+        }
+            document.write("</div>");
+        document.write("</div>");
+    </script>
+</div>
 </body>
 </html>
