@@ -7,7 +7,8 @@ function isUpperCaseFirstLetter(str) {
 }
 
 function isValidEmail(str) {
-    var re = /[^@]{1,64}\/\[@]{1}\/\[^\.]{1}\/\.*\/\[\.]\/\[a-z]{1,6}/;
+    var re = /^[.]{1,64} + @ + \\.* + [\\.] + [a-z]{1,6}$/;
+    return re.test(str);
 }
 
 function trimString(str) {
