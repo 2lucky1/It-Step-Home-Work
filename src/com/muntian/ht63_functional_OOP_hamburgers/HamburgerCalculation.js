@@ -2,63 +2,61 @@
 
 function Hamburger(size, stuffing) {
 
-    const SIZE_SMALL = {
-        name : "small",
-        price : 50,
-        calories : 20
-    };
-    const SIZE_LARGE = {
-        name : "large",
-        price : 50,
-        calories : 20
-    };
-    const STUFFING_CHEESE = {
-        name : "cheese",
-        price : 50,
-        calories : 20
-    };
-    const STUFFING_SALAD = {
-        name : "salad",
-        price : 50,
-        calories : 20
-    };
-    const STUFFING_POTATO = {
-        name : "potato",
-        price : 50,
-        calories : 20
-    };
-    const TOPPING_MAYO = {
-        name : "mayo",
-        price : 50,
-        calories : 20
-    };
-    const TOPPING_SPICE = {
-        name : "spice",
-        price : 50,
-        calories : 20
-    };
+    //Creating instances of ingredients
+    const mayo = new Topping("mayo", 20, 5);
+    const spice = new Topping("spice", 15, 0);
+    const cheese = new Stuffing("cheese", 10, 20);
+    const salad = new Stuffing("salad", 20, 5);
+    const potato = new Stuffing("potato", 15, 10);
+    const smallSize = new Size("small", 50, 20);
+    const largeSize = new Size("large", 100, 40);
 
+    //Lists of ingredients in the form of objects
     var sizeList = [
-      "small",
-      "large"
+        smallSize,
+        largeSize
     ];
 
     var stuffingList = [
-      "cheese",
-      "salad",
-      "potato"
+        cheese,
+        salad,
+        potato
     ];
 
-    var toppingList =[
-        "mayo",
-        "spice"
+    var possibleToppingList = [
+        mayo,
+        spice
     ];
-    var _size;
-    var _stuffing;
-    var _topping;
-    var _calories = 0;
 
-    function Ingredients(name, price, calories) {
+    //Main fields of the hamburger
+    var _toppingsNamesList;
+    var _size = size;
+    var _stuffing = stuffing;
+    var _toppingsArray;
+
+    //Getting of the size object by its name
+    var getSizeObject = function (sizeName) {
+        for(let i = 0; i < sizeList.length; i++){
+            if(sizeList[i].name === sizeName ){
+                return sizeList[i];
+            }
+        }
+        return "Size not defined";
+    };
+
+    //Getting of the stuffing object by its name
+    var getStuffingObject = function (stuffingName) {
+        for(let i = 0; i < stuffingList.length; i++){
+            if(stuffingList[i].name === stuffingName ){
+                return stuffingList[i];
+            }
+        }
+        return "No Stuffing";
+    };
+
+
+    //Creating of the class Ingredient
+    function Ingredient(name, price, calories) {
         var _name;
         var _price;
         var _calories;
@@ -88,36 +86,39 @@ function Hamburger(size, stuffing) {
         Ingredient.apply(this, arguments);
     }
 
-    function BurgerSize() {
-
-    }
-
-    var mayo = new Topping("mayo", 20, 5);
-    var spice = new Topping("spice", 15, 0);
-    var cheese = new Stuffing("cheese", 10, 20);
-    var salad = new Stuffing("salad", 20, 5);
-    var potato = new Stuffing("potato", 15, 10);
-    var smallSize = new Size("small", 50, 20);
-    var largeSize = new Size("large", 100, 40);
-
-
     /**
      * Add the additive to the hamburger. You can add
      * a few additives, provided that they are different.
+     * If the additive is already added, the method does nothing
      */
-    this.addTopping = function (topping) {
-        if(_topping.indexOf(topping.getName())===-1){
-            _topping = topping;
+    this.addTopping = function (toppingName) {
+        if(_toppingsNamesList.indexOf(toppingName)===-1){
+            //Addition of topping name to the toppings names list
+            _toppingsNamesList.push(toppingName);
+
+            //Addition of topping to the topping list
+            for(let i = 0; i < possibleToppingList.length; i++){
+                if(possibleToppingList[i].name === toppingName){
+                    _toppingsArray.push(possibleToppingList[i]);
+                }
+            }
         }
     };
 
     /**
      * Remove the additive, provided that it was previously added.
      */
-    this.removeTopping = function (topping) {
-        let idx = _topping.indexOf(topping);
-        if(idx!==-1){
-            _topping.splice(idx,1);
+    this.removeTopping = function (toppingName) {
+        let idx = _toppingsNamesList.indexOf(toppingName);
+        if (idx !== -1) {
+            //Topping name deletion from name list
+            _toppingsNamesList.splice(idx, 1);
+            //Topping deletion from toppings array
+            for(let i = 0; i < _toppingsArray.length; i++){
+                if(_toppingsArray[i].name === toppingName){
+                    _toppingsArray.splice(i,1);
+                }
+            }
         }
     };
 
@@ -126,7 +127,7 @@ function Hamburger(size, stuffing) {
      * @return {Array} Array of added additives
      */
     getToppings = function () {
-        return _topping;
+        return _toppingsNamesList;
     };
 
     /**
@@ -148,22 +149,14 @@ function Hamburger(size, stuffing) {
      * @return {Number} Price in tugriks
      */
     calculatePrice = function () {
-        let price = 0;
-        for (let i = 0; i < _topping.length; i++){
-            switch(_topping[i]) {
-                case TOPPING_MAYO:
-                price += 20;
-                    [break]
-
-                case TOPPING_SPICE:
-                ...
-                    [break]
-
-                default:
-                ...
-                    [break]
-            }
+        let sizePrice = getSizeObject(getSize()).getPrice();
+        let stuffingPrice = getStuffingObject(getStuffing()).getPrice();
+        let toppingPrice = 0;
+        for(let i = 0; _toppingsArray.length; i++){
+            toppingPrice += _toppingsArray[i].getPrice();
         }
+        
+        return sizePrice + stuffingPrice + toppingPrice; 
     };
 
     /**
@@ -171,35 +164,14 @@ function Hamburger(size, stuffing) {
      * @return {Number} Caloricity in calories
      */
     calculateCalories = function () {
+        let sizeCalories = getSizeObject(getSize()).getCalories();
+        let stuffingCalories = getStuffingObject(getStuffing()).getCalories();
+        let toppingCalories = 0;
+        for(let i = 0; _toppingsArray.length; i++){
+            toppingCalories += _toppingsArray[i].getCalories();
+        }
 
+        return sizeCalories + stuffingCalories + toppingCalories;
     };
-
-}
-
-function Ingredient() {
-}
-
-function Topping() {
-    var _name;
-    var _price;
-    var _calories;
-
-    this.getName = function () {
-        return _name;
-    };
-
-    this.getPrice = function () {
-        return _price;
-    };
-
-    this.getCalories = function () {
-        return _calories;
-    };
-}
-
-function LargeSize() {
-    Topping.call(this);
-    var price = 100;
-    var calories = 40;
 
 }
