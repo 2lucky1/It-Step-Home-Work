@@ -126,21 +126,21 @@ function Hamburger(size, stuffing) {
      * Get additives list
      * @return {Array} Array of added additives
      */
-    getToppings = function () {
+    this.getToppings = function () {
         return _toppingsNamesList;
     };
 
     /**
      * Get size of the hamburger
      */
-    getSize = function () {
+    this.getSize = function () {
         return _size;
     };
 
     /**
      * Get stuffing of the hamburger
      */
-    getStuffing = function () {
+    this.getStuffing = function () {
         return _stuffing;
     };
 
@@ -148,7 +148,7 @@ function Hamburger(size, stuffing) {
      * Get price of the hamburger
      * @return {Number} Price in tugriks
      */
-    calculatePrice = function () {
+    this.calculatePrice = function () {
         let sizePrice = getSizeObject(getSize()).getPrice();
         let stuffingPrice = getStuffingObject(getStuffing()).getPrice();
         let toppingPrice = 0;
@@ -163,7 +163,7 @@ function Hamburger(size, stuffing) {
      * Get caloricity
      * @return {Number} Caloricity in calories
      */
-    calculateCalories = function () {
+    this.calculateCalories = function () {
         let sizeCalories = getSizeObject(getSize()).getCalories();
         let stuffingCalories = getStuffingObject(getStuffing()).getCalories();
         let toppingCalories = 0;
