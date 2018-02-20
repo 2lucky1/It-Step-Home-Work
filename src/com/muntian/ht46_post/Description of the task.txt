@@ -1,0 +1,11 @@
+                                                Post office
+Task:
+Create a class Post that stores the parsels. The number of parcels lying at the same time on the post is limited.
+
+Create a class Sender, whose task is to constantly bring new parcels to the post. It does this with random regularity. If there is no place in the post office, then it is waiting for the appearance of the place.
+
+Create a class Postman, a postman whose task is to pick up parcels with fixed regularity. If there are no parcels in the post office, expect. A postman can have a fixed carrying (i.e., several parcels at a time).
+
+The number of Sender and Postman can be different and is specified in constants.
+
+Sender and Postman are threads that need to be started and run for a certain time. After the time has elapsed, it is necessary to stop these flows and check that the number of sent parcels = the number of delivered + the balance at the post office.
