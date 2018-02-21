@@ -2,37 +2,28 @@
 
 function Hamburger(size, stuffing) {
 
-    //Creating instances of ingredients
-    const mayo = new Topping("mayo", 20, 5);
-    const spice = new Topping("spice", 15, 0);
-    const cheese = new Stuffing("cheese", 10, 20);
-    const salad = new Stuffing("salad", 20, 5);
-    const potato = new Stuffing("potato", 15, 10);
-    const smallSize = new Size("small", 50, 20);
-    const largeSize = new Size("large", 100, 40);
-
     //Lists of ingredients in the form of objects
     var sizeList = [
-        smallSize,
-        largeSize
+        new Size("small", 50, 20),
+        new Size("large", 100, 40)
     ];
 
     var stuffingList = [
-        cheese,
-        salad,
-        potato
+        new Stuffing("cheese", 10, 20),
+        new Stuffing("salad", 20, 5),
+        new Stuffing("potato", 15, 10)
     ];
 
     var possibleToppingList = [
-        mayo,
-        spice
+        new Topping("mayo", 20, 5),
+        new Topping("spice", 15, 0)
     ];
 
     //Main fields of the hamburger
-    var _toppingsNamesList;
+    var _toppingsNamesList = [];
     var _size = size;
     var _stuffing = stuffing;
-    var _toppingsArray;
+    var _toppingsArray = [];
 
     //Getting of the size object by its name
     var getSizeObject = function (sizeName) {
@@ -173,5 +164,15 @@ function Hamburger(size, stuffing) {
 
         return sizeCalories + stuffingCalories + toppingCalories;
     };
+
+    this.toString = function () {
+        return "Hamburger{" +
+            "size=" + this.getSize() +
+            "stuffing=" + this.getStuffing() +
+            "toppings=" + this.getToppings() +
+            ", calories=" + this.getCalories() +
+            ", price=" + this.getPrice() +
+            '}';
+    }
 
 }
