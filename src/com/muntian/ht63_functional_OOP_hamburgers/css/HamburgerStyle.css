@@ -1,0 +1,28 @@
+body{
+    background-image: url("../img/background/fast-food-creative-dinner-date.jpg");
+}
+
+h1{
+    text-align: center;
+}
+
+h2{
+text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+
+.menu{
+    display: inline-block;
+    width : 700px;
+    height: 840px;
+    background-image: url("../img/menu/menubkg.jpg");
+}
+
+
+
+.hamImg{
+    display: inline-block;
+}
