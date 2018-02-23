@@ -32,7 +32,7 @@ function Hamburger(size, stuffing) {
     //Getting of the size object by its name
     this.getSizeObject = function (sizeName) {
         for (let i = 0; i < sizeList.length; i++) {
-            if (sizeList[i].name === sizeName) {
+            if (sizeList[i].getName() === sizeName) {
                 return sizeList[i];
             }
         }
@@ -42,7 +42,7 @@ function Hamburger(size, stuffing) {
     //Getting of the stuffing object by its name
     this.getStuffingObject = function (stuffingName) {
         for (let i = 0; i < stuffingList.length; i++) {
-            if (stuffingList[i].name === stuffingName) {
+            if (stuffingList[i].getName() === stuffingName) {
                 return stuffingList[i];
             }
         }
@@ -52,9 +52,9 @@ function Hamburger(size, stuffing) {
 
     //Creating of the class Ingredient
     function Ingredient(name, price, calories) {
-        var _name;
-        var _price;
-        var _calories;
+        var _name = name;
+        var _price = price;
+        var _calories = calories;
 
         this.getName = function () {
             return _name;
@@ -82,40 +82,61 @@ function Hamburger(size, stuffing) {
     }
 
     /**
+     * Check name of an ingredient
+     * @param possibleList - list of correct names of ingredients
+     * @param inputName - verifiable data
+     * @return {boolean}
+     */
+    this.dataChecking = function (possibleList, inputName) {
+        for (let i = 0; i < possibleList.length; i++) {
+            if (possibleList[i].getName() === inputName) {
+                return true;
+            }
+        }
+        throw new Error("Incorrect input of the ingredients name");
+    };
+
+    /**
      * Add the additive to the hamburger. You can add
      * a few additives, provided that they are different.
      * If the additive is already added, the method does nothing
      */
     this.addTopping = function (toppingName) {
         toppingName = toppingName.toLowerCase();
+        //Input validation
+        _this.dataChecking(possibleToppingList, toppingName);
+        //Check the existence of an additive in the list
         if (_toppingsNamesList.indexOf(toppingName) === -1) {
             //Addition of topping name to the toppings names list
             _toppingsNamesList.push(toppingName);
-
-            //Addition of topping to the topping list
+            //Addition of topping to the topping list (list of objects)
             for (let i = 0; i < possibleToppingList.length; i++) {
-                if (possibleToppingList[i].name === toppingName) {
+                if (possibleToppingList[i].getName() === toppingName) {
                     _toppingsArray.push(possibleToppingList[i]);
                 }
             }
         }
     };
 
+
     /**
      * Remove the additive, provided that it was previously added.
      */
     this.removeTopping = function (toppingName) {
         toppingName = toppingName.toLowerCase();
+        _this.dataChecking(possibleToppingList, toppingName);
         let idx = _toppingsNamesList.indexOf(toppingName);
         if (idx !== -1) {
             //Topping name deletion from name list
             _toppingsNamesList.splice(idx, 1);
             //Topping deletion from toppings array
             for (let i = 0; i < _toppingsArray.length; i++) {
-                if (_toppingsArray[i].name === toppingName) {
+                if (_toppingsArray[i].getName() === toppingName) {
                     _toppingsArray.splice(i, 1);
                 }
             }
+        } else {
+            throw new Error("There is no such topping to delete")
         }
     };
 
@@ -150,26 +171,23 @@ function Hamburger(size, stuffing) {
      * @return {Number} Price in tugriks
      */
     this.calculatePrice = function () {
-        // let sizePrice = _this.getSizeObject(_size).price;
-
-        // let stuffingPrice = _this.getStuffingObject(_stuffing).price;
         let sizePrice = 0;
         let stuffingPrice = 0;
         let toppingPrice = 0;
         for (let i = 0; i < sizeList.length; i++) {
             if (sizeList[i].getName() === _size) {
-                sizePrice = sizeList[i];
+                sizePrice = sizeList[i].getPrice();
             }
         }
 
         for (let i = 0; i < stuffingList.length; i++) {
             if (stuffingList[i].getName() === _stuffing) {
-                stuffingPrice = stuffingList[i];
+                stuffingPrice = stuffingList[i].getPrice();
             }
         }
 
-        for (let i = 0; _toppingsArray.length; i++) {
-            toppingPrice += _toppingsArray[i].price;
+        for (let i = 0; i < _toppingsArray.length; i++) {
+            toppingPrice += _toppingsArray[i].getPrice();
         }
 
         return sizePrice + stuffingPrice + toppingPrice;
@@ -180,12 +198,27 @@ function Hamburger(size, stuffing) {
      * @return {Number} Caloricity in calories
      */
     this.calculateCalories = function () {
-        let sizeCalories = getSizeObject(getSize()).getCalories();
-        let stuffingCalories = getStuffingObject(getStuffing()).getCalories();
+        let sizeCalories = 0;
+        let stuffingCalories = 0;
         let toppingCalories = 0;
-        for (let i = 0; _toppingsArray.length; i++) {
+
+        for (let i = 0; i < sizeList.length; i++) {
+            if (sizeList[i].getName() === _size) {
+                sizeCalories = sizeList[i].getCalories();
+            }
+        }
+
+        for (let i = 0; i < stuffingList.length; i++) {
+            if (stuffingList[i].getName() === _stuffing) {
+                stuffingCalories = stuffingList[i].getCalories();
+            }
+        }
+
+        for (let i = 0; i < _toppingsArray.length; i++) {
             toppingCalories += _toppingsArray[i].getCalories();
         }
+
+        return sizeCalories + stuffingCalories + toppingCalories;
 
         return sizeCalories + stuffingCalories + toppingCalories;
     };

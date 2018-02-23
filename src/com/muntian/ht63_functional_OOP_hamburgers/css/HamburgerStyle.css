@@ -1,28 +1,48 @@
-body{
+body {
     background-image: url("../img/background/fast-food-creative-dinner-date.jpg");
 }
 
-h1{
-    text-align: center;
-}
-
-h2{
-text-align: center;
-}
-
-h3{
-    text-align: center;
-}
-
-.menu{
-    display: inline-block;
-    width : 700px;
+.container {
+    margin: auto;
+    width: 700px;
     height: 840px;
     background-image: url("../img/menu/menubkg.jpg");
 }
 
+ul{
+    margin-left: 50px;
+}
 
+li {
+    text-align: left;
+    /*display: inline-block;*/
+}
 
-.hamImg{
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.menu {
+    text-align: center;
+    padding-left: 20px;
     display: inline-block;
+    width: 350px;
+    height: 600px;
+}
+
+.menu_holder {
+    padding-top: 150px;
+}
+
+.hamImg {
+    display: inline-block;
+    margin-left: 50px;
 }
