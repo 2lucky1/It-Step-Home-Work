@@ -1,0 +1,30 @@
+body{
+    background-image: url("../img/color-wallpaper.jpg");
+
+}
+
+.content{
+    width: 900px;
+    height: 750px;
+    margin: 0 auto;
+}
+
+.home_task{
+    width: 800px;
+    height: 650px;
+    margin: 0 auto;
+}
+
+h1{
+    vertical-align: top;
+    font-size: 70px;
+    text-align: center;
+    color: yellow;
+    border: 2px solid black;
+    width: 500px;
+    margin: auto;
+    margin-top: 200px;
+    border-radius: 8px;
+}
+
+
