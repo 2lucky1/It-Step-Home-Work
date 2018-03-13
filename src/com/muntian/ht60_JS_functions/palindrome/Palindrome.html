@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IsPalindrome</title>
+    <link rel="stylesheet" href="../css/task_solution.css">
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <script>
+            "use strict";
+
+            //Input checking
+            while (true) {
+                var input = prompt("Enter text to check if it is a palindrome");
+                if (input.length == 0) {
+                    alert("You didn't enter any letters! Try again");
+                } else {
+                    break;
+                }
+            }
+
+            document.write("<h1>Your text:</h1>");
+            document.write("<pre class='result'>" + input + "</pre>");
+
+            //Main function
+            function isPalindrome(str) {
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i].toLowerCase().localeCompare((str[(str.length - i - 1)]).toLowerCase()) != 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            document.write("<h1>Answer:</h1>");
+
+            if (isPalindrome(input)) {
+                document.write("<pre class='result'>Congrats! It is a palindrome!</pre>");
+            } else {
+                document.write("<pre class='result'>Your text isn't a palindrome</pre>");
+            }
+
+        </script>
+    </div>
+</div>
+</body>
+</html>
