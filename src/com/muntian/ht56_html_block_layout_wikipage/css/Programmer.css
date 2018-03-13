@@ -1,0 +1,608 @@
+/*Main parts of the page*/
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1280px;
+    margin: 0;
+    padding: 0;
+    background-color: #F6F6F6;
+}
+
+.header {
+    height: 80px;
+    width: 1111px;
+    /*border: 1px solid black;*/
+    display: inline-block;
+    margin: 0;
+}
+
+.navigation_panel {
+    width: 160px;
+    /*border: 1px solid black;*/
+    display: inline-block;
+    float: left;
+    padding-left: 8px;
+    margin: 0;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+.content {
+    height: 3670px;
+    width: 1055px;
+    background-color: #FFFFFF;
+    border: 1px solid #a7d7f9;
+    border-right: 0;
+    margin-top: 0;
+    margin-left: 176px;
+    padding: 20px 24px 24px;
+}
+
+.footer {
+    height: 145px;
+    width: 1120px;
+    background-color: #F6F6F6;
+    margin: 0;
+    padding: 20px 0 0 160px;
+    /*border: 1px solid black;*/
+    clear: both;
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+/*Parameters of basic elements of the layout*/
+a {
+    color: #0645ad;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    display: block;
+    font-family: sans-serif;
+    font-size: 14px;
+    text-decoration-color: #222222;
+    line-height: 1.6;
+}
+
+.sup {
+    vertical-align: super;
+    line-height: 1;
+    font-size: 80%;
+    white-space: nowrap;
+}
+
+.italic {
+    font-style: italic;
+}
+
+h1 {
+
+}
+
+h2 {
+    font-size: 21px;
+    font-family: Linux Libertine, serif;
+    color: #000;
+    background: none;
+    font-weight: normal;
+    margin: 0;
+    overflow: hidden;
+    /*border-bottom: 1px solid #a2a9b1;*/
+    display: block;
+}
+
+h3 {
+    border-bottom: inherit;
+    font-size: 12px;
+    font-family: sans-serif;
+    font-weight: inherit;
+    text-decoration-color: #DFAD6A;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin: 6px 0 0 6px;
+}
+
+/*Custom classes*/
+
+/*Auxiliary selectors*/
+.inline_block {
+    display: inline-block;
+}
+
+/*Elements of the Header*/
+#user_page {
+    color: #687886;
+}
+
+#user_page > img {
+    margin-right: 3px;
+}
+
+.header_personal {
+    margin-top: -10px;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.header_personal > ul > li {
+    display: inline;
+    margin-right: 5px;
+    padding: 0;
+}
+
+.header_nav_menu {
+
+}
+
+.header_left_menu {
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+.header_left_menu > ul {
+    padding: 0;
+    margin: 22px 0 0;
+}
+
+.header_left_menu > ul > li + li {
+    border-right: 1px solid #A7D7F9;
+}
+
+.header_left_menu > ul > li {
+    display: inline;
+    border-left: 1px solid #A7D7F9;
+    padding: 16px 8px 6px;
+}
+
+.header_right_menu {
+    float: right;
+    text-align: right;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.header_right_menu > ul {
+    padding: 0;
+    margin: 18px 0 0;
+}
+
+.header_right_menu > ul > li {
+    display: inline;
+    border-left: 1px solid #A7D7F9;
+    padding: 16px 8px 6px;
+}
+
+.search_form {
+    display: inline-block;
+    position: relative;
+    width: 300px;
+}
+
+.search_form input {
+    /* turn off inputs borders */
+    border: none;
+}
+
+.search_form .input {
+    width: 100%;
+    /*This padding specifies location of the send button*/
+    padding: 0 37px 0 15px;
+    /*Do so that the width of the input field includes internal boundaries*/
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /*rounding corners*/
+    border-radius: 2px;
+    border-color: darkgray;
+}
+
+/* Make out the send button */
+.search_form .submit {
+    /* Position the button absolutely from the right edge */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 37px;
+    /*Stretch the button to the full height of the form*/
+    height: 100%;
+    /*Change view of the cursor*/
+    cursor: pointer;
+    /*The image fo the send button*/
+    background: url(https://lh4.googleusercontent.com/-b-5aBxcxarY/UAfFW9lVyjI/AAAAAAAABUg/gQtEXuPuIds/s13/go.png) 50% no-repeat;
+}
+
+/*This property is required for browsers Chrome and Safari for styling the input field*/
+input[type="search"] {
+    -webkit-appearance: none;
+    border: 1px solid black;
+    height: 25px;
+}
+
+/*Elements of the Navigation panel*/
+#main_logo {
+    display: block;
+    text-align: center;
+}
+
+.nav_block {
+    padding: 4px 0 4px 0;
+    margin: 0 9px 0 12px;
+}
+
+#first_block {
+    border-top: none;
+    margin-top: 7px;
+    padding: 4px 0 4px 0;
+}
+
+.block_list {
+    padding: 0;
+    border-top: 1px solid #D8D8D8;
+    margin-left: 5px;
+}
+
+.block_list > ul {
+    list-style-type: none;
+    width: inherit;
+    padding: 5px 0 0 1px;
+    margin: 0;
+}
+
+.block_list > ul > li {
+    padding: 2px 0 3px 0;
+}
+
+#gear {
+    cursor: pointer;
+    position: absolute;
+    top: 892px;
+    left: 145px;
+}
+
+.interlanguage {
+    cursor: pointer;
+    padding: 4px 6px 4px 25px;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 4px 0 4px 0;
+}
+
+#image_xa {
+    position: absolute;
+    top: 1102px;
+    left: 30px;
+    color: rgba(0%, 0%, 0%, 0.0);
+}
+
+.edit_links {
+    font-family: sans-serif;
+    text-decoration-color: #DFAD6A;
+    text-align: right;
+}
+
+#pencil {
+    position: absolute;
+    top: 1127px;
+    left: 57px;
+}
+
+/*Elements of the Content*/
+#first_heading {
+    color: #000;
+    background: none;
+    font-weight: normal;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 0.5em;
+    padding-bottom: 0.17em;
+    border-bottom: 1px solid #a2a9b1;
+}
+
+#siteSub {
+    text-align: left;
+    font-size: 12px;
+}
+
+.edit_section {
+    text-align: right;
+    font-size: 12px;
+}
+
+.underheader > .edit_section {
+    float: right;
+}
+
+.text_content {
+    margin-top: 30px;
+}
+
+#definition {
+    width: auto;
+}
+
+#definition > p {
+    margin-top: 0;
+}
+
+#img_office {
+    padding: 2px;
+    float: right;
+    width: 274px;
+    height: 195px;
+    display: inline-block;
+    background-color: #f8f9fa;
+    border: 1px solid #a2a9b1;
+    font-size: 13px;
+}
+
+#img_office > img {
+    text-align: center;
+    padding: 2px 2px 0 2px;
+}
+
+#thumcaption {
+    padding-left: 5px;
+}
+
+#enlarge_image {
+    position: absolute;
+    top: 380px;
+    right: 100px;
+}
+
+#subject {
+    border: 1px solid #a2a9b1;
+    background-color: #f8f9fa;
+    padding: 5px;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+#subject > ol {
+    padding-left: 25px;
+    padding-top: 3px;
+    margin: 2px;
+}
+
+#subject > ol > li {
+    margin: 6px 0 6px 0;
+}
+
+#subject > div {
+    text-align: center;
+}
+
+.headline {
+    margin-top: 25px;
+    padding-bottom: 1px;
+    border-bottom: 1px solid #a2a9b1;
+}
+
+.headline > div {
+    margin-right: 10px;
+}
+
+.header2 {
+    font-size: 22px;
+    font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+}
+
+.un_list > li {
+    margin: 3px 0 3px 0;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#int_facts {
+    width: auto;
+    padding: 5px;
+    margin: 7px 50px 0 120px;
+    border-left: 10px solid #36c;
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+    background-color: #F8F9FA;
+    font-family: sans-serif;
+    font-size: 80%;
+    line-height: 1.6;
+}
+
+#int_facts_list {
+    margin-top: 7px;
+}
+
+#int_facts_logo {
+    vertical-align: middle;
+    height: 43px;
+}
+
+.text {
+    width: 790px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.text > div > b {
+    font-size: 14px;
+}
+
+#ref_img {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 3125px;
+    right: 93px;
+}
+
+.references {
+    font-family: sans-serif;
+    font-size: 80%;
+}
+
+.references > ol > li {
+    line-height: 1.6;
+}
+
+.literature {
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.literature > ul {
+    margin: 4px 0 0 22px;
+    padding-left: 2px;
+}
+
+.literature > ul > li {
+    line-height: 1.6;
+}
+
+#remarks {
+    width: auto;
+    height: 76px;
+    padding: 5px;
+    margin: 7px 50px 0 120px;
+    border-left: 10px solid #f28500;
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+    background-color: #F8F9FA;
+    font-family: sans-serif;
+    font-size: 80%;
+    line-height: 1.6;
+}
+
+#remarks_logo {
+    vertical-align: middle;
+    height: 37px;
+}
+
+#remarks > div > div > b {
+    font-size: 14px;
+}
+
+.categories {
+    border: 1px solid grey;
+    background-color: #F8F9FA;
+    text-align: left;
+    font-size: 14px;
+    font-family: sans-serif;
+    padding: 6px 6px 6px 8px;
+    margin: 20px 0 0 0;
+}
+
+.categories > ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.categories > ul > li {
+    display: inline-block;
+    line-height: 1.6;
+    padding: 0 4px 0 4px;
+}
+
+.categories > ul > li + li {
+    border-left: 1px solid grey;
+    padding-left: 8px;
+}
+
+/*Elements of the Footer*/
+#footer_info {
+    margin: 0;
+    list-style-type: none;
+    padding-left: 30px;
+}
+
+#footer_info > li {
+    padding: 8px;
+
+}
+
+#footer_places {
+    padding-left: 34px;
+    margin-top: 7px;
+}
+
+#footer_places > li {
+    padding: 5px;
+    display: inline-block;
+
+}
+
+#footer_icons {
+    float: right;
+    margin: 0;
+    padding-right: 20px;
+}
+
+#footer_icons > li {
+    display: inline-block;
+}
+
+/*Elements of the Referenced page*/
+.ref_page{
+    background-image: url("../img/background_texture/10211621.jpeg");
+    height: 600px;
+}
+
+.ref_container{
+    width: 900px;
+    height: inherit;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#ref_link > a{
+    text-decoration-color: white;
+    color: white;
+}
+
+.description{
+    font-size: 30px;
+    color: white;
+}
+
+.show_example{
+    font-size: 20px;
+    color: yellow;
+    margin: 2px;
+    float: right;
+}
+
+#back{
+    margin-top: 0;
+    font-size: 17px;
+    color: forestgreen;
+    vertical-align: middle;
+    text-align: left;
+    float: left;
+    padding-left: 25px;
+}
+
+#example{
+    vertical-align: middle;
+    text-align: right;
+    float: right;
+}
+
+.nav_buttons{
+width: inherit;
+    margin-top: 20px;
+}
+.back_description{
+    font-size: 20px;
+    color: yellow;
+    margin: 2px;
+    float: left;
+}
