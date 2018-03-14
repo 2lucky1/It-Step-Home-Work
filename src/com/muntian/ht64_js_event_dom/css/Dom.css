@@ -23,8 +23,36 @@ h1{
     border: 2px solid black;
     width: 500px;
     margin: auto;
-    margin-top: 200px;
     border-radius: 8px;
 }
 
+#button{
+    width: 100px;
+    border: 1px solid black;
+    text-align: center;
+
+}
+
+#menu{
+    border: 1px solid black;
+    width: 100px;
+}
+
+#menubtn{
+    /*border: 1px solid black;*/
+    /*width: 100px;*/
+
+}
+
+#menu_content{
+    display: none;
+    border: 1px solid black;
+    width: 100px;
+}
+
+.menu_item{
+    display: block;
+    border-bottom: 1px solid black;
+    padding-left: 20px;
+}
 
