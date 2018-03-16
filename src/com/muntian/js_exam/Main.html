@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+<p id = 'main'>Main</p>
+<p id="number"></p><br>
+<a id = 'true' name="true">true</a><br>
+<a id = 'time' name="time">time</a><br>
+<a id = 'minute' name="minute">minute</a><br>
+<a id = 'second' name="second">second</a><br>
+<script>
+    //Перенаправление в JS
+    //    window.location.href = "Redirect.html"
+    //    window.location.replace("Redirect.html")
+
+    //Вывод счетчика
+    var number = 1;
+    setInterval(function counter() {
+        document.getElementById('number').innerText = "" + (++number);
+    }, 1000);
+
+//    //Вывод alert() через 3 секунды
+//        setTimeout(function () {
+//            alert("Can I help you?")
+//        }, 3000);
+
+    //Функция, возвращающая расширение имени файла
+    function extension(documentName) {
+        return documentName.slice(documentName.lastIndexOf("."));
+    }
+    console.log(extension("examen.txt"));
+
+    //jQuery
+    //Выбор элементов
+    console.log($('*[id.eq(name)]'))
+</script>
+</body>
+</html>

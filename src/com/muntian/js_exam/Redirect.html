@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirect</title>
+
+</head>
+<body>
+
+<p>Страница для перенаправления</p>
+<p id="number">1</p>
+<script>
+    var number = 1;
+    setInterval(function counter() {
+        document.getElementById('number').innerText = "" + (++number);
+    }, 1000);
+
+    //    setTimeout(function () {
+    //        alert("Can I help you?")
+    //    }, 3000);
+
+    function extension(documentName) {
+        return documentName.slice(documentName.lastIndexOf("."));
+    }
+
+    console.log(extension("examen.txt"));
+</script>
+</body>
+</html>
