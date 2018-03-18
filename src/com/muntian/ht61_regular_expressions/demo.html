@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RegEx</title>
+</head>
+<body>
+<form>
+        <label>
+            Phone
+        <input placeholder="(0XX) XXX-XX-XX"
+               title="Некорректный ввод телефона"
+               pattern="\(0\d{2}\)\s*\d{3}-\d{2}-\d{2}"/><br/>
+        </label>
+        <label>
+        <input pattern="[a-zA-Z0-9]+" title="Некорректный ввод"/>
+        </label>
+        <input type="submit"/>
+    </form>
+
+<script>
+    var data = `21 мая 2001
+21/05/2001
+21/05.2001
+21/5/2001
+21/05/01
+12/12/1995`;
+
+    // var a = 10, b = 50, c;
+    // c = a + b;
+    // var template = 'a + b = ' + a + ' + ' + b + ' = ' + c;
+    // template = `a + b = ${a} + ${b} = ${a + b}`;
+    // console.log(template);
+
+    var input = data.split('\n'); // array
+    console.log(input);
+    var reData = new RegExp("\\d\\d\\/\\d\\d\\/\\d\\d\\d\\d");  // /\d\d\/\d\d\/\d\d\d\d/;
+    console.log(reData instanceof RegExp);
+    for(var i=0; i<input.length; i++) {
+        //if(input[i].search(reData) >= 0) {
+        if(reData.test(input[i])) {
+            console.log(`дата ${input[i]} корректная`);
+        } else {
+            console.log(`дата ${input[i]} ошибочно введенная`);
+        }
+    }
+
+    var str = "Сегодя 07/02/2018 года, а завтар 08/02/2018";
+    var idx = str.search(reData);
+    console.log("idx = " + idx);
+    console.log(str.substr(idx, 10));
+    console.log(str.match(reData));
+</script>
+</body>
+</html>
