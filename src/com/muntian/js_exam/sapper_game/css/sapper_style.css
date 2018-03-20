@@ -1,0 +1,29 @@
+body{
+    background-image: url("../img/background/white.jpg");
+}
+
+.menu{
+    display: inline-block;
+}
+
+/*buttons*/
+#start{
+    background-position: 0 -55px;
+    width: 26px;
+    height: 26px;
+}
+
+#game table {
+    /*width: 200px;
+    height: 200px;*/
+    border: 1px solid #333333;
+}
+#game table tr {
+    /*border: 1px solid #333333;*/
+}
+#game table tr td {
+    width: 16px;
+    height: 16px;
+    background: #d7d7d7;
+    border: 1px solid #333333;
+}
