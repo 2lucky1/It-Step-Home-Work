@@ -113,18 +113,18 @@
             $(this).text(fields[x][y]);
 
             //Display content of adjacent squares if they haven't mines
-            if (fields[x][y - 1] !== 1 || y >= 0) {
+            if (fields[x][y - 1] !== "1" && (y - 1) >= 0) {
                 gameDiv.find('table td[data-x=' + x + '][data-y=' + (y - 1) + ']').text(fields[x][y - 1]);
             }
-            if (fields[x][y + 2] !== 1 || y < rows) {
-                gameDiv.find('table td[data-x=' + x + '][data-y=' + (y + 2) + ']').text(fields[x][y + 2]);
-            }
-            if (fields[x - 1][y] !== 1 || x >=0) {
-                gameDiv.find('table td[data-x=' + (x - 1) + '][data-y=' + (y) + ']').text(fields[x - 1][y]);
-            }
-            if (fields[x + 2][y] !== 1 || x < cols) {
-                gameDiv.find('table td[data-x=' + (x + 2) + '][data-y=' + (y) + ']').text(fields[x + 1][y]);
-            }
+            // if (fields[x][y + 3] !== 1 || y < rows) {
+            //     gameDiv.find('table td[data-x=' + x + '][data-y=' + (y + 3) + ']').text(fields[x][y + 3]);
+            // }
+            // if (fields[x - 1][y] !== 1 || x >=0) {
+            //     gameDiv.find('table td[data-x=' + (x - 1) + '][data-y=' + (y) + ']').text(fields[x - 1][y]);
+            // }
+            // if (fields[x + 2][y] !== 1 || x < cols) {
+            //     gameDiv.find('table td[data-x=' + (x + 2) + '][data-y=' + (y) + ']').text(fields[x + 1][y]);
+            // }
         });
 
         function displayAll() {
