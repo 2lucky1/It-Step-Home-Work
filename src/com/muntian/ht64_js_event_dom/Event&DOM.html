@@ -9,20 +9,31 @@
 </head>
 <body>
 <div class="content" id="fg">
-    <div class="menu">
-        <div id="button">
-           <span id="btn" onclick="">Menu</span>
-        </div>
-        <div id="menu_content">
-            <span class="menu_item">Main</span>
-            <span class="menu_item">Products</span>
-            <span class="menu_item">Gallery</span>
-            <span class="menu_item">Contacts</span>
+    <div id="menu_holder">
+        <div id="btn" class="button">Menu</div>
+        <div id="menu_content" class="menuClose">
+            <a href="Test.html" class="menu_item">Products</a>
+            <a href="Test.html" class="menu_item">Gallery</a>
+            <a href="Test.html" class="menu_item">Contacts</a>
         </div>
     </div>
     <div id="home_task">
         <h1>Home task</h1>
-
+    </div>
+    <div id="monitor">
+       <div id="back" ><img class="btnArrow" src="img/buttons/back1.png"></div>
+       <div id="showedImage">
+           <img id="0" class="visible" src="img/gallery_images/chess1.jpg">
+           <img id="1" class="inVisible" src="img/gallery_images/chess2.jpg">
+           <img id="2" class="inVisible" src="img/gallery_images/chess3.jpg">
+           <img id="3" class="inVisible" src="img/gallery_images/chess4.jpg">
+           <img id="4" class="inVisible" src="img/gallery_images/chess5.jpg">
+           <img id="5" class="inVisible" src="img/gallery_images/chess6.jpg">
+           <img id="6" class="inVisible" src="img/gallery_images/carlsen_vs_nakamura.jpg">
+           <img id="7" class="inVisible" src="img/gallery_images/cramnic.jpg">
+           <img id="8" class="inVisible" src="img/gallery_images/levon_aronian.jpg">
+       </div>
+       <div id="next" ><img class="btnArrow" src="img/buttons/next.png"></div>
     </div>
 </div>
 </body>
