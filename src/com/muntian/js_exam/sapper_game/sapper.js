@@ -3,7 +3,6 @@
     let fields = [];
 
     let bombCount;
-    let usedBombs = 0;
     let rows;
     let cols;
 
@@ -29,6 +28,7 @@
         let gameDiv = $('#game');
 
         function fillFiled() {
+            let usedBombs = 0;
 
             for (let i = 0; i < rows; i++) {
 
@@ -52,11 +52,25 @@
 
             }
 
-
-            // console.log(fields[1][1]);
-            // console.log(fields);
-
+            console.log(fields);
         }
+
+        // function shuffle(a) {
+        //     var j, x, i;
+        //     for (i = a.length - 1; i > 0; i--) {
+        //         j = Math.floor(Math.random() * (i + 1));
+        //         x = a[i];
+        //         a[i] = a[j];
+        //         a[j] = x;
+        //     }
+        //
+        //
+        //     // for (let i = a.length - 1; i > 0; i--) {
+        //     //     const j = Math.floor(Math.random() * (i + 1));
+        //     //     [a[i], a[j]] = [a[j], a[i]];
+        //     // }
+        //     // return a;
+        // }
 
         //Event of click by button start
         start.click(function (e) {
@@ -78,7 +92,7 @@
                 let fTr = tr.clone();
 
                 for (let j = 0; j < cols; j++) {
-                    let fTd = td.clone().attr('data-x', i).attr('data-y', j);
+                    let fTd = td.clone().attr('data-y', i).attr('data-x', j);
                     fTr.append(fTd);
                 }
 
@@ -119,9 +133,9 @@
             // if (fields[x][y + 3] !== 1 || y < rows) {
             //     gameDiv.find('table td[data-x=' + x + '][data-y=' + (y + 3) + ']').text(fields[x][y + 3]);
             // }
-            // if (fields[x - 1][y] !== 1 || x >=0) {
-            //     gameDiv.find('table td[data-x=' + (x - 1) + '][data-y=' + (y) + ']').text(fields[x - 1][y]);
-            // }
+            if ((fields[x - 3][y]) !== "1" && x >=0) {
+                gameDiv.find('table td[data-x=' + (x - 3) + '][data-y=' + (y) + ']').text(fields[x - 3][y]);
+            }
             // if (fields[x + 2][y] !== 1 || x < cols) {
             //     gameDiv.find('table td[data-x=' + (x + 2) + '][data-y=' + (y) + ']').text(fields[x + 1][y]);
             // }
