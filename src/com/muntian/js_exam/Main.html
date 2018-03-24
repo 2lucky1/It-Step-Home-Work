@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<p id='main'>Main</p>
+<p id="number"></p><br>
+<div class="one cls">div one</div>
+<div class="one">div one</div>
+<p class="two">p two</p>
+<p class="two">p two</p>
+<a id='true' name="true">true</a><br>
+<a id='time' name="time">time</a><br>
+<a id='minute' name="minute">minute</a><br>
+<a id='second' name="second">second</a><br>
+<div style="border: 1px solid black">hjg</div>
+<div class="cls" style="border: 1px solid black">hjg</div>
+<div class="cls" style="border: 1px solid black">hjg</div>
+<div class="cls" style="border: 1px solid black">hjg</div>
+<span style="border: 1px solid black"> GGGG</span>
+<span style="border: 1px solid black"> GGGG</span>
+<span style="border: 1px solid black"> GGGG</span>
+<span style="border: 1px solid black"> GGGG</span>
+<br>
+<br>
+
+<button id="hello" style="border: 1px solid blue">Hello World!</button>
+
+<br>
+<br>
+
+<div title="test" style="display: none" name="red">hjg
+    <span style="border: 1px solid black"> GGGG</span>
+</div>
+<div title="test" style="border: 1px solid black" name="red">hjg
+    <span style="border: 1px solid black"> GGGG</span>
+</div>
+<div style="border: 1px solid black" name="red">hjg
+    <span style="border: 1px solid black"> GGGG</span>
+</div>
+
+<script>
+    //Перенаправление в JS
+    //    window.location.href = "Redirect.html"
+//        window.location.replace("Redirect.html")
+
+    //Вывод счетчика
+        var number = 1;
+        setInterval(function counter() {
+            document.getElementById('number').innerText = "" + (++number);
+        }, 1000);
+
+        //Вывод alert() через 3 секунды
+            setTimeout(function () {
+                alert("Can I help you?")
+            }, 3000);
+
+    //Функция, возвращающая расширение имени файла
+    function extension(documentName) {
+        return documentName.slice(documentName.lastIndexOf("."));
+    }
+
+    console.log(extension("examen.txt"));
+
+    //jQuery
+    //Выбор элементов
+
+    //2. Удаляем все элементы, у которых id = name
+    $("*").each(function () {
+        let el = $(this);
+        if (el.attr("id") !== undefined && el.attr("id") === el.attr("name")) {
+            el.remove();
+        }
+    });
+
+    //3. Затемнение всем div и span элементам на протяжении 600 мс
+//        $('div, span').fadeOut(600);
+
+    //4. Выбрать все span элементы в элементах div, где span является
+    // прямым потомком div’a
+    $('div').children('span');
+
+    //5. Выбрать div`ы у которых нет класса cls и добавить цвет текста красный
+    $("div[class!='cls']").css('color', 'red');
+
+    //6. Выбрать все div’ы с атрибутом title = test
+    $('div[title="test"]');
+
+    //7. Выбрать видимый div с именем red, который содержит тег span
+    $('span').parents("div:visible[name='red']");
+
+    //8. Найти все элементы div с классом one, а также все элементы p с классом two, затем добавить
+    //им всем класс three и визуально плавно спустить вниз.
+    $("div.one").add("p.two").addClass("three").slideUp(0);
+    $(".three").slideDown('slow');
+
+    //9. Сделать так, чтобы при нажатии на элемент алертом выводилось “Hello world!”.
+    $('button[id="hello"]').click(function () {
+        alert('Hello world!');
+    });
+
+    //10.	Выбрать div`ы у которых нет класса cls
+    $("div:not(.cls)");
+</script>
+</body>
+</html>
