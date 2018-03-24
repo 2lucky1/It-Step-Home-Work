@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set color</title>
+    <link rel="stylesheet" href="css/SetColorStyle.css">
+</head>
+<body>
+<script>
+    var color = "red_box";
+    setColor();
+
+    function setColor() {
+        var color = "black_box";
+        var random = Math.random();
+        if (random <= 0.5) {
+            drawBox(window.color);
+        } else {
+            drawBox(color);
+        }
+
+        function drawBox(color) {
+            document.write("<div class='" + color + "' ></div>")
+        }
+    }
+</script>
+</body>
+</html>

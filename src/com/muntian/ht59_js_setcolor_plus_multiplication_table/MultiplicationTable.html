@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiplication table</title>
+    <link rel="stylesheet" href="css/MultiplicationTableStyle.css">
+</head>
+<body>
+<div class="container">
+    <script>
+        "use strict";
+        var columns = prompt("To display multiplication table enter quantity of columns");
+        var rows = prompt("Enter quantity of rows");
+        document.writeln("<table>");
+        document.writeln("<tr>");
+        for (var i = 0; i <= columns; i++) {
+            if (i < 1) {
+                document.write("<th class='logo'><div><img src='img/logo/logo4.png' id='logo'></div></th>");
+            } else {
+                document.writeln("<th class='top_header'>" + i + "</th>")
+            }
+        }
+        document.writeln("</tr>");
+
+        for (var k = 1; k <= rows; k++) {
+            document.writeln("<tr>");
+            document.writeln("<th class='left_header'>" + k + "</th>");
+            for (var j = 1; j <= columns; j++) {
+                document.writeln("<td>" + k * j + "</td>");
+            }
+            document.writeln("</tr>");
+        }
+        document.writeln("</table>");
+
+    </script>
+</div>
+</body>
+</html>
