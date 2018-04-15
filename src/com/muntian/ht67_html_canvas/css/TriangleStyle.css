@@ -1,0 +1,17 @@
+#content{
+    width: 800px;
+    height: 600px;
+    background-color: #98cbf5;
+    border: 1px solid black;
+    margin: auto;
+}
+
+#header{
+    text-align: center;
+    margin: auto;
+}
+
+#canvas{
+    text-align: center;
+    margin: auto;
+}
