@@ -1,0 +1,20 @@
+Видео:
+
+Http: https://youtu.be/miewzUJ4Do4
+URLConnection: https://youtu.be/DUtKSCM1VSw
+
+Socket:
+https://youtu.be/gZPdq6O5gZE
+https://youtu.be/txZMWeyx17M
+
+HTTP, URLConnection.
+
+Получить HTML страницы и сохранить в html файл.
+Скачать какой-то файл (к примеру картинку)  на компьтер.
+
+Написать некоего бота для загадок на socket:
+
+Клиент подключается к серверу. все вопросы выводятся случайно. Когда клиент отвечает, сервер ему отвечает правильно или нет.
+
+Проекты классной работы:
+https://drive.google.com/open?id=1CSb_9YYmJtW7ZULA0m0cjBSrF5w8kEKQ
