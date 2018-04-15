@@ -1,0 +1,145 @@
+body{
+    background-image: url("../img/background/color-wallpaper.jpg");
+
+}
+
+.content{
+    width: 1200px;
+    height: 750px;
+    margin: 0 auto;
+}
+
+.home_task{
+    width: 800px;
+    height: 650px;
+    margin: 0 auto;
+}
+
+h1{
+    vertical-align: top;
+    font-size: 70px;
+    text-align: center;
+    color: yellow;
+    border: 2px solid black;
+    width: 500px;
+    margin: auto;
+    border-radius: 8px;
+}
+
+h2{
+    font-size: 40px;
+    text-align: center;
+    color: black;
+    margin: auto;
+    text-decoration: none;
+    border: 2px solid black;
+    width: 200px
+}
+
+#home_task{
+    /*margin-top: 30px;*/
+}
+
+.button{
+border: 1px solid black;
+
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+#menu_holder{
+    position: absolute;
+    margin-left: 100px;
+    width: 98px;
+}
+
+#btn{
+    text-align: center;
+    background-color: #F79646;
+    color: white;
+    -webkit-user-select: none;
+}
+
+#menu_content{
+    /*display: none;*/
+    border-bottom: 1px solid black;
+    /*width: 100px;*/
+    /*position: absolute;*/
+    background-color: #F79646;
+
+}
+
+.menuClose{
+    display: none;
+}
+
+.menuOpen{
+    display: block;
+}
+
+.menu_item{
+    display: block;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right:  1px solid black;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1em;
+    color: white;
+    text-decoration: none;
+}
+
+.menu_item:hover{
+    cursor: pointer;
+}
+
+#monitor{
+    border: 1px solid black;
+    width: 1000px;
+    height: 500px;
+    margin: 20px auto;
+    text-align: center;
+    background-image: url("../img/background/p1_2209190_7268af75.jpg");
+}
+
+#back{
+float: left;
+    height: inherit;
+    display: inline-block;
+}
+
+#showedImage{
+    width: 650px;
+    height: 470px;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+
+
+
+}
+
+#next{
+    float: right;
+    height: inherit;
+    display: inline-block;
+}
+
+.btnArrow{
+    display: inline-block;
+    margin-top: 213px;
+    cursor: pointer;
+}
+
+.visible{
+    display: block;
+    text-align: center;
+    margin: 42px auto;
+    border: 8px solid #F79646;
+}
+
+.inVisible{
+    display: none;
+}
